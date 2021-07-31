@@ -30,7 +30,9 @@ function App() {
 
 const AuthenticatedApp = (user) => {
   const Container = styled("div")(({ theme }) => ({
+    padding: theme.spacing(8, 0),
     minHeight: "calc(100vh - 64px)",
+    background: `linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%)`,
     [theme.breakpoints.down("sm")]: {
       padding: 0,
     },
