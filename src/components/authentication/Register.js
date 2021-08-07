@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    background: `linear-gradient(33deg, ${theme.palette.primary.light} 10%,  ${theme.palette.primary.main} 80%)`,
+    background: `linear-gradient(33deg, ${theme.palette.secondary.main} 20%,  ${theme.palette.primary.light} 80%)`,
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[50]
@@ -59,8 +59,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function Register() {
   const classes = useStyles();
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -101,21 +102,16 @@ export default function SignInSide() {
               type="submit"
               fullWidth
               variant="contained"
-              color="secondary"
+              color="primary"
               className={classes.submit}
               onClick={() => localStorage.setItem("user", "Artem")}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/login" variant="body2">
+                  {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>

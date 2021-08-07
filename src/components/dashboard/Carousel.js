@@ -5,7 +5,7 @@ import { Paper, Button, makeStyles, Grid, Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   styledPaper: {
     padding: theme.spacing(1, 2),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     minWidth: "inherit",
     [theme.breakpoints.down("sm")]: {
       width: "inherit",
@@ -60,7 +60,7 @@ function Item(props) {
             <Typography>{props.item.description}</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Button color="secondary" variant="outlined">
+            <Button color="default" variant="outlined">
               Check it out!
             </Button>
           </Grid>

@@ -17,6 +17,7 @@ import { IntlProvider } from "react-intl";
 import { messagesInRussian } from "./lang/ru";
 import { messagesInEnglish } from "./lang/en";
 import TopBar from "./components/topBar/TopBar";
+import Register from "./components/authentication/Register";
 
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"));
@@ -35,6 +36,7 @@ function App() {
             <>
               <Switch>
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
                 <Redirect from="/*" to="/login" />
               </Switch>
             </>

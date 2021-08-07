@@ -1,21 +1,17 @@
 import React from "react";
-import Carousel from "react-material-ui-carousel";
 import {
-  Paper,
-  Button,
   makeStyles,
   Grid,
   Typography,
   withWidth,
   isWidthDown,
 } from "@material-ui/core";
-import classNames from "classnames";
 import { useIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   styledMainGrid: {
     padding: theme.spacing(1, 2),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     height: "85%",
     borderRadius: 4,
     [theme.breakpoints.down("sm")]: {

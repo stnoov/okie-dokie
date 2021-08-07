@@ -1,8 +1,7 @@
 import React from "react";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useIntl } from "react-intl";
 import NewsCarousel from "../../components/dashboard/Carousel";
 import ProfileInfo from "../../components/dashboard/ProfileInfo";
 import NewsBlock from "../../components/dashboard/NewsBlock";
@@ -14,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const intl = useIntl();
   return (
     <Grid container className={classes.rootContainer}>
       <Grid item xs={12}>

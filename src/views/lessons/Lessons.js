@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     "&.Mui-selected": {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.common.white,
+      margin: theme.spacing(0, 0.3),
       "&:hover": {
         backgroundColor: theme.palette.secondary.main,
       },

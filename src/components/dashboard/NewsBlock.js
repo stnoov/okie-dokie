@@ -1,15 +1,5 @@
 import React from "react";
-import Carousel from "react-material-ui-carousel";
-import {
-  Paper,
-  Button,
-  makeStyles,
-  Grid,
-  Typography,
-  withWidth,
-  isWidthDown,
-} from "@material-ui/core";
-import classNames from "classnames";
+import { makeStyles, Grid, Typography, withWidth } from "@material-ui/core";
 import { useIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   styledNewsBlock: {
     borderRadius: 4,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.dark,
   },
   newsContent: {
