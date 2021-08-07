@@ -5,4 +5,6 @@ export const messagesInEnglish = {
   "routes.lessons": "Lessons",
   "routes.dashboard": "Dashboard",
   "fields.language": "Language",
+  "fields.senior_group": "Senior group",
+  "fields.junior_group": "Junior group",
 };

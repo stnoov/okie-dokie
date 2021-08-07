@@ -64,8 +64,10 @@ const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
     padding: theme.spacing(8, 0),
     minHeight: "calc(100vh - 80px)",
     backgroundColor: theme.palette.common.white,
-    width: open ? "calc(100% - 240px)" : "100%",
-    marginLeft: open ? "240px" : "0px",
+    [theme.breakpoints.up("lg")]: {
+      width: open ? "calc(100% - 240px)" : "100%",
+      marginLeft: open ? "240px" : "0px",
+    },
   }));
   return (
     <>

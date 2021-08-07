@@ -1,23 +1,11 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Grid,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-} from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Grid } from "@material-ui/core";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { Menu } from "@material-ui/icons";
-import { deepOrange } from "@material-ui/core/colors";
 import { useIntl } from "react-intl";
-const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     "&.Mui-selected": {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.common.white,
+      "&:hover": {
+        backgroundColor: theme.palette.secondary.main,
+      },
     },
   },
 }));

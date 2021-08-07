@@ -5,4 +5,6 @@ export const messagesInRussian = {
   "routes.lessons": "Уроки",
   "routes.dashboard": "Главная",
   "fields.language": "Язык",
+  "fields.senior_group": "Старшая группа",
+  "fields.junior_group": "Младшая группа",
 };
