@@ -20,9 +20,7 @@ import { messagesInEnglish } from "./lang/en";
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"));
   const [locale, setLocale] = React.useState(
-    localStorage.getItem("locale") === null
-      ? "en"
-      : localStorage.getItem("locale")
+    localStorage.getItem("locale") === undefined ? "en" : "ru"
   );
   console.log("locale: ", locale);
   return (

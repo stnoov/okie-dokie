@@ -6,15 +6,15 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Avatar,
   Grid,
   Select,
   MenuItem,
   FormControl,
   InputLabel,
 } from "@material-ui/core";
-
-import { NotificationImportant, Menu, Search } from "@material-ui/icons";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import { Menu } from "@material-ui/icons";
 import { deepOrange } from "@material-ui/core/colors";
 import { useIntl } from "react-intl";
 const drawerWidth = 240;
@@ -64,6 +64,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "white",
     },
   },
+  styledToggleButton: {
+    border: `1px solid ${theme.palette.secondary.main}`,
+    color: theme.palette.secondary.main,
+    "&.Mui-selected": {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.common.white,
+    },
+  },
 }));
 
 export default function TopBar({ handleDrawerOpen, open, locale, setLocale }) {
@@ -99,36 +107,34 @@ export default function TopBar({ handleDrawerOpen, open, locale, setLocale }) {
             <Grid item>
               <Grid container alignItems="center">
                 <Grid item>
-                  <FormControl
-                    variant="outlined"
-                    className={classes.styledFormControl}
-                    size="small"
+                  <ToggleButtonGroup
+                    value={locale}
+                    exclusive
+                    aria-label="text alignment"
                   >
-                    <InputLabel>
-                      {intl.formatMessage({
-                        id: "fields.language",
-                        defaultMessage: "Language",
-                      })}
-                    </InputLabel>
-                    <Select
-                      value={locale}
-                      onChange={(e) => updateLocale(e.target.value)}
-                      label="Age"
+                    <ToggleButton
+                      onClick={() => updateLocale("ru")}
+                      className={classes.styledToggleButton}
+                      aria-label="left aligned"
+                      selected={locale === "ru" && true}
                     >
-                      <MenuItem value="en">
-                        {intl.formatMessage({
-                          id: "language.english",
-                          defaultMessage: "English",
-                        })}
-                      </MenuItem>
-                      <MenuItem value="ru">
-                        {intl.formatMessage({
-                          id: "language.russian",
-                          defaultMessage: "Russian",
-                        })}
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
+                      {intl.formatMessage({
+                        id: "language.russian",
+                        defaultMessage: "Russian",
+                      })}
+                    </ToggleButton>
+                    <ToggleButton
+                      className={classes.styledToggleButton}
+                      selected={locale === "en" && true}
+                      onClick={() => updateLocale("en")}
+                      aria-label="left aligned"
+                    >
+                      {intl.formatMessage({
+                        id: "language.english",
+                        defaultMessage: "English",
+                      })}
+                    </ToggleButton>
+                  </ToggleButtonGroup>
                 </Grid>
               </Grid>
             </Grid>
