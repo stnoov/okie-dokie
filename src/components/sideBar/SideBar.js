@@ -14,7 +14,6 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import TopBar from "../topBar/TopBar";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { useIntl } from "react-intl";
 import getRoutes from "../../config/routes";

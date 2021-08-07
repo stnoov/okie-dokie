@@ -5,7 +5,6 @@ import {
   makeStyles,
   List,
   ListItem,
-  ListItemText,
   withWidth,
   isWidthDown,
 } from "@material-ui/core";
@@ -45,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     color: "#6A6F9E",
     paddingLeft: 2,
   },
+  nothingToShowText: {
+    color: theme.palette.primary.dark,
+  },
 }));
 
 function Lessons({ width }) {
@@ -63,6 +65,7 @@ function Lessons({ width }) {
         console.log(el);
         return el;
       }
+      return 0;
     });
     setLessons(newLessons);
   };
@@ -99,52 +102,70 @@ function Lessons({ width }) {
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
-        <Grid item xs={12}>
-          <List>
-            {lessons.map((lesson) => {
-              return (
-                <ListItem className={classes.styledListItem}>
-                  <Grid container justify="space-between" alignItems="center">
-                    <Grid item>
-                      <Grid container justify="flex-start">
-                        <Grid item xs={12}>
-                          <Typography variant="h5">{lesson.title}</Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography
-                            variant="body2"
-                            className={classes.teacherSubtitle}
-                          >
-                            Учитель: {lesson.teacher}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Grid container justify="center" direction="column">
-                        <Grid item>
-                          <Grid
-                            container
-                            justify={
-                              isWidthDown("sm", width)
-                                ? "flex-start"
-                                : "flex-end"
-                            }
-                          >
-                            <Typography variant="h4">{lesson.time}</Typography>
+        {lessons.length > 0 ? (
+          <Grid item xs={12}>
+            <List>
+              {lessons.map((lesson) => {
+                return (
+                  <ListItem className={classes.styledListItem}>
+                    <Grid container justify="space-between" alignItems="center">
+                      <Grid item>
+                        <Grid container justify="flex-start">
+                          <Grid item xs={12}>
+                            <Typography variant="h5">{lesson.title}</Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography
+                              variant="body2"
+                              className={classes.teacherSubtitle}
+                            >
+                              Учитель: {lesson.teacher}
+                            </Typography>
                           </Grid>
                         </Grid>
-                        <Grid item>
-                          <Typography variant="body1">{lesson.date}</Typography>
+                      </Grid>
+                      <Grid item>
+                        <Grid container justify="center" direction="column">
+                          <Grid item>
+                            <Grid
+                              container
+                              justify={
+                                isWidthDown("sm", width)
+                                  ? "flex-start"
+                                  : "flex-end"
+                              }
+                            >
+                              <Typography variant="h4">
+                                {lesson.time}
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                          <Grid item>
+                            <Typography variant="body1">
+                              {lesson.date}
+                            </Typography>
+                          </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                </ListItem>
-              );
-            })}
-          </List>
-        </Grid>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Grid>
+        ) : (
+          <Grid item xs={12}>
+            <Grid container justify="center">
+              <Typography variant="h3" className={classes.nothingToShowText}>
+                {intl.formatMessage({
+                  id: "text.nothing_to_show",
+                  defaultMessage: "Nothing to show ",
+                })}
+                :(
+              </Typography>
+            </Grid>
+          </Grid>
+        )}
       </Grid>
     </>
   );

@@ -7,4 +7,5 @@ export const messagesInRussian = {
   "fields.language": "Язык",
   "fields.senior_group": "Старшая группа",
   "fields.junior_group": "Младшая группа",
+  "text.nothing_to_show": "К сожалению, ничего не нашлось",
 };

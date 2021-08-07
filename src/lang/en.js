@@ -7,4 +7,5 @@ export const messagesInEnglish = {
   "fields.language": "Language",
   "fields.senior_group": "Senior group",
   "fields.junior_group": "Junior group",
+  "text.nothing_to_show": "Nothing to show",
 };
