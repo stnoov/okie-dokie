@@ -1,22 +1,26 @@
 import { Home, AccountCircle } from "@material-ui/icons";
-import Login from "../components/authentication/Login";
 import Dashboard from "../views/dashboard/Dashboard";
 import Lessons from "../views/lessons/Lessons";
-const Routes = [
+
+const getRoutes = (intl) => [
   {
     path: "/dashboard",
-    sidebarName: "Главная",
-    navbarName: "Главная",
+    sidebarName: intl.formatMessage({
+      id: "routes.dashboard",
+      defaultMessage: "Dashboard",
+    }),
     icon: Home,
     component: Dashboard,
   },
   {
     path: "/lessons",
-    sidebarName: "Уроки",
-    navbarName: "Уроки",
+    sidebarName: intl.formatMessage({
+      id: "routes.lessons",
+      defaultMessage: "Lessons",
+    }),
     icon: AccountCircle,
     component: Lessons,
   },
 ];
 
-export default Routes;
+export default getRoutes;

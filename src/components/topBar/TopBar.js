@@ -1,14 +1,22 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import { Avatar, Grid } from "@material-ui/core";
-import { NotificationImportant, People, Search } from "@material-ui/icons";
+import {
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Avatar,
+  Grid,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@material-ui/core";
+
+import { NotificationImportant, Menu, Search } from "@material-ui/icons";
 import { deepOrange } from "@material-ui/core/colors";
+import { useIntl } from "react-intl";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -48,11 +56,23 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: deepOrange[500],
     fontSize: "0.75rem",
   },
+  styledFormControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+    padding: theme.spacing(0),
+    "& :focus": {
+      backgroundColor: "white",
+    },
+  },
 }));
 
-export default function TopBar({ handleDrawerOpen, open }) {
+export default function TopBar({ handleDrawerOpen, open, locale, setLocale }) {
   const classes = useStyles();
-
+  const intl = useIntl();
+  const updateLocale = (newLocale) => {
+    setLocale(newLocale);
+    localStorage.setItem("locale", newLocale);
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -73,30 +93,42 @@ export default function TopBar({ handleDrawerOpen, open }) {
                 edge="start"
                 className={clsx(classes.menuButton, open && classes.hide)}
               >
-                <MenuIcon />
+                <Menu />
               </IconButton>
             </Grid>
             <Grid item>
-              <Grid container>
+              <Grid container alignItems="center">
                 <Grid item>
-                  <IconButton color="inherit">
-                    <People />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <IconButton color="inherit">
-                    <Search />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <IconButton color="inherit">
-                    <NotificationImportant />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <IconButton color="inherit">
-                    <Avatar className={classes.styledAvatar}>A</Avatar>
-                  </IconButton>
+                  <FormControl
+                    variant="outlined"
+                    className={classes.styledFormControl}
+                    size="small"
+                  >
+                    <InputLabel>
+                      {intl.formatMessage({
+                        id: "fields.language",
+                        defaultMessage: "Language",
+                      })}
+                    </InputLabel>
+                    <Select
+                      value={locale}
+                      onChange={(e) => updateLocale(e.target.value)}
+                      label="Age"
+                    >
+                      <MenuItem value="en">
+                        {intl.formatMessage({
+                          id: "language.english",
+                          defaultMessage: "English",
+                        })}
+                      </MenuItem>
+                      <MenuItem value="ru">
+                        {intl.formatMessage({
+                          id: "language.russian",
+                          defaultMessage: "Russian",
+                        })}
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
               </Grid>
             </Grid>

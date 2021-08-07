@@ -1,3 +1,4 @@
+import React from "react";
 import { styled } from "@material-ui/core";
 import "./App.css";
 import Login from "./components/authentication/Login";
@@ -12,27 +13,47 @@ import SideBar from "./components/sideBar/SideBar";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./utils/themeConfig";
 import Lessons from "./views/lessons/Lessons";
+import { IntlProvider } from "react-intl";
+import { messagesInRussian } from "./lang/ru";
+import { messagesInEnglish } from "./lang/en";
+
 function App() {
-  const user = localStorage.getItem("user");
+  const [user, setUser] = React.useState(localStorage.getItem("user"));
+  const [locale, setLocale] = React.useState(
+    localStorage.getItem("locale") === null
+      ? "en"
+      : localStorage.getItem("locale")
+  );
+  console.log("locale: ", locale);
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        {user === "" ? (
-          <>
-            <Switch>
-              <Route exact path="/login" component={Login} />
-              <Redirect from="/*" to="/login" />
-            </Switch>
-          </>
-        ) : (
-          <AuthenticatedApp user={user} />
-        )}
-      </Router>
-    </ThemeProvider>
+    <IntlProvider
+      messages={locale === "ru" ? messagesInRussian : messagesInEnglish}
+      locale={locale}
+    >
+      <ThemeProvider theme={theme}>
+        <Router>
+          {user === "" ? (
+            <>
+              <Switch>
+                <Route exact path="/login" component={Login} />
+                <Redirect from="/*" to="/login" />
+              </Switch>
+            </>
+          ) : (
+            <AuthenticatedApp
+              user={user}
+              setUser={setUser}
+              locale={locale}
+              setLocale={setLocale}
+            />
+          )}
+        </Router>
+      </ThemeProvider>
+    </IntlProvider>
   );
 }
 
-const AuthenticatedApp = (user) => {
+const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
   const Container = styled("div")(({ theme }) => ({
     padding: theme.spacing(7, 0),
     minHeight: "calc(100vh - 80px)",
@@ -43,7 +64,7 @@ const AuthenticatedApp = (user) => {
   }));
   return (
     <>
-      <SideBar />
+      <SideBar setUser={setUser} locale={locale} setLocale={setLocale} />
       <Container>
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />

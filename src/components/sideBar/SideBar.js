@@ -6,18 +6,18 @@ import {
   MenuItem,
   Grid,
   Typography,
+  ListItemText,
+  CssBaseline,
+  IconButton,
 } from "@material-ui/core";
-import { Link, useLocation } from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import IconButton from "@material-ui/core/IconButton";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import TopBar from "../topBar/TopBar";
-import Routes from "../../config/routes";
-import classNames from "classnames";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
+import { useIntl } from "react-intl";
+import getRoutes from "../../config/routes";
 
 const drawerWidth = 240;
 
@@ -86,11 +86,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SideBar({ width }) {
+function SideBar({ width, setUser, locale, setLocale }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const intl = useIntl();
+  const routes = getRoutes(intl);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -99,13 +100,24 @@ function SideBar({ width }) {
     setOpen(false);
   };
   const location = useLocation();
+  const history = useHistory();
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? true : false;
+  };
+  const handleLogout = () => {
+    localStorage.setItem("user", "");
+    setUser("");
+    history.push("/login");
   };
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <TopBar handleDrawerOpen={handleDrawerOpen} open={open} />
+      <TopBar
+        handleDrawerOpen={handleDrawerOpen}
+        open={open}
+        locale={locale}
+        setLocale={setLocale}
+      />
       <Drawer
         className={classes.drawer}
         variant={isWidthDown("sm", width) ? "temporary" : "persistent"}
@@ -134,23 +146,35 @@ function SideBar({ width }) {
           </Grid>
         </div>
         <MenuList>
-          {Routes.map((prop, key) => {
+          {routes.map((prop, key) => {
             return (
               <Link to={prop.path} className={classes.sideMenuLink} key={key}>
                 <MenuItem
                   selected={activeRoute(prop.path)}
-                  className={classNames(classes.sideMenuItem, {
-                    selected: classes.selectedMenuItem,
-                  })}
+                  className={classes.sideMenuItem}
                 >
-                  <ListItemIcon style={{ color: "inherit" }}>
+                  <IconButton style={{ color: "inherit" }}>
                     <prop.icon />
-                  </ListItemIcon>
+                  </IconButton>
                   <ListItemText primary={prop.sidebarName} />
                 </MenuItem>
               </Link>
             );
           })}
+          <MenuItem
+            onClick={() => handleLogout()}
+            className={classes.sideMenuItem}
+          >
+            <IconButton style={{ color: "inherit" }}>
+              <ExitToAppIcon />
+            </IconButton>
+            <Typography>
+              {intl.formatMessage({
+                id: "actions.logout",
+                defaultMessage: "Logout",
+              })}
+            </Typography>
+          </MenuItem>
         </MenuList>
       </Drawer>
     </div>
