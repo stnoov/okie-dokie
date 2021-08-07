@@ -18,20 +18,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -41,11 +27,13 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    border: "none",
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
+    border: "none",
+    backgroundColor: theme.palette.primary.main,
+    color: "#212529",
   },
   drawerHeader: {
     display: "flex",
@@ -100,11 +88,11 @@ export default function SideBar() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} color="inherit">
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon style={{ color: "white" }} />
+              <ChevronLeftIcon />
             ) : (
-              <ChevronRightIcon style={{ color: "white" }} />
+              <ChevronRightIcon />
             )}
           </IconButton>
         </div>

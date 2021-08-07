@@ -9,30 +9,33 @@ import {
 } from "react-router-dom";
 import Dashboard from "./views/dashboard/Dashboard";
 import SideBar from "./components/sideBar/SideBar";
-
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "./utils/themeConfig";
 function App() {
   const user = localStorage.getItem("user");
   return (
-    <Router>
-      {user === "" ? (
-        <>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Redirect from="/*" to="/login" />
-          </Switch>
-        </>
-      ) : (
-        <AuthenticatedApp user={user} />
-      )}
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        {user === "" ? (
+          <>
+            <Switch>
+              <Route exact path="/login" component={Login} />
+              <Redirect from="/*" to="/login" />
+            </Switch>
+          </>
+        ) : (
+          <AuthenticatedApp user={user} />
+        )}
+      </Router>
+    </ThemeProvider>
   );
 }
 
 const AuthenticatedApp = (user) => {
   const Container = styled("div")(({ theme }) => ({
     padding: theme.spacing(8, 0),
-    minHeight: "calc(100vh - 64px)",
-    background: `linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%)`,
+    minHeight: "calc(100vh - 80px)",
+    backgroundColor: theme.palette.common.white,
     [theme.breakpoints.down("sm")]: {
       padding: 0,
     },

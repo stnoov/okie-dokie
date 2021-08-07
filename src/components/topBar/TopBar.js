@@ -6,7 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Avatar, Grid } from "@material-ui/core";
+import { Avatar, Grid, Typography } from "@material-ui/core";
 import { NotificationImportant, People, Search } from "@material-ui/icons";
 import { deepOrange } from "@material-ui/core/colors";
 const drawerWidth = 240;
@@ -20,9 +20,12 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    height: 64,
+    height: 84,
     backgroundColor: theme.palette.common.white,
     color: theme.palette.common.black,
+    justifyContent: "center",
+    borderTop: `2px solid ${theme.palette.secondary.main}`,
+    borderBottom: "1px solid #E5E5E5",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -55,7 +58,7 @@ export default function TopBar({ handleDrawerOpen, open }) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        elevation={1}
+        elevation={0}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
