@@ -35,26 +35,12 @@ const useStyles = makeStyles((theme) => ({
     borderTop: `2px solid ${theme.palette.secondary.main}`,
     borderBottom: "1px solid #E5E5E5",
   },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
   hide: {
     display: "none",
-  },
-  styledAvatar: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-    color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[500],
-    fontSize: "0.75rem",
   },
   styledFormControl: {
     margin: theme.spacing(1),
@@ -83,14 +69,7 @@ export default function TopBar({ handleDrawerOpen, open, locale, setLocale }) {
   };
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        elevation={0}
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
+      <AppBar position="fixed" elevation={0} className={classes.appBar}>
         <Toolbar>
           <Grid container alignItems="center" justify="space-between">
             <Grid item>

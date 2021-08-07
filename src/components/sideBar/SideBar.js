@@ -86,19 +86,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SideBar({ width, setUser, locale, setLocale }) {
+function SideBar({ width, setUser, open, handleDrawerClose }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
   const intl = useIntl();
   const routes = getRoutes(intl);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   const location = useLocation();
   const history = useHistory();
   const activeRoute = (routeName) => {
@@ -112,12 +104,7 @@ function SideBar({ width, setUser, locale, setLocale }) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <TopBar
-        handleDrawerOpen={handleDrawerOpen}
-        open={open}
-        locale={locale}
-        setLocale={setLocale}
-      />
+
       <Drawer
         className={classes.drawer}
         variant={isWidthDown("sm", width) ? "temporary" : "persistent"}

@@ -16,6 +16,7 @@ import Lessons from "./views/lessons/Lessons";
 import { IntlProvider } from "react-intl";
 import { messagesInRussian } from "./lang/ru";
 import { messagesInEnglish } from "./lang/en";
+import TopBar from "./components/topBar/TopBar";
 
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"));
@@ -52,18 +53,34 @@ function App() {
 }
 
 const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
-  const Container = styled("div")(({ theme }) => ({
-    padding: theme.spacing(7, 0),
+  const [open, setOpen] = React.useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  const Container = styled("div")(({ theme, open }) => ({
+    padding: theme.spacing(8, 0),
     minHeight: "calc(100vh - 80px)",
     backgroundColor: theme.palette.common.white,
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(3, 0),
-    },
+    width: open ? "calc(100% - 240px)" : "100%",
+    marginLeft: open ? "240px" : "0px",
   }));
   return (
     <>
-      <SideBar setUser={setUser} locale={locale} setLocale={setLocale} />
-      <Container>
+      <TopBar
+        handleDrawerOpen={handleDrawerOpen}
+        open={open}
+        locale={locale}
+        setLocale={setLocale}
+      />
+      <SideBar
+        setUser={setUser}
+        open={open}
+        handleDrawerClose={handleDrawerClose}
+      />
+      <Container open={open}>
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/lessons" component={Lessons} />
