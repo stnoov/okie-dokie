@@ -18,5 +18,10 @@ export const theme = createTheme({
       fontSize: 36,
       letterSpacing: 1.5,
     },
+    h4: {
+      fontFamily: ["Montserrat", "serif"].join(","),
+      fontSize: 28,
+      fontWeight: 800,
+    },
   },
 });

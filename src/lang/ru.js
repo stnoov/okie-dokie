@@ -5,7 +5,11 @@ export const messagesInRussian = {
   "routes.lessons": "Уроки",
   "routes.dashboard": "Главная",
   "fields.language": "Язык",
+  "fields.teacher": "Преподаватель",
   "fields.senior_group": "Старшая группа",
   "fields.junior_group": "Младшая группа",
   "text.nothing_to_show": "К сожалению, ничего не нашлось",
+  "fields.completed_lessons": "Пройдено уроков",
+  "fields.account_balance": "Баланс аккаунта",
+  "fields.latest_news": "Актуальные новости",
 };

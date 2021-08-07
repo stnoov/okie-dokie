@@ -5,7 +5,11 @@ export const messagesInEnglish = {
   "routes.lessons": "Lessons",
   "routes.dashboard": "Dashboard",
   "fields.language": "Language",
+  "fields.teacher": "Teacher",
   "fields.senior_group": "Senior group",
   "fields.junior_group": "Junior group",
   "text.nothing_to_show": "Nothing to show",
+  "fields.completed_lessons": "Completed lessons",
+  "fields.account_balance": "Account balance",
+  "fields.latest_news": "Latest news",
 };

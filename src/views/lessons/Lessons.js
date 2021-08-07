@@ -119,7 +119,11 @@ function Lessons({ width }) {
                               variant="body2"
                               className={classes.teacherSubtitle}
                             >
-                              Учитель: {lesson.teacher}
+                              {intl.formatMessage({
+                                id: "fields.teacher",
+                                defaultMessage: "Teacher",
+                              })}
+                              : {lesson.teacher}
                             </Typography>
                           </Grid>
                         </Grid>
