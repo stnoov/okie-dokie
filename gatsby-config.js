@@ -12,6 +12,7 @@ module.exports = {
             "Open Sans",
             "Lato",
             "Montserrat",
+            "Bangers",
           ],
         },
       },

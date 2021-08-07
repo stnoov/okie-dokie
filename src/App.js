@@ -11,6 +11,7 @@ import Dashboard from "./views/dashboard/Dashboard";
 import SideBar from "./components/sideBar/SideBar";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./utils/themeConfig";
+import Lessons from "./views/lessons/Lessons";
 function App() {
   const user = localStorage.getItem("user");
   return (
@@ -33,11 +34,11 @@ function App() {
 
 const AuthenticatedApp = (user) => {
   const Container = styled("div")(({ theme }) => ({
-    padding: theme.spacing(8, 0),
+    padding: theme.spacing(7, 0),
     minHeight: "calc(100vh - 80px)",
     backgroundColor: theme.palette.common.white,
     [theme.breakpoints.down("sm")]: {
-      padding: 0,
+      padding: theme.spacing(3, 0),
     },
   }));
   return (
@@ -45,8 +46,9 @@ const AuthenticatedApp = (user) => {
       <SideBar />
       <Container>
         <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Redirect from="/*" to="/" />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/lessons" component={Lessons} />
+          <Redirect from="/*" to="/dashboard" />
         </Switch>
       </Container>
     </>

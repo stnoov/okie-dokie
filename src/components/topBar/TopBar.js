@@ -6,7 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import { Avatar, Grid } from "@material-ui/core";
 import { NotificationImportant, People, Search } from "@material-ui/icons";
 import { deepOrange } from "@material-ui/core/colors";
 const drawerWidth = 240;
