@@ -2,8 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, IconButton, Grid } from "@material-ui/core";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { Menu } from "@material-ui/icons";
 import { useIntl } from "react-intl";
 
@@ -26,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
   menuButton: {
     marginRight: theme.spacing(2),
+    color: theme.palette.secondary.main,
   },
   hide: {
     display: "none",
@@ -65,7 +65,6 @@ export default function TopBar({ handleDrawerOpen, open, locale, setLocale }) {
           <Grid container alignItems="center" justify="space-between">
             <Grid item>
               <IconButton
-                color="inherit"
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
                 edge="start"

@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@material-ui/core";
 import "./App.css";
-import Login from "./components/authentication/Login";
+import Login from "./views/authentication/Login";
 import {
   BrowserRouter as Router,
   Route,
@@ -17,14 +17,15 @@ import { IntlProvider } from "react-intl";
 import { messagesInRussian } from "./lang/ru";
 import { messagesInEnglish } from "./lang/en";
 import TopBar from "./components/topBar/TopBar";
-import Register from "./components/authentication/Register";
-
+import Register from "./views/authentication/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"));
+  console.log("user: ", user);
   const [locale, setLocale] = React.useState(
     localStorage.getItem("locale") === undefined ? "en" : "ru"
   );
-  console.log("locale: ", locale);
   return (
     <IntlProvider
       messages={locale === "ru" ? messagesInRussian : messagesInEnglish}
@@ -35,7 +36,12 @@ function App() {
           {user === "" ? (
             <>
               <Switch>
-                <Route exact path="/login" component={Login} />
+                <Route
+                  exact
+                  path="/login"
+                  render={() => <Login setUser={setUser} />}
+                  setUser={setUser}
+                />
                 <Route exact path="/register" component={Register} />
                 <Redirect from="/*" to="/login" />
               </Switch>
@@ -49,6 +55,18 @@ function App() {
             />
           )}
         </Router>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <ToastContainer />
       </ThemeProvider>
     </IntlProvider>
   );
