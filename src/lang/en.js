@@ -4,6 +4,7 @@ export const messagesInEnglish = {
   "actions.logout": "Logout",
   "actions.add_review": "Add review",
   "routes.lessons": "Lessons",
+  "routes.payments": "Make a payement",
   "routes.dashboard": "Dashboard",
   "routes.reviews": "Reviews",
   "fields.language": "Language",

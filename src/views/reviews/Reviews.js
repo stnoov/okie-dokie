@@ -69,6 +69,10 @@ function Reviews({ width }) {
       .then((data) => {
         setReviews(data.data.reviews);
         setLoading(false);
+      })
+      .catch((err) => {
+        setReviews([]);
+        setLoading(false);
       });
   };
   React.useEffect(() => {
@@ -167,6 +171,19 @@ function Reviews({ width }) {
         ) : (
           <Grid item xs={12}>
             <LinearProgress color="secondary" />
+          </Grid>
+        )}
+        {!loading && reviews.length < 1 && (
+          <Grid item xs={12}>
+            <Grid container justify="center">
+              <Typography variant="h3" className={classes.nothingToShowText}>
+                {intl.formatMessage({
+                  id: "text.nothing_to_show",
+                  defaultMessage: "Nothing to show ",
+                })}
+                :(
+              </Typography>
+            </Grid>
           </Grid>
         )}
       </Grid>

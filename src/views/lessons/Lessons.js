@@ -115,6 +115,22 @@ function Lessons({ width }) {
                           <Grid item xs={12}>
                             <Typography variant="h5">{lesson.title}</Typography>
                           </Grid>
+                          <Grid item xs={12}>
+                            <Typography
+                              variant="body2"
+                              className={classes.teacherSubtitle}
+                            >
+                              {lesson.group === "junior_group"
+                                ? intl.formatMessage({
+                                    id: "fields.junior_group",
+                                    defaultMessage: "Junior group",
+                                  })
+                                : intl.formatMessage({
+                                    id: "fields.senior_group",
+                                    defaultMessage: "Senior group",
+                                  })}
+                            </Typography>
+                          </Grid>
                           <Grid item>
                             <Typography
                               variant="body2"

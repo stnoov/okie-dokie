@@ -4,6 +4,7 @@ export const messagesInRussian = {
   "actions.logout": "Выход",
   "actions.add_review": "Оставить отзыв",
   "routes.lessons": "Уроки",
+  "routes.payments": "Пополнить счёт",
   "routes.reviews": "Отзывы",
   "routes.dashboard": "Главная",
   "fields.language": "Язык",

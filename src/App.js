@@ -21,6 +21,7 @@ import Register from "./views/authentication/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Reviews from "./views/reviews/Reviews";
+import Payments from "./views/payments/Payments";
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"));
   console.log("user: ", user);
@@ -83,7 +84,7 @@ const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
   };
   const Container = styled("div")(({ theme, open }) => ({
     padding: theme.spacing(8, 0),
-    minHeight: "calc(100vh - 80px)",
+    minHeight: "100vh",
     backgroundColor: theme.palette.common.white,
     [theme.breakpoints.up("lg")]: {
       width: open ? "calc(100% - 240px)" : "100%",
@@ -108,6 +109,7 @@ const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/reviews" component={Reviews} />
+          <Route exact path="/payments" component={Payments} />
           <Redirect from="/*" to="/dashboard" />
         </Switch>
       </Container>
