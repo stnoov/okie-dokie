@@ -5,6 +5,7 @@ export const messagesInEnglish = {
   "actions.add_review": "Add review",
   "routes.lessons": "Lessons",
   "routes.payments": "Make a payement",
+  "routes.promotions": "Promotions",
   "routes.dashboard": "Dashboard",
   "routes.reviews": "Reviews",
   "fields.language": "Language",

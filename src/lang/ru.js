@@ -7,6 +7,7 @@ export const messagesInRussian = {
   "routes.payments": "Пополнить счёт",
   "routes.reviews": "Отзывы",
   "routes.dashboard": "Главная",
+  "routes.promotions": "Акции",
   "fields.language": "Язык",
   "fields.teacher": "Преподаватель",
   "fields.senior_group": "Старшая группа",

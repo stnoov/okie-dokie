@@ -1,21 +1,9 @@
 import React from "react";
-import {
-  Grid,
-  Typography,
-  makeStyles,
-  TextField,
-  Button,
-  FormControlLabel,
-  Checkbox,
-  Link,
-} from "@material-ui/core";
+import { Grid, makeStyles, TextField, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
-import { toast } from "react-toastify";
 import { getLoginFormSchema } from "../../utils/validationSchemas/loginValidationSchema";
 import { useIntl } from "react-intl";
-import axios from "axios";
-import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
 
 const useStyles = makeStyles((theme) => ({
   form: {

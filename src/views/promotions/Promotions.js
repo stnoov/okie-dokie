@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Payments({ width }) {
+function Promotions({ width }) {
   const classes = useStyles();
   const intl = useIntl();
   return (
@@ -25,8 +25,8 @@ function Payments({ width }) {
         <Grid item xs={12}>
           <Typography variant="h3" color="secondary">
             {intl.formatMessage({
-              id: "routes.payments",
-              defaultMessage: "Payments",
+              id: "routes.promotions",
+              defaultMessage: "Promotions",
             })}
           </Typography>
         </Grid>
@@ -49,4 +49,4 @@ function Payments({ width }) {
     </>
   );
 }
-export default withWidth()(Payments);
+export default withWidth()(Promotions);

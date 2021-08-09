@@ -22,6 +22,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Reviews from "./views/reviews/Reviews";
 import Payments from "./views/payments/Payments";
+import Promotions from "./views/promotions/Promotions";
+import Admin from "./views/admin/Admin";
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"));
   console.log("user: ", user);
@@ -110,6 +112,8 @@ const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/payments" component={Payments} />
+          <Route exact path="/promotions" component={Promotions} />
+          <Route exact path="/admin" component={Admin} />
           <Redirect from="/*" to="/dashboard" />
         </Switch>
       </Container>
