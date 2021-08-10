@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles, Grid, Typography, withWidth } from "@material-ui/core";
 import { useIntl } from "react-intl";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   styledMainGrid: {
@@ -27,11 +28,27 @@ const useStyles = makeStyles((theme) => ({
   newsContent: {
     padding: theme.spacing(2),
   },
+  newsTitle: {
+    padding: theme.spacing(2, 2, 0, 2),
+  },
 }));
 
 function ProfileInfo({ width }) {
   const classes = useStyles();
   const intl = useIntl();
+  const [news, setNews] = React.useState();
+  const fetchNews = () => {
+    axios
+      .get("http://localhost:8080/api/news/get_news")
+      .then((data) => {
+        console.log(data);
+        setNews(data.data.news);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  React.useEffect(fetchNews, []);
   return (
     <Grid container className={classes.styledMainGrid} spacing={2}>
       <Grid item xs={12}>
@@ -44,45 +61,21 @@ function ProfileInfo({ width }) {
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={3}>
-          <Grid item xs={4}>
-            <Grid container className={classes.styledNewsBlock}>
-              <Grid item xs={12} className={classes.newsContent}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </Grid>
-              <Grid item className={classes.newsContent}>
-                28 August, 2021
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={4}>
-            <Grid container className={classes.styledNewsBlock}>
-              <Grid item xs={12} className={classes.newsContent}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </Grid>
-              <Grid item className={classes.newsContent}>
-                28 August, 2021
+          {news.map((el) => (
+            <Grid item xs={4}>
+              <Grid container className={classes.styledNewsBlock}>
+                <Grid item xs={12} className={classes.newsTitle}>
+                  {el.title}
+                </Grid>
+                <Grid item xs={12} className={classes.newsContent}>
+                  {el.content}
+                </Grid>
+                <Grid item className={classes.newsContent}>
+                  {new Date(el.createdAt).toLocaleDateString()}
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={4}>
-            <Grid container className={classes.styledNewsBlock}>
-              <Grid item xs={12} className={classes.newsContent}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </Grid>
-              <Grid item className={classes.newsContent}>
-                28 August, 2021
-              </Grid>
-            </Grid>
-          </Grid>
+          ))}
         </Grid>
       </Grid>
     </Grid>

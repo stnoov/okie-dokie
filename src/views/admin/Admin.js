@@ -3,6 +3,7 @@ import React from "react";
 import { Grid, AppBar, Tabs, Tab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Students from "../../components/admin/Students";
+import AddNews from "../../components/admin/news/News";
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
     padding: theme.spacing(5, 3),
@@ -12,9 +13,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Admin() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [tab, setTab] = React.useState("students");
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTab(newValue);
+  };
+  const getTabContent = (tabValue) => {
+    switch (tabValue) {
+      case "studets":
+        return <Students />;
+      case "add_news":
+        return <AddNews />;
+      default:
+        return <Students />;
+    }
   };
   return (
     <Grid container className={classes.rootContainer}>
@@ -25,7 +36,7 @@ export default function Admin() {
           className={classes.styledTabs}
         >
           <Tabs
-            value={value}
+            value={tab}
             onChange={handleChange}
             indicatorColor="primary"
             textColor="primary"
@@ -33,14 +44,14 @@ export default function Admin() {
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
           >
-            <Tab label="Ученики" />
-            <Tab label="Добавить новость" />
-            <Tab label="Добавить урок" />
+            <Tab label="Ученики" value="students" />
+            <Tab label="Добавить новость" value="add_news" />
+            <Tab label="Добавить урок" value="add_lesson" />
           </Tabs>
         </AppBar>
       </Grid>
       <Grid item xs={12}>
-        <Students />
+        {getTabContent(tab)}
       </Grid>
       <Grid item xs={12}></Grid>
     </Grid>

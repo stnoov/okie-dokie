@@ -39,13 +39,12 @@ function ProfileInfo({ width, setUser }) {
         },
       })
       .then((response) => {
-        console.log("response: ", response);
         setUserData(response.data.userData);
       })
       .catch((err) => {
         if (err.response.status === 404) {
           setUser("");
-          localStorage.removeItem("user");
+          localStorage.setItem("user", "");
         }
         console.log("err: ", err);
       });
