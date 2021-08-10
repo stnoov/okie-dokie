@@ -26,7 +26,6 @@ import Promotions from "./views/promotions/Promotions";
 import Admin from "./views/admin/Admin";
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"));
-  console.log("user: ", user);
   const [locale, setLocale] = React.useState(
     localStorage.getItem("locale") === undefined ? "en" : "ru"
   );
@@ -108,7 +107,11 @@ const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
       />
       <Container open={open}>
         <Switch>
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route
+            exact
+            path="/dashboard"
+            render={() => <Dashboard setUser={setUser} />}
+          />
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/payments" component={Payments} />

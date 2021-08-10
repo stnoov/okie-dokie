@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProfileInfo({ width }) {
+function ProfileInfo({ width, setUser }) {
   const classes = useStyles();
   const intl = useIntl();
   const [userData, setUserData] = React.useState();
@@ -39,15 +39,19 @@ function ProfileInfo({ width }) {
         },
       })
       .then((response) => {
+        console.log("response: ", response);
         setUserData(response.data.userData);
       })
       .catch((err) => {
+        if (err.response.status === 404) {
+          setUser("");
+          localStorage.removeItem("user");
+        }
         console.log("err: ", err);
       });
   };
 
   React.useEffect(() => {
-    console.log("updated");
     fetchUserData();
   }, []);
   return (

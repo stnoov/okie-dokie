@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard({ setUser }) {
   const classes = useStyles();
   return (
     <Grid container className={classes.rootContainer}>
@@ -21,7 +21,7 @@ export default function Dashboard() {
             <NewsCarousel />
           </Grid>
           <Grid item xs={12} sm={12} lg={5}>
-            <ProfileInfo />
+            <ProfileInfo setUser={setUser} />
           </Grid>
         </Grid>
       </Grid>
