@@ -1,5 +1,13 @@
 import React from "react";
-import { makeStyles, Grid, TextField, Button } from "@material-ui/core";
+import {
+  makeStyles,
+  Grid,
+  TextField,
+  Button,
+  FormControl,
+  Select,
+  MenuItem,
+} from "@material-ui/core";
 import { Formik } from "formik";
 import { theme } from "../../../utils/themeConfig";
 import { toast } from "react-toastify";
@@ -23,6 +31,8 @@ export default function AddLesson({ fetchLessons }) {
           time: "",
           num_students: "",
           price: "",
+          teacher: "Antonina Sitnova",
+          group: "junior_group",
           link: "",
         }}
         onSubmit={(values, { resetForm }) =>
@@ -35,6 +45,7 @@ export default function AddLesson({ fetchLessons }) {
                 date: values.date,
                 time: values.time,
                 num_students: values.num_students,
+                teacher: values.teacher,
                 price: values.price,
                 link: values.link,
               },
@@ -155,7 +166,7 @@ export default function AddLesson({ fetchLessons }) {
                 touched={touched}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 variant="outlined"
                 fullWidth
@@ -167,6 +178,27 @@ export default function AddLesson({ fetchLessons }) {
                 onBlur={handleBlur}
                 touched={touched}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="teacher"
+                label="Teacher"
+                type="text"
+                onChange={handleChange}
+                value={values.teacher}
+                onBlur={handleBlur}
+                touched={touched}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl variant="outlined" fullWidth>
+                <Select value={values.group} onChange={handleChange}>
+                  <MenuItem value="junior_group">Junior Group</MenuItem>
+                  <MenuItem value="senior_group">Senior Group</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <Button variant="contained" color="primary" onClick={submitForm}>

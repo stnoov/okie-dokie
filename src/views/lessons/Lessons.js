@@ -12,6 +12,8 @@ import { useIntl } from "react-intl";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { lessonData } from "../../templateData/lessonData";
+import LessonDialog from "../../components/lessons/LessonDialog";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
@@ -57,7 +59,28 @@ function Lessons({ width }) {
     "senior_group",
     "junior_group",
   ]);
-  const [lessons, setLessons] = React.useState(lessonData);
+  const [lessons, setLessons] = React.useState();
+  const fetchLessons = () => {
+    axios
+      .get("http://localhost:8080/api/lessons/get_lessons")
+      .then((data) => {
+        setLessons(data.data.lessons);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  React.useEffect(fetchLessons, []);
+  const [selectedLesson, setSelectedLesson] = React.useState();
+  const [isLessonDialogOpen, setIsLessonDialogOpen] = React.useState(false);
+  const handleOpenLessonDialog = (lesson) => {
+    setSelectedLesson(lesson);
+    setIsLessonDialogOpen(true);
+  };
+  const handleCloseLessonDialog = () => {
+    setSelectedLesson();
+    setIsLessonDialogOpen(false);
+  };
   const handleChangeGroups = (event, newFormats) => {
     setGroups(newFormats);
     console.log("groups:", newFormats);
@@ -103,12 +126,15 @@ function Lessons({ width }) {
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
-        {lessons.length > 0 ? (
+        {lessons?.length > 0 ? (
           <Grid item xs={12}>
             <List>
-              {lessons.map((lesson) => {
+              {lessons?.map((lesson) => {
                 return (
-                  <ListItem className={classes.styledListItem}>
+                  <ListItem
+                    className={classes.styledListItem}
+                    onClick={() => handleOpenLessonDialog(lesson)}
+                  >
                     <Grid container justify="space-between" alignItems="center">
                       <Grid item>
                         <Grid container justify="flex-start">
@@ -188,6 +214,11 @@ function Lessons({ width }) {
           </Grid>
         )}
       </Grid>
+      <LessonDialog
+        open={isLessonDialogOpen}
+        handleClose={handleCloseLessonDialog}
+        lesson={selectedLesson}
+      />
     </>
   );
 }
