@@ -4,6 +4,7 @@ import { Grid, AppBar, Tabs, Tab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Students from "../../components/admin/Students";
 import AddNews from "../../components/admin/news/News";
+import ManageLessons from "../../components/admin/lessons/ManageLessons";
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
     padding: theme.spacing(5, 3),
@@ -23,6 +24,8 @@ export default function Admin() {
         return <Students />;
       case "add_news":
         return <AddNews />;
+      case "add_lesson":
+        return <ManageLessons />;
       default:
         return <Students />;
     }

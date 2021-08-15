@@ -61,7 +61,7 @@ function ProfileInfo({ width }) {
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={3}>
-          {news.map((el) => (
+          {news?.map((el) => (
             <Grid item xs={4}>
               <Grid container className={classes.styledNewsBlock}>
                 <Grid item xs={12} className={classes.newsTitle}>
@@ -71,7 +71,11 @@ function ProfileInfo({ width }) {
                   {el.content}
                 </Grid>
                 <Grid item className={classes.newsContent}>
-                  {new Date(el.createdAt).toLocaleDateString()}
+                  {new Date(el.createdAt).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </Grid>
               </Grid>
             </Grid>
