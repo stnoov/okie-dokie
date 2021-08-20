@@ -24,7 +24,9 @@ import Reviews from "./views/reviews/Reviews";
 import Payments from "./views/payments/Payments";
 import Promotions from "./views/promotions/Promotions";
 import Admin from "./views/admin/Admin";
+import { useSelector } from "react-redux";
 function App() {
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const [user, setUser] = React.useState(localStorage.getItem("user"));
   const [locale, setLocale] = React.useState(
     localStorage.getItem("locale") === undefined ? "en" : "ru"
@@ -36,15 +38,10 @@ function App() {
     >
       <ThemeProvider theme={theme}>
         <Router>
-          {user === "" ? (
+          {!isLoggedIn ? (
             <>
               <Switch>
-                <Route
-                  exact
-                  path="/login"
-                  render={() => <Login setUser={setUser} />}
-                  setUser={setUser}
-                />
+                <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Redirect from="/*" to="/login" />
               </Switch>

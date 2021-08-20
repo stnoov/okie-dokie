@@ -7,7 +7,7 @@ import {
   isWidthDown,
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
-import axios from "axios";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   styledMainGrid: {
@@ -30,29 +30,8 @@ const useStyles = makeStyles((theme) => ({
 function ProfileInfo({ width, setUser }) {
   const classes = useStyles();
   const intl = useIntl();
-  const [userData, setUserData] = React.useState();
-  const fetchUserData = () => {
-    axios
-      .get("http://localhost:8080/api/users/get_user_data", {
-        headers: {
-          "x-access-token": localStorage.getItem("user"),
-        },
-      })
-      .then((response) => {
-        setUserData(response.data.userData);
-      })
-      .catch((err) => {
-        if (err.response.status === 404) {
-          setUser("");
-          localStorage.setItem("user", "");
-        }
-        console.log("err: ", err);
-      });
-  };
+  const { user: currentUser } = useSelector((state) => state.auth);
 
-  React.useEffect(() => {
-    fetchUserData();
-  }, []);
   return (
     <Grid container className={classes.styledMainGrid}>
       <Grid item xs={12}>
@@ -75,7 +54,7 @@ function ProfileInfo({ width, setUser }) {
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h3" className={classes.styledSubTitle}>
-                  {userData?.balance}₽
+                  {currentUser.balance}₽
                 </Typography>
               </Grid>
             </Grid>
@@ -87,7 +66,7 @@ function ProfileInfo({ width, setUser }) {
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h3" className={classes.styledSubTitle}>
-                  {userData?.okie_dokie_points}
+                  {currentUser.okie_dokie_points}
                 </Typography>
               </Grid>
             </Grid>
@@ -104,7 +83,7 @@ function ProfileInfo({ width, setUser }) {
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h3" className={classes.styledSubTitle}>
-                  {userData?.classes_completed}
+                  {currentUser.classes_completed}
                 </Typography>
               </Grid>
             </Grid>

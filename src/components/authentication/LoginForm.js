@@ -14,8 +14,9 @@ import { Formik } from "formik";
 import { toast } from "react-toastify";
 import { getLoginFormSchema } from "../../utils/validationSchemas/loginValidationSchema";
 import { useIntl } from "react-intl";
-import axios from "axios";
 import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
+import { useDispatch } from "react-redux";
+import { login } from "../../actions/auth";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginForm({ setUser }) {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
   const intl = useIntl();
   const LoginFormSchema = getLoginFormSchema(intl);
   return (
@@ -47,17 +49,9 @@ export default function LoginForm({ setUser }) {
       }}
       validationSchema={LoginFormSchema}
       onSubmit={(values) => {
-        axios
-          .post("http://localhost:8080/api/auth/signin", {
-            email: values.email,
-            password: values.password,
-          })
+        dispatch(login(values.email, values.password))
           .then((res) => {
-            if (res.data.accessToken) {
-              localStorage.setItem("user", res.data.accessToken);
-              setUser(res.data.accessToken);
-              history.push("/dashboard");
-            }
+            history.push("/dashboard");
           })
           .catch((err) => {
             console.log(err);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, makeStyles, TextField, Button } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { getLoginFormSchema } from "../../utils/validationSchemas/loginValidationSchema";
 import { useIntl } from "react-intl";
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PaymentForm() {
   const classes = useStyles();
-  const history = useHistory();
   const intl = useIntl();
   const LoginFormSchema = getLoginFormSchema(intl);
   return (

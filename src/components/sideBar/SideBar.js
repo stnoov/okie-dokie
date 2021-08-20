@@ -10,13 +10,15 @@ import {
   CssBaseline,
   IconButton,
 } from "@material-ui/core";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { useIntl } from "react-intl";
 import getRoutes from "../../config/routes";
+import { logout } from "../../actions/auth";
+import { useDispatch } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -91,14 +93,12 @@ function SideBar({ width, setUser, open, handleDrawerClose }) {
   const intl = useIntl();
   const routes = getRoutes(intl);
   const location = useLocation();
-  const history = useHistory();
+  const dispatch = useDispatch();
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? true : false;
   };
   const handleLogout = () => {
-    localStorage.setItem("user", "");
-    setUser("");
-    history.push("/login");
+    dispatch(logout());
   };
   return (
     <div className={classes.root}>

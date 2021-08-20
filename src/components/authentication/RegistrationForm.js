@@ -9,9 +9,11 @@ import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
 import { Typography } from "@material-ui/core";
 import { getRegistrationFormSchema } from "../../utils/validationSchemas/registrationValidationSchema";
 import { useIntl } from "react-intl";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { register } from "../../actions/auth";
+import { useDispatch } from "react-redux";
+
 const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -33,6 +35,7 @@ export default function RegistrationForm() {
   const classes = useStyles();
   const intl = useIntl();
   const history = useHistory();
+  const dispatch = useDispatch();
   const RegistrationFormSchema = getRegistrationFormSchema(intl);
   return (
     <>
@@ -46,14 +49,10 @@ export default function RegistrationForm() {
         }}
         validationSchema={RegistrationFormSchema}
         onSubmit={(values) => {
-          axios
-            .post("http://localhost:8080/api/auth/signup", {
-              name: values.name,
-              email: values.email,
-              password: values.password,
-              age: values.age,
-            })
-            .then((res) => {
+          dispatch(
+            register(values.email, values.name, values.age, values.password)
+          )
+            .then(() => {
               toast.success("You have been successfully registered!", {
                 position: "top-right",
                 autoClose: 5000,
