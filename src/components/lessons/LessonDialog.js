@@ -10,12 +10,7 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export default function LessonDialog({
-  open,
-  handleClose,
-  lesson,
-  fetchLessons,
-}) {
+export default function LessonDialog({ open, handleClose, lesson }) {
   const handleSignUp = (id) => {
     axios
       .post(

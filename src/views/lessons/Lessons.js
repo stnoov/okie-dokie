@@ -13,7 +13,8 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { lessonData } from "../../templateData/lessonData";
 import LessonDialog from "../../components/lessons/LessonDialog";
-import axios from "axios";
+import { fetchLessons } from "../../actions/lesson";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
@@ -55,22 +56,15 @@ const useStyles = makeStyles((theme) => ({
 function Lessons({ width }) {
   const classes = useStyles();
   const intl = useIntl();
+  const dispatch = useDispatch();
   const [groups, setGroups] = React.useState(() => [
     "senior_group",
     "junior_group",
   ]);
-  const [lessons, setLessons] = React.useState();
-  const fetchLessons = () => {
-    axios
-      .get("http://localhost:8080/api/lessons/get_lessons")
-      .then((data) => {
-        setLessons(data.data.lessons);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  React.useEffect(fetchLessons, []);
+  React.useEffect(() => {
+    dispatch(fetchLessons(groups));
+  }, [groups]);
+  const { lesson: lessonItems } = useSelector((state) => state);
   const [selectedLesson, setSelectedLesson] = React.useState();
   const [isLessonDialogOpen, setIsLessonDialogOpen] = React.useState(false);
   const handleOpenLessonDialog = (lesson) => {
@@ -81,18 +75,8 @@ function Lessons({ width }) {
     setSelectedLesson();
     setIsLessonDialogOpen(false);
   };
-  const handleChangeGroups = (event, newFormats) => {
-    setGroups(newFormats);
-    console.log("groups:", newFormats);
-    const newLessons = lessonData.filter((el) => {
-      if (newFormats.indexOf(el.group) > -1) {
-        console.log(el);
-        return el;
-      }
-      return 0;
-    });
-    setLessons(newLessons);
-  };
+  console.log(lessonItems.items);
+
   return (
     <>
       <Grid container className={classes.rootContainer}>
@@ -105,7 +89,7 @@ function Lessons({ width }) {
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.chooseGroupGrid}>
-          <ToggleButtonGroup value={groups} onChange={handleChangeGroups}>
+          <ToggleButtonGroup value={groups}>
             <ToggleButton
               value="senior_group"
               className={classes.styledToggleButton}
@@ -126,10 +110,10 @@ function Lessons({ width }) {
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
-        {lessons?.length > 0 ? (
+        {lessonItems.items?.length > 0 ? (
           <Grid item xs={12}>
             <List>
-              {lessons?.map((lesson) => {
+              {lessonItems.items?.map((lesson) => {
                 return (
                   <ListItem
                     className={classes.styledListItem}
