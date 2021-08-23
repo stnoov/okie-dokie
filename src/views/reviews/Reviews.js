@@ -8,12 +8,12 @@ import {
   withWidth,
   isWidthDown,
   Button,
-  LinearProgress,
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import { Add } from "@material-ui/icons";
 import AddReviewDialog from "../../components/reviews/AddReviewDialog";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchReviews } from "../../actions/review";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
@@ -56,29 +56,16 @@ const useStyles = makeStyles((theme) => ({
 function Reviews({ width }) {
   const classes = useStyles();
   const intl = useIntl();
-
-  const [reviews, setReviews] = React.useState();
+  const dispatch = useDispatch();
+  const { review: reviewsItem } = useSelector((state) => state);
   const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
   const handleClickOpen = () => {
     setOpen(true);
   };
-  const fetchReviews = async () => {
-    await axios
-      .get("http://localhost:8080/api/reviews/get_reviews")
-      .then((data) => {
-        setReviews(data.data.reviews);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setReviews([]);
-        setLoading(false);
-      });
-  };
+
   React.useEffect(() => {
-    console.log("updated");
-    fetchReviews();
-  }, []);
+    dispatch(fetchReviews());
+  }, [dispatch]);
   const handleClose = () => {
     setOpen(false);
   };
@@ -112,68 +99,59 @@ function Reviews({ width }) {
             </Grid>
           </Grid>
         </Grid>
-        {!loading ? (
-          <Grid item xs={12}>
-            <List>
-              {reviews?.map((review, index) => {
-                return (
-                  <ListItem className={classes.styledListItem} key={index}>
-                    <Grid container justify="space-between" alignItems="center">
-                      <Grid item>
-                        <Grid container justify="flex-start">
-                          <Grid item>
-                            <Typography
-                              variant="body2"
-                              className={classes.senderTitle}
-                            >
-                              {review.user?.name}
-                            </Typography>
-                          </Grid>
-                          <Grid item xs={12}>
-                            <Typography
-                              variant="h5"
-                              className={classes.reviewText}
-                            >
-                              {review.message}
-                            </Typography>
-                          </Grid>
+        <Grid item xs={12}>
+          <List>
+            {reviewsItem.items?.map((review, index) => {
+              return (
+                <ListItem className={classes.styledListItem} key={index}>
+                  <Grid container justify="space-between" alignItems="center">
+                    <Grid item>
+                      <Grid container justify="flex-start">
+                        <Grid item>
+                          <Typography
+                            variant="body2"
+                            className={classes.senderTitle}
+                          >
+                            {review.user?.name}
+                          </Typography>
                         </Grid>
-                      </Grid>
-                      <Grid item>
-                        <Grid container justify="center" direction="column">
-                          <Grid item>
-                            <Grid
-                              container
-                              justify={
-                                isWidthDown("sm", width)
-                                  ? "flex-start"
-                                  : "flex-end"
-                              }
-                            >
-                              <Typography variant="h4">
-                                {review.time}
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                          <Grid item>
-                            <Typography variant="body1">
-                              {review.date}
-                            </Typography>
-                          </Grid>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h5"
+                            className={classes.reviewText}
+                          >
+                            {review.message}
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Grid>
-        ) : (
-          <Grid item xs={12}>
-            <LinearProgress color="secondary" />
-          </Grid>
-        )}
-        {!loading && reviews.length < 1 && (
+                    <Grid item>
+                      <Grid container justify="center" direction="column">
+                        <Grid item>
+                          <Grid
+                            container
+                            justify={
+                              isWidthDown("sm", width)
+                                ? "flex-start"
+                                : "flex-end"
+                            }
+                          >
+                            <Typography variant="h4">{review.time}</Typography>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="body1">{review.date}</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Grid>
+
+        {reviewsItem?.items?.length < 1 && (
           <Grid item xs={12}>
             <Grid container justify="center">
               <Typography variant="h3" className={classes.nothingToShowText}>

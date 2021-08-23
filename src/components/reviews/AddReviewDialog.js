@@ -9,53 +9,20 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Formik } from "formik";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { addReview } from "../../actions/review";
+import { useDispatch } from "react-redux";
 
-export default function AddReviewDialog({ open, handleClose, fetchReviews }) {
+export default function AddReviewDialog({ open, handleClose }) {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
         message: "",
       }}
-      onSubmit={(values, { resetForm }) => {
-        axios
-          .post(
-            "http://localhost:8080/api/reviews/add_review",
-            {
-              message: values.message,
-            },
-            {
-              headers: {
-                "x-access-token": localStorage.getItem("user"),
-              },
-            }
-          )
-          .then((res) => {
-            toast.success("Review has been added", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            handleClose();
-            resetForm();
-            fetchReviews();
-          })
-          .catch((err) => {
-            toast.error("Something went wrong, please try again later", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          });
+      onSubmit={async (values, { resetForm }) => {
+        await dispatch(addReview(values.message));
+        resetForm();
+        handleClose();
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, submitForm }) => (
