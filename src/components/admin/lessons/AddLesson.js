@@ -165,8 +165,8 @@ export default function AddLesson({ fetchLessons }) {
                   onChange={handleChange}
                 >
                   <MenuItem value="elementary">Elementary</MenuItem>
-                  <MenuItem value="pre-intermediate">Intermediate</MenuItem>
-                  <MenuItem value="intermediate">Pre-intermediate</MenuItem>
+                  <MenuItem value="pre_intermediate">Pre-intermediate</MenuItem>
+                  <MenuItem value="intermediate">Intermediate</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

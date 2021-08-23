@@ -48,8 +48,8 @@ export default function Admin() {
             aria-label="scrollable auto tabs example"
           >
             <Tab label="Ученики" value="students" />
-            <Tab label="Добавить новость" value="add_news" />
-            <Tab label="Добавить урок" value="add_lesson" />
+            <Tab label="Новости" value="add_news" />
+            <Tab label="Уроки" value="add_lesson" />
           </Tabs>
         </AppBar>
       </Grid>

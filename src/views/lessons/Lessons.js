@@ -57,7 +57,7 @@ function Lessons({ width }) {
   const dispatch = useDispatch();
   const [groups, setGroups] = React.useState(() => [
     "elementary",
-    "pre-intermediate",
+    "pre_intermediate",
     "intermediate",
   ]);
   React.useEffect(() => {
