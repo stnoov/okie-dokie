@@ -8,3 +8,5 @@ export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const SET_LESSONS = "SET_LESSONS";
+
+export const SET_NEWS = "SET_NEWS";

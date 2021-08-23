@@ -10,10 +10,11 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Formik } from "formik";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { editNews } from "../../../actions/news";
+import { useDispatch } from "react-redux";
 
-export default function EditNewsDialog({ open, handleClose, news, fetchNews }) {
+export default function EditNewsDialog({ open, handleClose, news }) {
+  const dispatch = useDispatch();
   const getInitialValues = () => {
     return {
       title: news?.title,
@@ -24,46 +25,9 @@ export default function EditNewsDialog({ open, handleClose, news, fetchNews }) {
     <Formik
       enableReinitialize={true}
       initialValues={getInitialValues()}
-      onSubmit={(values, { resetForm }) => {
-        axios
-          .post(
-            "http://localhost:8080/api/news/edit_news",
-            {
-              id: news.id,
-              title: values.title,
-              content: values.content,
-            },
-            {
-              headers: {
-                "x-access-token": localStorage.getItem("user"),
-              },
-            }
-          )
-          .then((res) => {
-            toast.success("News has been updated", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            handleClose();
-            resetForm();
-            fetchNews();
-          })
-          .catch((err) => {
-            toast.error("Something went wrong, please try again later", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          });
+      onSubmit={async (values) => {
+        await dispatch(editNews(news?.id, values.title, values.content));
+        handleClose();
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, submitForm }) => (

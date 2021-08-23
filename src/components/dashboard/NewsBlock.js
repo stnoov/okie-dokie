@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles, Grid, Typography, withWidth } from "@material-ui/core";
 import { useIntl } from "react-intl";
-import axios from "axios";
+import { fetchNews } from "../../actions/news";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   styledMainGrid: {
@@ -36,19 +37,12 @@ const useStyles = makeStyles((theme) => ({
 function ProfileInfo({ width }) {
   const classes = useStyles();
   const intl = useIntl();
-  const [news, setNews] = React.useState();
-  const fetchNews = () => {
-    axios
-      .get("http://localhost:8080/api/news/get_news")
-      .then((data) => {
-        console.log(data);
-        setNews(data.data.news);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  React.useEffect(fetchNews, []);
+  const dispatch = useDispatch();
+  const { news: newsItems } = useSelector((state) => state);
+
+  React.useEffect(() => {
+    dispatch(fetchNews());
+  }, [dispatch]);
   return (
     <Grid container className={classes.styledMainGrid} spacing={2}>
       <Grid item xs={12}>
@@ -61,7 +55,7 @@ function ProfileInfo({ width }) {
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={3}>
-          {news?.map((el) => (
+          {newsItems.items?.map((el) => (
             <Grid item xs={4}>
               <Grid container className={classes.styledNewsBlock}>
                 <Grid item xs={12} className={classes.newsTitle}>

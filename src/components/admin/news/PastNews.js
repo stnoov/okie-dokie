@@ -11,12 +11,11 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import axios from "axios";
 import { Edit, Delete } from "@material-ui/icons";
 import { theme } from "../../../utils/themeConfig";
 import EditNewsDialog from "./EditNewsDialog";
-import { toast } from "react-toastify";
-
+import { deleteNews, fetchNews } from "../../../actions/news";
+import { useDispatch, useSelector } from "react-redux";
 const useStyles = makeStyles({
   table: {
     marginTop: theme.spacing(0.5),
@@ -28,9 +27,10 @@ const useStyles = makeStyles({
 
 export default function PastNews() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [selectedNews, setSelectedNews] = React.useState();
-  const [news, setNews] = React.useState();
   const [isEditOpen, setIsEditOpen] = React.useState();
+  const { news: newsItems } = useSelector((state) => state);
   const handleEditOpen = (newValue) => {
     setSelectedNews(newValue);
     setIsEditOpen(true);
@@ -38,48 +38,10 @@ export default function PastNews() {
   const handleEditClose = () => {
     setIsEditOpen(false);
   };
-  const fetchNews = () => {
-    axios
-      .get("http://localhost:8080/api/news/get_news")
-      .then((data) => {
-        setNews(data.data.news);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  React.useEffect(() => {
+    dispatch(fetchNews());
+  }, [dispatch]);
 
-  const deleteNews = (idToDelete) => {
-    axios
-      .post(
-        "http://localhost:8080/api/news/delete_news",
-        {
-          id: idToDelete,
-        },
-        {
-          headers: {
-            "x-access-token": localStorage.getItem("user"),
-          },
-        }
-      )
-      .then((response) => {
-        toast.success("News were updated", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        fetchNews();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  React.useEffect(fetchNews, []);
   return (
     <>
       <TableContainer component={Paper} className={classes.table}>
@@ -90,7 +52,7 @@ export default function PastNews() {
               <TableCell align="right">Date</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
-            {news?.map((el, index) => (
+            {newsItems.items?.map((el, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
                   {el.title}
@@ -106,7 +68,7 @@ export default function PastNews() {
                       </IconButton>
                     </Grid>
                     <Grid item>
-                      <IconButton onClick={() => deleteNews(el.id)}>
+                      <IconButton onClick={() => dispatch(deleteNews(el.id))}>
                         <Delete />
                       </IconButton>
                     </Grid>

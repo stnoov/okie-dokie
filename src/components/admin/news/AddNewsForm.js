@@ -2,8 +2,8 @@ import React from "react";
 import { makeStyles, Grid, TextField, Button } from "@material-ui/core";
 import { Formik } from "formik";
 import { theme } from "../../../utils/themeConfig";
-import { toast } from "react-toastify";
-import axios from "axios";
+import { addNews } from "../../../actions/news";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   styledContainer: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 
 export default function AddNewsForm() {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   return (
     <>
       <Formik
@@ -21,53 +21,12 @@ export default function AddNewsForm() {
           title: "",
           content: "",
         }}
-        onSubmit={(values, { resetForm }) =>
-          axios
-            .post(
-              "http://localhost:8080/api/news/add_news",
-              {
-                title: values.title,
-                content: values.content,
-              },
-              {
-                headers: {
-                  "x-access-token": localStorage.getItem("user"),
-                },
-              }
-            )
-            .then((res) => {
-              toast.success("News has been added", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-              resetForm();
-            })
-            .catch((err) => {
-              toast.error("Something went wrong, please try again later", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            })
-        }
+        onSubmit={async (values, { resetForm }) => {
+          await dispatch(addNews(values.title, values.content));
+          resetForm();
+        }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          submitForm,
-        }) => (
+        {({ values, touched, handleChange, handleBlur, submitForm }) => (
           <Grid container className={classes.styledContainer}>
             <Grid item xs={12}>
               <TextField
