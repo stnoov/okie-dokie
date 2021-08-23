@@ -10,8 +10,8 @@ import {
 } from "@material-ui/core";
 import { Formik } from "formik";
 import { theme } from "../../../utils/themeConfig";
-import { toast } from "react-toastify";
-import axios from "axios";
+import { addLesson } from "../../../actions/lesson";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   styledContainer: {
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 
 export default function AddLesson({ fetchLessons }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
   return (
     <>
       <Formik
@@ -32,63 +33,27 @@ export default function AddLesson({ fetchLessons }) {
           num_students: "",
           price: "",
           teacher: "Antonina Sitnova",
-          group: "junior_group",
+          group: "elementary",
           link: "",
         }}
-        onSubmit={(values, { resetForm }) =>
-          axios
-            .post(
-              "http://localhost:8080/api/lessons/add_lesson",
-              {
-                title: values.title,
-                description: values.description,
-                date: values.date,
-                time: values.time,
-                num_students: values.num_students,
-                teacher: values.teacher,
-                price: values.price,
-                link: values.link,
-              },
-              {
-                headers: {
-                  "x-access-token": localStorage.getItem("user"),
-                },
-              }
+        onSubmit={async (values, { resetForm }) => {
+          await dispatch(
+            addLesson(
+              values.title,
+              values.description,
+              values.date,
+              values.time,
+              values.num_students,
+              values.link,
+              values.price,
+              values.teacher,
+              values.group
             )
-            .then((res) => {
-              toast.success("Lesson has been added", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-              resetForm();
-              fetchLessons();
-            })
-            .catch((err) => {
-              toast.error("Something went wrong, please try again later", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            })
-        }
+          );
+          resetForm();
+        }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          submitForm,
-        }) => (
+        {({ values, touched, handleChange, handleBlur, submitForm }) => (
           <Grid container className={classes.styledContainer} spacing={1}>
             <Grid item xs={6}>
               <TextField
@@ -194,9 +159,14 @@ export default function AddLesson({ fetchLessons }) {
             </Grid>
             <Grid item xs={12}>
               <FormControl variant="outlined" fullWidth>
-                <Select value={values.group} onChange={handleChange}>
-                  <MenuItem value="junior_group">Junior Group</MenuItem>
-                  <MenuItem value="senior_group">Senior Group</MenuItem>
+                <Select
+                  value={values.group}
+                  name="group"
+                  onChange={handleChange}
+                >
+                  <MenuItem value="elementary">Elementary</MenuItem>
+                  <MenuItem value="pre-intermediate">Intermediate</MenuItem>
+                  <MenuItem value="intermediate">Pre-intermediate</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

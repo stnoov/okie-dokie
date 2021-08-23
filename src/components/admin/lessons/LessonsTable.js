@@ -11,12 +11,11 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import axios from "axios";
 import { Edit, Delete } from "@material-ui/icons";
 import { theme } from "../../../utils/themeConfig";
-import { toast } from "react-toastify";
 import EditLesson from "../dialogs/EditLessonDialog";
-
+import { useDispatch, useSelector } from "react-redux";
+import { deleteLesson, fetchLessons } from "../../../actions/lesson";
 const useStyles = makeStyles({
   table: {
     marginTop: theme.spacing(0.5),
@@ -26,8 +25,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LessonsTable({ fetchLessons, lessons }) {
+export default function LessonsTable() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { lesson: lessonItems } = useSelector((state) => state);
   const [selectedLesson, setSelectedLesson] = React.useState();
   const [isEditOpen, setIsEditOpen] = React.useState();
   const handleEditOpen = (newValue) => {
@@ -37,36 +38,9 @@ export default function LessonsTable({ fetchLessons, lessons }) {
   const handleEditClose = () => {
     setIsEditOpen(false);
   };
-  const deleteLesson = (idToDelete) => {
-    axios
-      .post(
-        "http://localhost:8080/api/lessons/delete_lesson",
-        {
-          id: idToDelete,
-        },
-        {
-          headers: {
-            "x-access-token": localStorage.getItem("user"),
-          },
-        }
-      )
-      .then((response) => {
-        toast.success("Lesson was deleted", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        fetchLessons();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  React.useEffect(fetchLessons, []);
+  React.useEffect(() => {
+    dispatch(fetchLessons());
+  }, [dispatch]);
   return (
     <>
       <Grid container>
@@ -82,7 +56,7 @@ export default function LessonsTable({ fetchLessons, lessons }) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {lessons?.map((el, index) => (
+                {lessonItems.items?.map((el, index) => (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">
                       {el.title}
@@ -97,7 +71,9 @@ export default function LessonsTable({ fetchLessons, lessons }) {
                           </IconButton>
                         </Grid>
                         <Grid item>
-                          <IconButton onClick={() => deleteLesson(el.id)}>
+                          <IconButton
+                            onClick={() => dispatch(deleteLesson(el.id))}
+                          >
                             <Delete />
                           </IconButton>
                         </Grid>

@@ -8,17 +8,16 @@ import {
   Grid,
   TextField,
   Typography,
+  MenuItem,
+  FormControl,
+  Select,
 } from "@material-ui/core";
 import { Formik } from "formik";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { editLesson } from "../../../actions/lesson";
 
-export default function EditLesson({
-  open,
-  handleClose,
-  lesson,
-  fetchLessons,
-}) {
+export default function EditLesson({ open, handleClose, lesson }) {
+  const dispatch = useDispatch();
   const getInitialValues = () => {
     return {
       title: lesson?.title,
@@ -28,58 +27,30 @@ export default function EditLesson({
       num_students: lesson?.num_students,
       link: lesson?.link,
       price: lesson?.price,
+      group: lesson?.group,
+      teacher: lesson?.teacher,
     };
   };
   return (
     <Formik
       enableReinitialize={true}
       initialValues={getInitialValues()}
-      onSubmit={(values, { resetForm }) => {
-        axios
-          .post(
-            "http://localhost:8080/api/lessons/edit_lesson",
-            {
-              id: lesson.id,
-              title: values.title,
-              content: values.content,
-              description: values.description,
-              date: values.date,
-              time: values.time,
-              num_students: values.num_students,
-              link: values.link,
-              price: values.price,
-            },
-            {
-              headers: {
-                "x-access-token": localStorage.getItem("user"),
-              },
-            }
+      onSubmit={async (values, { resetForm }) => {
+        await dispatch(
+          editLesson(
+            lesson.id,
+            values.title,
+            values.description,
+            values.date,
+            values.time,
+            values.num_students,
+            values.link,
+            values.price,
+            values.teacher,
+            values.group
           )
-          .then((res) => {
-            toast.success("Lesson was updated", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            handleClose();
-            resetForm();
-            fetchLessons();
-          })
-          .catch((err) => {
-            toast.error("Something went wrong, please try again later", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          });
+        );
+        handleClose();
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, submitForm }) => (
@@ -180,6 +151,32 @@ export default function EditLesson({
                     onBlur={handleBlur}
                     touched={touched}
                   />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    variant="outlined"
+                    fullWidth
+                    name="teacher"
+                    label="Teacher"
+                    type="text"
+                    onChange={handleChange}
+                    value={values.teacher}
+                    onBlur={handleBlur}
+                    touched={touched}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControl variant="outlined" fullWidth>
+                    <Select
+                      value={values.group}
+                      name="group"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value="elementary">Elementary</MenuItem>
+                      <MenuItem value="pre-intermediate">Intermediate</MenuItem>
+                      <MenuItem value="intermediate">Pre-intermediate</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
               </Grid>
             </DialogContent>

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProfileInfo({ width, setUser }) {
+function ProfileInfo({ width }) {
   const classes = useStyles();
   const intl = useIntl();
   const { user: currentUser } = useSelector((state) => state.auth);

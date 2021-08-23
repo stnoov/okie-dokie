@@ -11,7 +11,6 @@ import {
 import { useIntl } from "react-intl";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import { lessonData } from "../../templateData/lessonData";
 import LessonDialog from "../../components/lessons/LessonDialog";
 import { fetchLessons } from "../../actions/lesson";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     "&.Mui-selected": {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.common.white,
-      margin: theme.spacing(0, 0.3),
       "&:hover": {
         backgroundColor: theme.palette.secondary.main,
       },
@@ -58,15 +56,20 @@ function Lessons({ width }) {
   const intl = useIntl();
   const dispatch = useDispatch();
   const [groups, setGroups] = React.useState(() => [
-    "senior_group",
-    "junior_group",
+    "elementary",
+    "pre-intermediate",
+    "intermediate",
   ]);
   React.useEffect(() => {
+    console.log("updated");
     dispatch(fetchLessons(groups));
-  }, [groups]);
+  }, [groups, dispatch]);
   const { lesson: lessonItems } = useSelector((state) => state);
   const [selectedLesson, setSelectedLesson] = React.useState();
   const [isLessonDialogOpen, setIsLessonDialogOpen] = React.useState(false);
+  const handleChangeGroups = (event, newFormats) => {
+    setGroups(newFormats);
+  };
   const handleOpenLessonDialog = (lesson) => {
     setSelectedLesson(lesson);
     setIsLessonDialogOpen(true);
@@ -75,7 +78,6 @@ function Lessons({ width }) {
     setSelectedLesson();
     setIsLessonDialogOpen(false);
   };
-  console.log(lessonItems.items);
 
   return (
     <>
@@ -89,23 +91,32 @@ function Lessons({ width }) {
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.chooseGroupGrid}>
-          <ToggleButtonGroup value={groups}>
+          <ToggleButtonGroup value={groups} onChange={handleChangeGroups}>
             <ToggleButton
-              value="senior_group"
+              value="elementary"
               className={classes.styledToggleButton}
             >
               {intl.formatMessage({
-                id: "fields.senior_group",
-                defaultMessage: "Senior group",
+                id: "fields.elementary",
+                defaultMessage: "Elementary",
               })}
             </ToggleButton>
             <ToggleButton
               className={classes.styledToggleButton}
-              value="junior_group"
+              value="pre_intermediate"
             >
               {intl.formatMessage({
-                id: "fields.junior_group",
-                defaultMessage: "Junior group",
+                id: "fields.pre_intermediate",
+                defaultMessage: "Pre-intermediate",
+              })}
+            </ToggleButton>
+            <ToggleButton
+              className={classes.styledToggleButton}
+              value="intermediate"
+            >
+              {intl.formatMessage({
+                id: "fields.intermediate",
+                defaultMessage: "Intermediate",
               })}
             </ToggleButton>
           </ToggleButtonGroup>
