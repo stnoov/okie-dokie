@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import NewsCarousel from "../../components/dashboard/Carousel";
 import ProfileInfo from "../../components/dashboard/ProfileInfo";
 import NewsBlock from "../../components/dashboard/NewsBlock";
+import UsersClasses from "../../components/dashboard/UsersClasses";
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
     padding: theme.spacing(5, 3),
@@ -27,6 +28,9 @@ export default function Dashboard({ setUser }) {
       </Grid>
       <Grid item xs={12}>
         <NewsBlock />
+      </Grid>
+      <Grid item xs={12}>
+        <UsersClasses />
       </Grid>
     </Grid>
   );

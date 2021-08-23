@@ -6,7 +6,8 @@ import {
   LOGOUT,
   SET_MESSAGE,
 } from "./types";
-
+import axios from "axios";
+import authHeader from "../services/auth.header";
 import AuthService from "../services/auth.service";
 
 export const register = (email, name, age, password) => (dispatch) => {
@@ -76,6 +77,19 @@ export const login = (email, password) => (dispatch) => {
       return Promise.reject();
     }
   );
+};
+
+export const fetchUser = () => (dispatch) => {
+  axios
+    .get("http://localhost:8080/api/user/fetch_user", {
+      headers: authHeader(),
+    })
+    .then((data) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: { user: data },
+      });
+    });
 };
 
 export const logout = () => (dispatch) => {

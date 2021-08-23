@@ -7,46 +7,14 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { signUpForALesson } from "../../actions/lesson";
+import { useDispatch } from "react-redux";
 
 export default function LessonDialog({ open, handleClose, lesson }) {
+  const dispatch = useDispatch();
   const handleSignUp = (id) => {
-    axios
-      .post(
-        "http://localhost:8080/api/lessons/sign_up_for_a_lesson",
-        {
-          lesson_id: id,
-        },
-        {
-          headers: {
-            "x-access-token": localStorage.getItem("user"),
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Lesson has been added", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        handleClose();
-      })
-      .catch((err) => {
-        toast.error("Something went wrong, please try again later", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+    dispatch(signUpForALesson(lesson?.id));
+    handleClose();
   };
   return (
     <div>

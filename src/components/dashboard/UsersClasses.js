@@ -7,17 +7,16 @@ import {
   ListItem,
   withWidth,
   isWidthDown,
+  Button,
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import LessonDialog from "../../components/lessons/LessonDialog";
-import { fetchLessons } from "../../actions/lesson";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { fetchUserClasses } from "../../actions/user_classes";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(2, 0),
   },
   chooseGroupGrid: {
     margin: theme.spacing(1, 0),
@@ -51,84 +50,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Lessons({ width }) {
+function UsersClasses({ width }) {
   const classes = useStyles();
   const intl = useIntl();
   const dispatch = useDispatch();
-  const [groups, setGroups] = React.useState(() => [
-    "elementary",
-    "pre_intermediate",
-    "intermediate",
-  ]);
+  const { user_classes: userClasses } = useSelector((state) => state);
   React.useEffect(() => {
-    dispatch(fetchLessons(groups));
-  }, [groups, dispatch]);
-  const { lesson: lessonItems } = useSelector((state) => state);
-  const [selectedLesson, setSelectedLesson] = React.useState();
-  const [isLessonDialogOpen, setIsLessonDialogOpen] = React.useState(false);
-  const handleChangeGroups = (event, newFormats) => {
-    setGroups(newFormats);
-  };
-  const handleOpenLessonDialog = (lesson) => {
-    setSelectedLesson(lesson);
-    setIsLessonDialogOpen(true);
-  };
-  const handleCloseLessonDialog = () => {
-    setSelectedLesson();
-    setIsLessonDialogOpen(false);
-  };
-
+    dispatch(fetchUserClasses());
+  }, [dispatch]);
   return (
     <>
       <Grid container className={classes.rootContainer}>
         <Grid item xs={12}>
-          <Typography variant="h3" color="secondary">
+          <Typography variant="h4" color="secondary">
             {intl.formatMessage({
-              id: "routes.lessons",
-              defaultMessage: "Lessons",
+              id: "routes.your_upcoming_lessons",
+              defaultMessage: "Ваши следующие уроки",
             })}
           </Typography>
         </Grid>
-        <Grid item xs={12} className={classes.chooseGroupGrid}>
-          <ToggleButtonGroup value={groups} onChange={handleChangeGroups}>
-            <ToggleButton
-              value="elementary"
-              className={classes.styledToggleButton}
-            >
-              {intl.formatMessage({
-                id: "fields.elementary",
-                defaultMessage: "Elementary",
-              })}
-            </ToggleButton>
-            <ToggleButton
-              className={classes.styledToggleButton}
-              value="pre_intermediate"
-            >
-              {intl.formatMessage({
-                id: "fields.pre_intermediate",
-                defaultMessage: "Pre-intermediate",
-              })}
-            </ToggleButton>
-            <ToggleButton
-              className={classes.styledToggleButton}
-              value="intermediate"
-            >
-              {intl.formatMessage({
-                id: "fields.intermediate",
-                defaultMessage: "Intermediate",
-              })}
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Grid>
-        {lessonItems.items?.length > 0 ? (
+        {userClasses.items?.length > 0 ? (
           <Grid item xs={12}>
             <List>
-              {lessonItems.items?.map((lesson) => {
+              {userClasses.items?.map((lesson, index) => {
                 return (
-                  <ListItem
-                    className={classes.styledListItem}
-                    onClick={() => handleOpenLessonDialog(lesson)}
-                  >
+                  <ListItem className={classes.styledListItem} key={index}>
                     <Grid container justify="space-between" alignItems="center">
                       <Grid item>
                         <Grid container justify="flex-start">
@@ -166,25 +112,34 @@ function Lessons({ width }) {
                         </Grid>
                       </Grid>
                       <Grid item>
-                        <Grid container justify="center" direction="column">
+                        <Grid container alignItems="center" spacing={1}>
                           <Grid item>
-                            <Grid
-                              container
-                              justify={
-                                isWidthDown("sm", width)
-                                  ? "flex-start"
-                                  : "flex-end"
-                              }
-                            >
-                              <Typography variant="h4">
-                                {lesson.time}
-                              </Typography>
+                            <Grid container justify="center" direction="column">
+                              <Grid item>
+                                <Grid
+                                  container
+                                  justify={
+                                    isWidthDown("sm", width)
+                                      ? "flex-start"
+                                      : "flex-end"
+                                  }
+                                >
+                                  <Typography variant="h4">
+                                    {lesson.time}
+                                  </Typography>
+                                </Grid>
+                              </Grid>
+                              <Grid item>
+                                <Typography variant="body1">
+                                  {lesson.date}
+                                </Typography>
+                              </Grid>
                             </Grid>
                           </Grid>
                           <Grid item>
-                            <Typography variant="body1">
-                              {lesson.date}
-                            </Typography>
+                            <Button variant="outlined" color="secondary">
+                              Присоедениться
+                            </Button>
                           </Grid>
                         </Grid>
                       </Grid>
@@ -208,12 +163,7 @@ function Lessons({ width }) {
           </Grid>
         )}
       </Grid>
-      <LessonDialog
-        open={isLessonDialogOpen}
-        handleClose={handleCloseLessonDialog}
-        lesson={selectedLesson}
-      />
     </>
   );
 }
-export default withWidth()(Lessons);
+export default withWidth()(UsersClasses);

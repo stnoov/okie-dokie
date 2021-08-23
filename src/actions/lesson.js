@@ -146,6 +146,46 @@ export const deleteLesson = (idToDelete) => (dispatch) => {
     });
 };
 
+export const signUpForALesson = (id) => (dispatch) => {
+  axios
+    .post(
+      "http://localhost:8080/api/lessons/sign_up_for_a_lesson",
+      {
+        lesson_id: id,
+      },
+      { headers: authHeader() }
+    )
+    .then((res) => {
+      toast.success("Success!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    })
+    .catch((err) => {
+      toast.error(
+        err.response.status === 409
+          ? "Already signed up"
+          : err.response.status === 400
+          ? "Not enough balance"
+          : "Something went wrong",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    });
+};
+
 export const setLessons = (items) => ({
   type: SET_LESSONS,
   payload: items,
