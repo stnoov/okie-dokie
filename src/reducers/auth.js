@@ -4,6 +4,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  FETCH_USER,
 } from "../actions/types";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -44,6 +45,12 @@ export default function authReducer(state = initialState, action) {
         isLoggedIn: false,
         user: null,
       };
+    case FETCH_USER: {
+      return {
+        ...state,
+        user: payload.user,
+      };
+    }
     default:
       return state;
   }

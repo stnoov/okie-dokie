@@ -2,6 +2,7 @@ import { SET_LESSONS } from "./types";
 import axios from "axios";
 import authHeader from "../services/auth.header";
 import { toast } from "react-toastify";
+import { fetchUser } from "./auth";
 
 export const fetchLessons = (groups) => (dispatch) => {
   axios
@@ -156,6 +157,7 @@ export const signUpForALesson = (id) => (dispatch) => {
       { headers: authHeader() }
     )
     .then((res) => {
+      dispatch(fetchUser());
       toast.success("Success!", {
         position: "top-right",
         autoClose: 5000,
