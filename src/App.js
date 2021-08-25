@@ -25,9 +25,9 @@ import Payments from "./views/payments/Payments";
 import Promotions from "./views/promotions/Promotions";
 import Admin from "./views/admin/Admin";
 import { useSelector } from "react-redux";
+import AuthVerify from "./services/AuthVerify";
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const [user, setUser] = React.useState(localStorage.getItem("user"));
   const [locale, setLocale] = React.useState(
     localStorage.getItem("locale") === undefined ? "en" : "ru"
   );
@@ -47,12 +47,7 @@ function App() {
               </Switch>
             </>
           ) : (
-            <AuthenticatedApp
-              user={user}
-              setUser={setUser}
-              locale={locale}
-              setLocale={setLocale}
-            />
+            <AuthenticatedApp locale={locale} setLocale={setLocale} />
           )}
         </Router>
         <ToastContainer
@@ -74,6 +69,7 @@ function App() {
 
 const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
   const [open, setOpen] = React.useState(false);
+  const { user: currentUser } = useSelector((state) => state.auth);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -113,10 +109,13 @@ const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
           <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/payments" component={Payments} />
           <Route exact path="/promotions" component={Promotions} />
-          <Route exact path="/admin" component={Admin} />
+          {currentUser.isAdmin && (
+            <Route exact path="/admin" component={Admin} />
+          )}
           <Redirect from="/*" to="/dashboard" />
         </Switch>
       </Container>
+      <AuthVerify />
     </>
   );
 };

@@ -18,7 +18,8 @@ import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { useIntl } from "react-intl";
 import getRoutes from "../../config/routes";
 import { logout } from "../../actions/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 
 const drawerWidth = 240;
 
@@ -94,6 +95,7 @@ function SideBar({ width, setUser, open, handleDrawerClose }) {
   const routes = getRoutes(intl);
   const location = useLocation();
   const dispatch = useDispatch();
+  const { user: currentUser } = useSelector((state) => state.auth);
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? true : false;
   };
@@ -147,6 +149,19 @@ function SideBar({ width, setUser, open, handleDrawerClose }) {
               </Link>
             );
           })}
+          {currentUser.isAdmin && (
+            <Link to="/admin" className={classes.sideMenuLink}>
+              <MenuItem
+                selected={activeRoute("/admin")}
+                className={classes.sideMenuItem}
+              >
+                <IconButton style={{ color: "inherit" }}>
+                  <SupervisorAccountIcon />
+                </IconButton>
+                <ListItemText primary="Admin panel" />
+              </MenuItem>
+            </Link>
+          )}
           <MenuItem
             onClick={() => handleLogout()}
             className={classes.sideMenuItem}
