@@ -124,73 +124,86 @@ function Lessons({ width }) {
           <Grid item xs={12}>
             <List>
               {lessonItems.items?.map((lesson) => {
-                return (
-                  <ListItem
-                    className={classes.styledListItem}
-                    onClick={() => handleOpenLessonDialog(lesson)}
-                  >
-                    <Grid container justify="space-between" alignItems="center">
-                      <Grid item>
-                        <Grid container justify="flex-start">
-                          <Grid item xs={12}>
-                            <Typography variant="h5">{lesson.title}</Typography>
-                          </Grid>
-                          <Grid item xs={12}>
-                            <Typography
-                              variant="body2"
-                              className={classes.teacherSubtitle}
-                            >
-                              {lesson.group === "junior_group"
-                                ? intl.formatMessage({
-                                    id: "fields.junior_group",
-                                    defaultMessage: "Junior group",
-                                  })
-                                : intl.formatMessage({
-                                    id: "fields.senior_group",
-                                    defaultMessage: "Senior group",
-                                  })}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Typography
-                              variant="body2"
-                              className={classes.teacherSubtitle}
-                            >
-                              {intl.formatMessage({
-                                id: "fields.teacher",
-                                defaultMessage: "Teacher",
-                              })}
-                              : {lesson.teacher}
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid item>
-                        <Grid container justify="center" direction="column">
-                          <Grid item>
-                            <Grid
-                              container
-                              justify={
-                                isWidthDown("sm", width)
-                                  ? "flex-start"
-                                  : "flex-end"
-                              }
-                            >
-                              <Typography variant="h4">
-                                {lesson.time}
+                let lessonDate = new Date(
+                  lesson.date + "T" + lesson.time + ":00"
+                );
+                lessonDate.setHours(lessonDate.getHours() + 1);
+                if (Date.now() < lessonDate) {
+                  return (
+                    <ListItem
+                      className={classes.styledListItem}
+                      onClick={() => handleOpenLessonDialog(lesson)}
+                    >
+                      <Grid
+                        container
+                        justify="space-between"
+                        alignItems="center"
+                      >
+                        <Grid item>
+                          <Grid container justify="flex-start">
+                            <Grid item xs={12}>
+                              <Typography variant="h5">
+                                {lesson.title}
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <Typography
+                                variant="body2"
+                                className={classes.teacherSubtitle}
+                              >
+                                {lesson.group === "junior_group"
+                                  ? intl.formatMessage({
+                                      id: "fields.junior_group",
+                                      defaultMessage: "Junior group",
+                                    })
+                                  : intl.formatMessage({
+                                      id: "fields.senior_group",
+                                      defaultMessage: "Senior group",
+                                    })}
+                              </Typography>
+                            </Grid>
+                            <Grid item>
+                              <Typography
+                                variant="body2"
+                                className={classes.teacherSubtitle}
+                              >
+                                {intl.formatMessage({
+                                  id: "fields.teacher",
+                                  defaultMessage: "Teacher",
+                                })}
+                                : {lesson.teacher}
                               </Typography>
                             </Grid>
                           </Grid>
-                          <Grid item>
-                            <Typography variant="body1">
-                              {lesson.date}
-                            </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Grid container justify="center" direction="column">
+                            <Grid item>
+                              <Grid
+                                container
+                                justify={
+                                  isWidthDown("sm", width)
+                                    ? "flex-start"
+                                    : "flex-end"
+                                }
+                              >
+                                <Typography variant="h4">
+                                  {lesson.time}
+                                </Typography>
+                              </Grid>
+                            </Grid>
+                            <Grid item>
+                              <Typography variant="body1">
+                                {lesson.date}
+                              </Typography>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
-                  </ListItem>
-                );
+                    </ListItem>
+                  );
+                }
+                return null;
               })}
             </List>
           </Grid>

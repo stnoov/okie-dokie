@@ -73,79 +73,102 @@ function UsersClasses({ width }) {
           <Grid item xs={12}>
             <List>
               {userClasses.items?.map((lesson, index) => {
-                return (
-                  <ListItem className={classes.styledListItem} key={index}>
-                    <Grid container justify="space-between" alignItems="center">
-                      <Grid item>
-                        <Grid container justify="flex-start">
-                          <Grid item xs={12}>
-                            <Typography variant="h5">{lesson.title}</Typography>
-                          </Grid>
-                          <Grid item xs={12}>
-                            <Typography
-                              variant="body2"
-                              className={classes.teacherSubtitle}
-                            >
-                              {lesson.group === "junior_group"
-                                ? intl.formatMessage({
-                                    id: "fields.junior_group",
-                                    defaultMessage: "Junior group",
-                                  })
-                                : intl.formatMessage({
-                                    id: "fields.senior_group",
-                                    defaultMessage: "Senior group",
-                                  })}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Typography
-                              variant="body2"
-                              className={classes.teacherSubtitle}
-                            >
-                              {intl.formatMessage({
-                                id: "fields.teacher",
-                                defaultMessage: "Teacher",
-                              })}
-                              : {lesson.teacher}
-                            </Typography>
+                let lessonDate = new Date(
+                  lesson.date + "T" + lesson.time + ":00"
+                );
+                let expiredDate = new Date(lessonDate).setHours(
+                  lessonDate.getHours() + 1
+                );
+                if (Date.now() < expiredDate) {
+                  return (
+                    <ListItem className={classes.styledListItem} key={index}>
+                      <Grid
+                        container
+                        justify="space-between"
+                        alignItems="center"
+                      >
+                        <Grid item>
+                          <Grid container justify="flex-start">
+                            <Grid item xs={12}>
+                              <Typography variant="h5">
+                                {lesson.title}
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <Typography
+                                variant="body2"
+                                className={classes.teacherSubtitle}
+                              >
+                                {lesson.group === "junior_group"
+                                  ? intl.formatMessage({
+                                      id: "fields.junior_group",
+                                      defaultMessage: "Junior group",
+                                    })
+                                  : intl.formatMessage({
+                                      id: "fields.senior_group",
+                                      defaultMessage: "Senior group",
+                                    })}
+                              </Typography>
+                            </Grid>
+
+                            <Grid item>
+                              <Typography
+                                variant="body2"
+                                className={classes.teacherSubtitle}
+                              >
+                                {intl.formatMessage({
+                                  id: "fields.teacher",
+                                  defaultMessage: "Teacher",
+                                })}
+                                : {lesson.teacher}
+                              </Typography>
+                            </Grid>
                           </Grid>
                         </Grid>
-                      </Grid>
-                      <Grid item>
-                        <Grid container alignItems="center" spacing={1}>
-                          <Grid item>
-                            <Grid container justify="center" direction="column">
+                        <Grid item>
+                          <Grid container alignItems="center" spacing={1}>
+                            {Date.now() < lessonDate ? (
                               <Grid item>
                                 <Grid
                                   container
-                                  justify={
-                                    isWidthDown("sm", width)
-                                      ? "flex-start"
-                                      : "flex-end"
-                                  }
+                                  justify="center"
+                                  direction="column"
                                 >
-                                  <Typography variant="h4">
-                                    {lesson.time}
-                                  </Typography>
+                                  <Grid item>
+                                    <Grid
+                                      container
+                                      justify={
+                                        isWidthDown("sm", width)
+                                          ? "flex-start"
+                                          : "flex-end"
+                                      }
+                                    >
+                                      <Typography variant="h4">
+                                        {lesson.time}
+                                      </Typography>
+                                    </Grid>
+                                  </Grid>
+                                  <Grid item>
+                                    <Typography variant="body1">
+                                      {lesson.date}
+                                    </Typography>
+                                  </Grid>
                                 </Grid>
                               </Grid>
+                            ) : (
                               <Grid item>
-                                <Typography variant="body1">
-                                  {lesson.date}
-                                </Typography>
+                                <Button variant="outlined" color="secondary">
+                                  Присоедениться
+                                </Button>
                               </Grid>
-                            </Grid>
-                          </Grid>
-                          <Grid item>
-                            <Button variant="outlined" color="secondary">
-                              Присоедениться
-                            </Button>
+                            )}
                           </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
-                  </ListItem>
-                );
+                    </ListItem>
+                  );
+                }
+                return null;
               })}
             </List>
           </Grid>
