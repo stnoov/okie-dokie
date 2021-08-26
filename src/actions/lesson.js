@@ -7,7 +7,7 @@ import { fetchUser } from "./auth";
 const API_URL = "https://okiedokie-backend.herokuapp.com/";
 
 export const fetchLessons = (groups) => (dispatch) => {
-  axios.get("api/lessons/get_lessons").then(({ data }) => {
+  axios.get(API_URL + "api/lessons/get_lessons").then(({ data }) => {
     if (groups) {
       const sortedLessons = [];
       data.lessons.map((el) => {
@@ -83,7 +83,7 @@ export const editLesson =
   (dispatch) => {
     axios
       .post(
-        "api/lessons/edit_lesson",
+        API_URL + "api/lessons/edit_lesson",
         {
           id: id,
           title: title,

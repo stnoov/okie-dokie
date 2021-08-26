@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "https://okiedokie-backend.herokuapp.com/api/auth/";
+const API_URL = "https://okiedokie-backend.herokuapp.com/";
 
 const fetchLessons = () => {
   return axios
-    .get(API_URL + "lessons/get_lessons")
+    .get(API_URL + "api/lessons/get_lessons")
     .then((data) => {
       return data.data.lessons;
     })

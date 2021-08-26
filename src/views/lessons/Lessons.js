@@ -123,7 +123,7 @@ function Lessons({ width }) {
         {lessonItems.items?.length > 0 ? (
           <Grid item xs={12}>
             <List>
-              {lessonItems.items?.map((lesson) => {
+              {lessonItems.items?.map((lesson, index) => {
                 let lessonDate = new Date(
                   lesson.date + "T" + lesson.time + ":00"
                 );
@@ -131,6 +131,7 @@ function Lessons({ width }) {
                 if (Date.now() < lessonDate) {
                   return (
                     <ListItem
+                      key={index}
                       className={classes.styledListItem}
                       onClick={() => handleOpenLessonDialog(lesson)}
                     >

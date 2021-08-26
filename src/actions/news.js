@@ -7,7 +7,7 @@ const API_URL = "https://okiedokie-backend.herokuapp.com/";
 
 export const fetchNews = () => (dispatch) => {
   axios
-    .get(API_URL + "/api/news/get_news")
+    .get(API_URL + "api/news/get_news")
     .then(({ data }) => {
       dispatch(setNews(data.news));
     })
@@ -19,7 +19,7 @@ export const fetchNews = () => (dispatch) => {
 export const addNews = (title, content) => (dispatch) => {
   axios
     .post(
-      API_URL + "/api/news/add_news",
+      API_URL + "api/news/add_news",
       {
         title: title,
         content: content,
@@ -54,7 +54,7 @@ export const addNews = (title, content) => (dispatch) => {
 export const editNews = (id, title, content) => (dispatch) => {
   axios
     .post(
-      API_URL + "/api/news/edit_news",
+      API_URL + "api/news/edit_news",
       {
         id: id,
         title: title,
@@ -79,7 +79,7 @@ export const editNews = (id, title, content) => (dispatch) => {
 export const deleteNews = (idToDelete) => (dispatch) => {
   axios
     .post(
-      API_URL + "/api/news/delete_news",
+      API_URL + "api/news/delete_news",
       {
         id: idToDelete,
       },
