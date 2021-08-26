@@ -18,19 +18,19 @@ export default function Dashboard({ setUser }) {
     <Grid container className={classes.rootContainer}>
       <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} lg={7}>
+          <Grid item xs={12} sm={12} md={6} lg={7}>
             <NewsCarousel />
           </Grid>
-          <Grid item xs={12} sm={12} lg={5}>
+          <Grid item xs={12} sm={12} md={6} lg={5}>
             <ProfileInfo setUser={setUser} />
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <NewsBlock />
+        <UsersClasses />
       </Grid>
       <Grid item xs={12}>
-        <UsersClasses />
+        <NewsBlock />
       </Grid>
     </Grid>
   );

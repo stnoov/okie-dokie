@@ -40,7 +40,7 @@ export default function Students() {
   };
   const fetchStudents = async () => {
     await axios
-      .get("http://localhost:8080/api/users/get_all_users")
+      .get("https://okiedokie-backend.herokuapp.com/api/users/get_all_users")
       .then((data) => {
         setStudents(data.data.users);
       })

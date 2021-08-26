@@ -4,23 +4,23 @@ import authHeader from "../services/auth.header";
 import { toast } from "react-toastify";
 import { fetchUser } from "./auth";
 
+const API_URL = "https://okiedokie-backend.herokuapp.com/";
+
 export const fetchLessons = (groups) => (dispatch) => {
-  axios
-    .get("http://localhost:8080/api/lessons/get_lessons")
-    .then(({ data }) => {
-      if (groups) {
-        const sortedLessons = [];
-        data.lessons.map((el) => {
-          if (groups.indexOf(el.group) !== -1) {
-            sortedLessons.push(el);
-          }
-          return 0;
-        });
-        dispatch(setLessons(sortedLessons));
-      } else {
-        dispatch(setLessons(data.lessons));
-      }
-    });
+  axios.get("api/lessons/get_lessons").then(({ data }) => {
+    if (groups) {
+      const sortedLessons = [];
+      data.lessons.map((el) => {
+        if (groups.indexOf(el.group) !== -1) {
+          sortedLessons.push(el);
+        }
+        return 0;
+      });
+      dispatch(setLessons(sortedLessons));
+    } else {
+      dispatch(setLessons(data.lessons));
+    }
+  });
 };
 
 export const addLesson =
@@ -28,7 +28,7 @@ export const addLesson =
   (dispatch) => {
     axios
       .post(
-        "http://localhost:8080/api/lessons/add_lesson",
+        API_URL + "api/lessons/add_lesson",
         {
           title: title,
           description: description,
@@ -83,7 +83,7 @@ export const editLesson =
   (dispatch) => {
     axios
       .post(
-        "http://localhost:8080/api/lessons/edit_lesson",
+        "api/lessons/edit_lesson",
         {
           id: id,
           title: title,
@@ -127,7 +127,7 @@ export const editLesson =
 export const deleteLesson = (idToDelete) => (dispatch) => {
   axios
     .post(
-      "http://localhost:8080/api/lessons/delete_lesson",
+      API_URL + "api/lessons/delete_lesson",
       {
         id: idToDelete,
       },
@@ -150,7 +150,7 @@ export const deleteLesson = (idToDelete) => (dispatch) => {
 export const signUpForALesson = (id) => (dispatch) => {
   axios
     .post(
-      "http://localhost:8080/api/lessons/sign_up_for_a_lesson",
+      API_URL + "api/lessons/sign_up_for_a_lesson",
       {
         lesson_id: id,
       },

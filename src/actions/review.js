@@ -3,9 +3,11 @@ import axios from "axios";
 import authHeader from "../services/auth.header";
 import { toast } from "react-toastify";
 
+const API_URL = "https://okiedokie-backend.herokuapp.com/";
+
 export const fetchReviews = () => (dispatch) => {
   axios
-    .get("http://localhost:8080/api/reviews/get_reviews")
+    .get("api/reviews/get_reviews")
     .then(({ data }) => {
       dispatch(setReviews(data.reviews));
     })
@@ -17,7 +19,7 @@ export const fetchReviews = () => (dispatch) => {
 export const addReview = (message) => (dispatch) => {
   axios
     .post(
-      "http://localhost:8080/api/reviews/add_review",
+      API_URL + "api/reviews/add_review",
       {
         message: message,
       },
@@ -47,29 +49,6 @@ export const addReview = (message) => (dispatch) => {
       });
     });
 };
-
-// export const deleteNews = (idToDelete) => (dispatch) => {
-//   axios
-//     .post(
-//       "http://localhost:8080/api/news/delete_news",
-//       {
-//         id: idToDelete,
-//       },
-//       { headers: authHeader() }
-//     )
-//     .then(({ data }) => {
-//       dispatch(setNews(data.news));
-//       toast.success("Deleted!", {
-//         position: "top-right",
-//         autoClose: 5000,
-//         hideProgressBar: false,
-//         closeOnClick: true,
-//         pauseOnHover: true,
-//         draggable: true,
-//         progress: undefined,
-//       });
-//     });
-// };
 
 export const setReviews = (items) => ({
   type: SET_REVIEWS,

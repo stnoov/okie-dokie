@@ -56,7 +56,7 @@ function ProfileInfo({ width }) {
       <Grid item xs={12}>
         <Grid container spacing={3}>
           {newsItems.items?.map((el) => (
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={12} md={4}>
               <Grid container className={classes.styledNewsBlock}>
                 <Grid item xs={12} className={classes.newsTitle}>
                   {el.title}

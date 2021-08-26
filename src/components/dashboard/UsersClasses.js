@@ -13,6 +13,7 @@ import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
 import { fetchUserClasses } from "../../actions/user_classes";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
@@ -48,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
   nothingToShowText: {
     color: theme.palette.primary.dark,
   },
+  linkToClasses: {
+    textDecoration: "none",
+    color: theme.palette.primary.main,
+  },
 }));
 
 function UsersClasses({ width }) {
@@ -65,7 +70,7 @@ function UsersClasses({ width }) {
           <Typography variant="h4" color="secondary">
             {intl.formatMessage({
               id: "routes.your_upcoming_lessons",
-              defaultMessage: "Ваши следующие уроки",
+              defaultMessage: "Ваши следующие занятия",
             })}
           </Typography>
         </Grid>
@@ -175,12 +180,11 @@ function UsersClasses({ width }) {
         ) : (
           <Grid item xs={12}>
             <Grid container justify="center">
-              <Typography variant="h3" className={classes.nothingToShowText}>
-                {intl.formatMessage({
-                  id: "text.nothing_to_show",
-                  defaultMessage: "Nothing to show ",
-                })}
-                :(
+              <Typography variant="h5" className={classes.nothingToShowText}>
+                Вы не записаны на ближайшие занятия.{" "}
+                <Link to="/lessons" className={classes.linkToClasses}>
+                  Записаться
+                </Link>
               </Typography>
             </Grid>
           </Grid>
