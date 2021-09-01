@@ -20,6 +20,7 @@ import getRoutes from "../../config/routes";
 import { logout } from "../../actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import { hideSidebar } from "../../actions/sidebar";
 
 const drawerWidth = 240;
 
@@ -88,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SideBar({ width, setUser, open, handleDrawerClose }) {
+function SideBar({ width }) {
   const classes = useStyles();
   const theme = useTheme();
   const intl = useIntl();
@@ -96,8 +97,12 @@ function SideBar({ width, setUser, open, handleDrawerClose }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.auth);
+  const { sidebar } = useSelector((state) => state);
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? true : false;
+  };
+  const handleDrawerClose = () => {
+    dispatch(hideSidebar());
   };
   const handleLogout = () => {
     dispatch(logout());
@@ -110,7 +115,7 @@ function SideBar({ width, setUser, open, handleDrawerClose }) {
         className={classes.drawer}
         variant={isWidthDown("sm", width) ? "temporary" : "persistent"}
         anchor="left"
-        open={open}
+        open={sidebar.visible}
         classes={{
           paper: classes.drawerPaper,
         }}

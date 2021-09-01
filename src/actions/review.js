@@ -3,11 +3,11 @@ import axios from "axios";
 import authHeader from "../services/auth.header";
 import { toast } from "react-toastify";
 
-const API_URL = "https://okiedokie-backend.herokuapp.com/";
+const API_URL = "http://localhost:8080/";
 
 export const fetchReviews = () => (dispatch) => {
   axios
-    .get("api/reviews/get_reviews")
+    .get(API_URL + "api/reviews/get_reviews")
     .then(({ data }) => {
       dispatch(setReviews(data.reviews));
     })

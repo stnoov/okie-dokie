@@ -58,6 +58,7 @@ function Reviews({ width }) {
   const intl = useIntl();
   const dispatch = useDispatch();
   const { review: reviewsItem } = useSelector((state) => state);
+  console.log("reviewsItem: ", reviewsItem);
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);

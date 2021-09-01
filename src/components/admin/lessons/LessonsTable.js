@@ -11,11 +11,12 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import { Edit, Delete } from "@material-ui/icons";
+import { Edit, Delete, Info } from "@material-ui/icons";
 import { theme } from "../../../utils/themeConfig";
 import EditLesson from "../dialogs/EditLessonDialog";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteLesson, fetchLessons } from "../../../actions/lesson";
+import LessonInfo from "../dialogs/LessonInfo";
 const useStyles = makeStyles({
   table: {
     marginTop: theme.spacing(0.5),
@@ -31,6 +32,14 @@ export default function LessonsTable() {
   const { lesson: lessonItems } = useSelector((state) => state);
   const [selectedLesson, setSelectedLesson] = React.useState();
   const [isEditOpen, setIsEditOpen] = React.useState();
+  const [isInfoOpen, setIsInfoOpen] = React.useState(false);
+  const handleInfoOpen = (newValue) => {
+    setSelectedLesson(newValue);
+    setIsInfoOpen(true);
+  };
+  const handleInfoClose = () => {
+    setIsInfoOpen(false);
+  };
   const handleEditOpen = (newValue) => {
     setSelectedLesson(newValue);
     setIsEditOpen(true);
@@ -66,6 +75,11 @@ export default function LessonsTable() {
                     <TableCell align="right">
                       <Grid container justifyContent="flex-end">
                         <Grid item>
+                          <IconButton onClick={() => handleInfoOpen(el)}>
+                            <Info />
+                          </IconButton>
+                        </Grid>
+                        <Grid item>
                           <IconButton onClick={() => handleEditOpen(el)}>
                             <Edit />
                           </IconButton>
@@ -91,6 +105,11 @@ export default function LessonsTable() {
         handleClose={handleEditClose}
         lesson={selectedLesson}
         fetchLessons={fetchLessons}
+      />
+      <LessonInfo
+        open={isInfoOpen}
+        handleClose={handleInfoClose}
+        lesson={selectedLesson}
       />
     </>
   );

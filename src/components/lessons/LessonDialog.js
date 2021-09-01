@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 
 export default function LessonDialog({ open, handleClose, lesson }) {
   const dispatch = useDispatch();
-  const handleSignUp = (id) => {
+  const handleSignUp = () => {
     dispatch(signUpForALesson(lesson?.id));
     handleClose();
   };
@@ -64,13 +64,13 @@ export default function LessonDialog({ open, handleClose, lesson }) {
                 <Grid item xs={3}>
                   <Grid container>
                     <Grid item xs={12}>
-                      <Typography variant="h5">
-                        Number of participants
-                      </Typography>
+                      <Typography variant="h5">Places left</Typography>
                     </Grid>
                     <Grid item xs={12}>
                       <Typography variant="h4">
-                        {lesson?.num_students}
+                        {lesson?.num_students > 0
+                          ? lesson?.num_students
+                          : "Filled"}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -83,6 +83,7 @@ export default function LessonDialog({ open, handleClose, lesson }) {
                 variant="contained"
                 color="secondary"
                 onClick={() => handleSignUp(lesson?.id)}
+                disabled={lesson?.num_students === "0"}
               >
                 Sign up
               </Button>

@@ -18,7 +18,7 @@ export default function DeleteStudentDialog({
   const handleDelete = () => {
     axios
       .post(
-        "https://okiedokie-backend.herokuapp.com/api/users/delete_user",
+        "http://localhost:8080/api/users/delete_user",
         {
           email: userToEdit.email,
         },

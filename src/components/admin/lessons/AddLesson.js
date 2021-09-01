@@ -167,6 +167,7 @@ export default function AddLesson({ fetchLessons }) {
                   <MenuItem value="elementary">Elementary</MenuItem>
                   <MenuItem value="pre_intermediate">Pre-intermediate</MenuItem>
                   <MenuItem value="intermediate">Intermediate</MenuItem>
+                  <MenuItem value="adults">Adults</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

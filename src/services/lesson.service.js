@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://okiedokie-backend.herokuapp.com/";
+const API_URL = "http://localhost:8080/";
 
 const fetchLessons = () => {
   return axios

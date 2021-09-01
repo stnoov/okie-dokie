@@ -1,15 +1,13 @@
 import React from "react";
-import Carousel from "react-material-ui-carousel";
 import { Paper, Button, makeStyles, Grid, Typography } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   styledPaper: {
     padding: theme.spacing(1, 2),
     backgroundColor: theme.palette.primary.light,
-    minWidth: "inherit",
     [theme.breakpoints.down("sm")]: {
       width: "inherit",
-      minHeight: 280,
     },
   },
   styledTitle: {
@@ -20,39 +18,36 @@ const useStyles = makeStyles((theme) => ({
 export default function NewsCarousel(props) {
   var items = [
     {
-      name: "Бесплатные занятия",
+      name: "Бонусная программа",
       description:
-        "Принимай участие в викторинах во время уроках, занимай призовые места и зарабатывай OkieDokie points, которые можно обменять на бесплатные занятия!",
+        "Зарабатывай OkieDokie points и меняй их на бесплатные занятия! OkieDokie points начисляются за репост актуальных новостей нашего клуба, победу в викторинах и приглашение друзей на наши встречи!",
     },
-    {
-      name: "Бесплатные занятия",
-      description:
-        "Принимай участие в викторинах во время уроках, занимай призовые места и зарабатывай OkieDokie points, которые можно обменять на бесплатные занятия!",
-    },
-    {
-      name: "День Рождения клуба",
-      description:
-        "Дарим подарки в честь нашего дня рождения! Принимай участие в занятиях и получай, проявляй активность и получай ценные призы",
-    },
+    // {
+    //   name: "Бонусная программа Okie Dokie! клуба",
+    //   description:
+    //     "Новая система лояльности клуба - OkieDokie points! Получайте OkieDokie points и меняйте их на индивидуальные или групповые занятия!",
+    // },
   ];
 
-  return (
-    <Carousel interval={6000} animation="fade" timeout={700} swipe>
-      {items.map((item, i) => (
-        <Item key={i} item={item} />
-      ))}
-    </Carousel>
-  );
+  return items.map((item, i) => <Item key={i} item={item} />);
 }
 
 function Item(props) {
   const classes = useStyles();
+  const history = useHistory();
+  const transferToPromotions = () => {
+    history.push("/promotions");
+  };
   return (
     <Grid item xs={12}>
-      <Paper className={classes.styledPaper} elevation={0}>
+      <Paper className={classes.styledPaper} elevation={1}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h4" сlassName={classes.styledTitle}>
+            <Typography
+              variant="h4"
+              сlassName={classes.styledTitle}
+              color="primary"
+            >
               {props.item.name}
             </Typography>
           </Grid>
@@ -60,7 +55,11 @@ function Item(props) {
             <Typography>{props.item.description}</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Button color="default" variant="outlined">
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={transferToPromotions}
+            >
               Check it out!
             </Button>
           </Grid>

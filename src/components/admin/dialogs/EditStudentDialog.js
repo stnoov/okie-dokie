@@ -12,6 +12,8 @@ import {
 import { Formik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
+import authHeader from "../../../services/auth.header";
+
 export default function EditStudentDialog({
   open,
   handleClose,
@@ -32,17 +34,13 @@ export default function EditStudentDialog({
       onSubmit={(values, { resetForm }) => {
         axios
           .post(
-            "https://okiedokie-backend.herokuapp.com/api/users/edit_user",
+            "http://localhost:8080/api/users/edit_user",
             {
               email: userToEdit.email,
               okie_dokie_points: values.okie_dokie_points,
               balance: values.balance,
             },
-            {
-              headers: {
-                "x-access-token": localStorage.getItem("user"),
-              },
-            }
+            { headers: authHeader() }
           )
           .then((res) => {
             toast.success("User has been edited", {

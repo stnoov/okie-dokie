@@ -4,7 +4,7 @@ import authHeader from "../services/auth.header";
 import { toast } from "react-toastify";
 import { fetchUser } from "./auth";
 
-const API_URL = "https://okiedokie-backend.herokuapp.com/";
+const API_URL = "http://localhost:8080/";
 
 export const fetchLessons = (groups) => (dispatch) => {
   axios.get(API_URL + "api/lessons/get_lessons").then(({ data }) => {
@@ -157,7 +157,6 @@ export const signUpForALesson = (id) => (dispatch) => {
       { headers: authHeader() }
     )
     .then((res) => {
-      dispatch(fetchUser());
       toast.success("Success!", {
         position: "top-right",
         autoClose: 5000,
@@ -167,6 +166,7 @@ export const signUpForALesson = (id) => (dispatch) => {
         draggable: true,
         progress: undefined,
       });
+      dispatch(fetchUser());
     })
     .catch((err) => {
       toast.error(

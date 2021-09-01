@@ -2,9 +2,9 @@ import { SET_USER_CLASSES } from "./types";
 import axios from "axios";
 import authHeader from "../services/auth.header";
 
-const API_URL = "https://okiedokie-backend.herokuapp.com/";
+const API_URL = "http://localhost:8080/";
 
-export const fetchUserClasses = (groups) => (dispatch) => {
+export const fetchUserClasses = () => (dispatch) => {
   axios
     .get(API_URL + "api/lessons/get_user_classes", {
       headers: authHeader(),

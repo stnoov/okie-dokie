@@ -1,10 +1,11 @@
 import axios from "axios";
+import authHeader from "./auth.header";
 
-const API_URL = "https://okiedokie-backend.herokuapp.com/api/auth/";
+const API_URL = "http://localhost:8080/";
 
 const register = (email, name, age, password) => {
   return axios
-    .post(API_URL + "signup", {
+    .post(API_URL + "api/auth/signup", {
       email: email,
       name: name,
       age: age,
@@ -17,7 +18,7 @@ const register = (email, name, age, password) => {
 
 const login = (email, password) => {
   return axios
-    .post(API_URL + "signin", {
+    .post(API_URL + "api/auth/signin", {
       email: email,
       password: password,
     })
@@ -33,9 +34,23 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
+const fetchUser = () => {
+  return axios
+    .get(API_URL + "api/user/fetch_user", {
+      headers: authHeader(),
+    })
+    .then((response) => {
+      if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+      return response.data;
+    });
+};
+
 const authFunctions = {
   register,
   login,
+  fetchUser,
   logout,
 };
 

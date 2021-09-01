@@ -26,6 +26,8 @@ import Promotions from "./views/promotions/Promotions";
 import Admin from "./views/admin/Admin";
 import { useSelector } from "react-redux";
 import AuthVerify from "./services/AuthVerify";
+import AboutUs from "./views/aboutUs/AboutUs";
+
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [locale, setLocale] = React.useState(
@@ -67,49 +69,32 @@ function App() {
   );
 }
 
-const AuthenticatedApp = ({ user, setUser, locale, setLocale }) => {
-  const [open, setOpen] = React.useState(false);
+const AuthenticatedApp = ({ locale, setLocale }) => {
   const { user: currentUser } = useSelector((state) => state.auth);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const Container = styled("div")(({ theme, open }) => ({
+  const { visible } = useSelector((state) => state.sidebar);
+
+  const Container = styled("div")(({ theme, visible }) => ({
     padding: theme.spacing(8, 0),
     minHeight: "100vh",
     backgroundColor: theme.palette.common.white,
     [theme.breakpoints.up("lg")]: {
-      width: open ? "calc(100% - 240px)" : "100%",
-      marginLeft: open ? "240px" : "0px",
+      width: visible ? "calc(100% - 240px)" : "100%",
+      marginLeft: visible ? "240px" : "0px",
     },
   }));
   return (
     <>
-      <TopBar
-        handleDrawerOpen={handleDrawerOpen}
-        open={open}
-        locale={locale}
-        setLocale={setLocale}
-      />
-      <SideBar
-        setUser={setUser}
-        open={open}
-        handleDrawerClose={handleDrawerClose}
-      />
-      <Container open={open}>
+      <TopBar locale={locale} setLocale={setLocale} />
+      <SideBar />
+      <Container visible={visible}>
         <Switch>
-          <Route
-            exact
-            path="/dashboard"
-            render={() => <Dashboard setUser={setUser} />}
-          />
+          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/payments" component={Payments} />
           <Route exact path="/promotions" component={Promotions} />
-          {currentUser.isAdmin && (
+          <Route exact path="/about_us" component={AboutUs} />
+          {currentUser?.isAdmin && (
             <Route exact path="/admin" component={Admin} />
           )}
           <Redirect from="/*" to="/dashboard" />

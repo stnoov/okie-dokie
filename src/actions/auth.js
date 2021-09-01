@@ -6,11 +6,7 @@ import {
   LOGOUT,
   FETCH_USER,
 } from "./types";
-import axios from "axios";
-import authHeader from "../services/auth.header";
 import AuthService from "../services/auth.service";
-
-const API_URL = "https://okiedokie-backend.herokuapp.com/";
 
 export const register = (email, name, age, password) => (dispatch) => {
   return AuthService.register(email, name, age, password).then(
@@ -54,16 +50,21 @@ export const login = (email, password) => (dispatch) => {
 };
 
 export const fetchUser = () => (dispatch) => {
-  axios
-    .get(API_URL + "api/user/fetch_user", {
-      headers: authHeader(),
-    })
-    .then((response) => {
+  return AuthService.fetchUser().then(
+    (data) => {
       dispatch({
         type: FETCH_USER,
-        payload: { user: response.data },
+        payload: { user: data },
       });
-    });
+
+      return Promise.resolve();
+    },
+    (error) => {
+      console.log(error);
+
+      return Promise.reject();
+    }
+  );
 };
 export const logout = () => (dispatch) => {
   AuthService.logout();

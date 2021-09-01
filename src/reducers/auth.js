@@ -46,10 +46,7 @@ export default function authReducer(state = initialState, action) {
         user: null,
       };
     case FETCH_USER: {
-      return {
-        ...state,
-        user: payload.user,
-      };
+      return state;
     }
     default:
       return state;

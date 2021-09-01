@@ -5,6 +5,8 @@ import { AppBar, Toolbar, IconButton, Grid } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { Menu } from "@material-ui/icons";
 import { useIntl } from "react-intl";
+import { useSelector, useDispatch } from "react-redux";
+import { showSidebar } from "../../actions/sidebar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,12 +53,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopBar({ handleDrawerOpen, open, locale, setLocale }) {
+export default function TopBar({ open, locale, setLocale }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const intl = useIntl();
+  const { sidebar } = useSelector((state) => state);
   const updateLocale = (newLocale) => {
     setLocale(newLocale);
     localStorage.setItem("locale", newLocale);
+  };
+  const handleDrawerOpen = () => {
+    dispatch(showSidebar());
   };
   return (
     <div className={classes.root}>
@@ -68,7 +75,10 @@ export default function TopBar({ handleDrawerOpen, open, locale, setLocale }) {
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
                 edge="start"
-                className={clsx(classes.menuButton, open && classes.hide)}
+                className={clsx(
+                  classes.menuButton,
+                  sidebar.visible && classes.hide
+                )}
               >
                 <Menu />
               </IconButton>

@@ -17,7 +17,7 @@ export default function ManageLessons() {
 
   const fetchLessons = () => {
     axios
-      .get("https://okiedokie-backend.herokuapp.com/api/lessons/get_lessons")
+      .get("http://localhost:8080/api/lessons/get_lessons")
       .then((data) => {
         setLessons(data.data.lessons);
       })

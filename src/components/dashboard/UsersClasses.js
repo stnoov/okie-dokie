@@ -8,6 +8,7 @@ import {
   withWidth,
   isWidthDown,
   Button,
+  capitalize,
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
@@ -81,10 +82,14 @@ function UsersClasses({ width }) {
                 let lessonDate = new Date(
                   lesson.date + "T" + lesson.time + ":00"
                 );
-                let expiredDate = new Date(lessonDate).setHours(
-                  lessonDate.getHours() + 1
+                let expiredDate = new Date(lessonDate);
+                expiredDate.setHours(lessonDate.getHours() + 1);
+                let fifteenMinutesBefore = new Date(lessonDate);
+                fifteenMinutesBefore.setMinutes(
+                  fifteenMinutesBefore.getMinutes() - 15
                 );
-                if (Date.now() < expiredDate) {
+                let dateNow = new Date();
+                if (dateNow < expiredDate) {
                   return (
                     <ListItem className={classes.styledListItem} key={index}>
                       <Grid
@@ -104,15 +109,7 @@ function UsersClasses({ width }) {
                                 variant="body2"
                                 className={classes.teacherSubtitle}
                               >
-                                {lesson.group === "junior_group"
-                                  ? intl.formatMessage({
-                                      id: "fields.junior_group",
-                                      defaultMessage: "Junior group",
-                                    })
-                                  : intl.formatMessage({
-                                      id: "fields.senior_group",
-                                      defaultMessage: "Senior group",
-                                    })}
+                                {capitalize(lesson.group).replace("_", "-")}
                               </Typography>
                             </Grid>
 
@@ -132,7 +129,14 @@ function UsersClasses({ width }) {
                         </Grid>
                         <Grid item>
                           <Grid container alignItems="center" spacing={1}>
-                            {Date.now() < lessonDate ? (
+                            {fifteenMinutesBefore < dateNow &&
+                            dateNow < expiredDate ? (
+                              <Grid item>
+                                <Button variant="outlined" color="secondary">
+                                  Присоедениться
+                                </Button>
+                              </Grid>
+                            ) : (
                               <Grid item>
                                 <Grid
                                   container
@@ -155,16 +159,17 @@ function UsersClasses({ width }) {
                                   </Grid>
                                   <Grid item>
                                     <Typography variant="body1">
-                                      {lesson.date}
+                                      {capitalize(
+                                        new Date(
+                                          lesson.date
+                                        ).toLocaleDateString("ru", {
+                                          month: "long",
+                                          day: "numeric",
+                                        })
+                                      )}
                                     </Typography>
                                   </Grid>
                                 </Grid>
-                              </Grid>
-                            ) : (
-                              <Grid item>
-                                <Button variant="outlined" color="secondary">
-                                  Присоедениться
-                                </Button>
                               </Grid>
                             )}
                           </Grid>
@@ -181,7 +186,7 @@ function UsersClasses({ width }) {
           <Grid item xs={12}>
             <Grid container justify="center">
               <Typography variant="h5" className={classes.nothingToShowText}>
-                Вы не записаны на ближайшие занятия.{" "}
+                Вы ещё не записаны на ближайшие занятия.{" "}
                 <Link to="/lessons" className={classes.linkToClasses}>
                   Записаться
                 </Link>

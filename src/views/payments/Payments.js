@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 0),
   },
   paymentText: {
+    padding: theme.spacing(1, 0, 2, 0),
     fontSize: 20,
     paddingLeft: 3,
   },
@@ -31,19 +32,28 @@ function Payments({ width }) {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography
-            variant="body2"
-            color="primary"
-            className={classes.paymentText}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography
+                variant="body2"
+                color="primary"
+                className={classes.paymentText}
+              >
+                Оплачивая занятия в OkieDokie! club, вы приобретаете отличную
+                возможность попрактиковаться в разговорном английском, а также
+                помогаете нашей команде!
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item xs={12}>
           <PaymentForm />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="body2" color="textSecondary">
+            Платежи осуществляются через сторонний сервис электронных платежей
+            ЮMoney.
+          </Typography>
         </Grid>
       </Grid>
     </>

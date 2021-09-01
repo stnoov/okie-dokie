@@ -7,6 +7,7 @@ import {
   ListItem,
   withWidth,
   isWidthDown,
+  capitalize,
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import ToggleButton from "@material-ui/lab/ToggleButton";
@@ -55,11 +56,10 @@ function Lessons({ width }) {
   const classes = useStyles();
   const intl = useIntl();
   const dispatch = useDispatch();
-  const [groups, setGroups] = React.useState(() => [
-    "elementary",
-    "pre_intermediate",
-    "intermediate",
-  ]);
+
+  const [groups, setGroups] = React.useState(
+    JSON.parse(localStorage.getItem("lesson_groups"))
+  );
   React.useEffect(() => {
     dispatch(fetchLessons(groups));
   }, [groups, dispatch]);
@@ -67,6 +67,8 @@ function Lessons({ width }) {
   const [selectedLesson, setSelectedLesson] = React.useState();
   const [isLessonDialogOpen, setIsLessonDialogOpen] = React.useState(false);
   const handleChangeGroups = (event, newFormats) => {
+    localStorage.setItem("lesson_groups", JSON.stringify(newFormats));
+    console.log("groups", localStorage.getItem("lesson_groups"));
     setGroups(newFormats);
   };
   const handleOpenLessonDialog = (lesson) => {
@@ -118,6 +120,12 @@ function Lessons({ width }) {
                 defaultMessage: "Intermediate",
               })}
             </ToggleButton>
+            <ToggleButton className={classes.styledToggleButton} value="adults">
+              {intl.formatMessage({
+                id: "fields.adults",
+                defaultMessage: "Adults",
+              })}
+            </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
         {lessonItems.items?.length > 0 ? (
@@ -152,15 +160,7 @@ function Lessons({ width }) {
                                 variant="body2"
                                 className={classes.teacherSubtitle}
                               >
-                                {lesson.group === "junior_group"
-                                  ? intl.formatMessage({
-                                      id: "fields.junior_group",
-                                      defaultMessage: "Junior group",
-                                    })
-                                  : intl.formatMessage({
-                                      id: "fields.senior_group",
-                                      defaultMessage: "Senior group",
-                                    })}
+                                {capitalize(lesson.group).replace("_", "-")}
                               </Typography>
                             </Grid>
                             <Grid item>
