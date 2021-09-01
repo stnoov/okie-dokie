@@ -20,7 +20,7 @@ export default function NewsCarousel(props) {
     {
       name: "Бонусная программа",
       description:
-        "Зарабатывай OkieDokie points и меняй их на бесплатные занятия! OkieDokie points начисляются за репост актуальных новостей нашего клуба, победу в викторинах и приглашение друзей на наши встречи!",
+        "Зарабатывай OkieDokie points и меняй их на занятия! OkieDokie points начисляются за репост актуальных новостей нашего клуба, победу в викторинах и приглашение друзей на наши встречи!",
     },
     // {
     //   name: "Бонусная программа Okie Dokie! клуба",
@@ -40,7 +40,7 @@ function Item(props) {
   };
   return (
     <Grid item xs={12}>
-      <Paper className={classes.styledPaper} elevation={1}>
+      <Paper className={classes.styledPaper} elevation={0}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography

@@ -32,6 +32,15 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     cursor: "pointer",
   },
+  registeredItem: {
+    border: "none",
+    borderRadius: 4,
+    backgroundColor: theme.palette.secondary.light,
+    color: theme.palette.common.white,
+    minHeight: 80,
+    marginBottom: theme.spacing(1),
+    cursor: "pointer",
+  },
   styledToggleButton: {
     border: `1px solid ${theme.palette.secondary.main}`,
     color: theme.palette.secondary.main,
@@ -44,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   teacherSubtitle: {
-    color: "#6A6F9E",
     paddingLeft: 2,
   },
   nothingToShowText: {
@@ -64,6 +72,7 @@ function Lessons({ width }) {
     dispatch(fetchLessons(groups));
   }, [groups, dispatch]);
   const { lesson: lessonItems } = useSelector((state) => state);
+  const { user: currentUser } = useSelector((state) => state.auth);
   const [selectedLesson, setSelectedLesson] = React.useState();
   const [isLessonDialogOpen, setIsLessonDialogOpen] = React.useState(false);
   const handleChangeGroups = (event, newFormats) => {
@@ -85,8 +94,8 @@ function Lessons({ width }) {
         <Grid item xs={12}>
           <Typography variant="h3" color="secondary">
             {intl.formatMessage({
-              id: "routes.lessons",
-              defaultMessage: "Lessons",
+              id: "routes.meetings",
+              defaultMessage: "Meetings",
             })}
           </Typography>
         </Grid>
@@ -135,11 +144,19 @@ function Lessons({ width }) {
                   lesson.date + "T" + lesson.time + ":00"
                 );
                 lessonDate.setHours(lessonDate.getHours() + 1);
+                let alreadyRegistered = lesson.user.find(
+                  (el) => el.id === currentUser.id
+                );
+                console.log("alreadyRegistered: ", alreadyRegistered);
                 if (Date.now() < lessonDate) {
                   return (
                     <ListItem
                       key={index}
-                      className={classes.styledListItem}
+                      className={
+                        !alreadyRegistered
+                          ? classes.styledListItem
+                          : classes.registeredItem
+                      }
                       onClick={() => handleOpenLessonDialog(lesson)}
                     >
                       <Grid

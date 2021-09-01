@@ -21,8 +21,8 @@ const getRoutes = (intl) => [
   {
     path: "/lessons",
     sidebarName: intl.formatMessage({
-      id: "routes.lessons",
-      defaultMessage: "Lessons",
+      id: "routes.meetings",
+      defaultMessage: "Meetings",
     }),
     icon: ListIcon,
     component: Lessons,

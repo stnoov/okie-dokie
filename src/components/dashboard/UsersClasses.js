@@ -132,7 +132,13 @@ function UsersClasses({ width }) {
                             {fifteenMinutesBefore < dateNow &&
                             dateNow < expiredDate ? (
                               <Grid item>
-                                <Button variant="outlined" color="secondary">
+                                <Button
+                                  variant="outlined"
+                                  color="secondary"
+                                  onClick={() =>
+                                    window.open(lesson.link, "_blank")
+                                  }
+                                >
                                   Присоедениться
                                 </Button>
                               </Grid>

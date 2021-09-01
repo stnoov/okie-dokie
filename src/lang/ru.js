@@ -8,6 +8,8 @@ export const messagesInRussian = {
   "routes.reviews": "Отзывы",
   "routes.dashboard": "Главная",
   "routes.promotions": "Акции",
+  "routes.meetings": "Мероприятия",
+  "routes.about_us": "О нас",
   "fields.language": "Язык",
   "fields.teacher": "Преподаватель",
   "fields.senior_group": "Старшая группа",
