@@ -51,7 +51,7 @@ export default function PaymentForm() {
           </Grid>
           <Grid item>
             <iframe
-              src={`https://yoomoney.ru/quickpay/button-widget?targets=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D1%8F&default-sum=${values.amount}&button-text=11&any-card-payment-type=on&button-size=m&button-color=orange&&successURL=http%3A%2F%2Flocalhost%3A3000%2Fpayment_success&quickpay=small&account=4100115666126622&label=${currentUser.id}`}
+              src={`https://yoomoney.ru/quickpay/button-widget?targets=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D1%8F&default-sum=${values.amount}&button-text=11&any-card-payment-type=on&button-size=m&button-color=orange&&successURL=&quickpay=small&account=4100115666126622&label=${currentUser.id}`}
               width="184"
               height="36"
               frameborder="0"
