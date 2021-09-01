@@ -100,41 +100,57 @@ function Lessons({ width }) {
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.chooseGroupGrid}>
-          <ToggleButtonGroup value={groups} onChange={handleChangeGroups}>
-            <ToggleButton
-              value="elementary"
-              className={classes.styledToggleButton}
-            >
-              {intl.formatMessage({
-                id: "fields.elementary",
-                defaultMessage: "Elementary",
-              })}
-            </ToggleButton>
-            <ToggleButton
-              className={classes.styledToggleButton}
-              value="pre_intermediate"
-            >
-              {intl.formatMessage({
-                id: "fields.pre_intermediate",
-                defaultMessage: "Pre-intermediate",
-              })}
-            </ToggleButton>
-            <ToggleButton
-              className={classes.styledToggleButton}
-              value="intermediate"
-            >
-              {intl.formatMessage({
-                id: "fields.intermediate",
-                defaultMessage: "Intermediate",
-              })}
-            </ToggleButton>
-            <ToggleButton className={classes.styledToggleButton} value="adults">
-              {intl.formatMessage({
-                id: "fields.adults",
-                defaultMessage: "Adults",
-              })}
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <Grid container>
+            <Grid item xs={12}>
+              <Typography variant="body2" color="textSecondary">
+                {intl.formatMessage({
+                  id: "actions.choose_your_group",
+                  defaultMessage: "Choose your group",
+                })}
+                :
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <ToggleButtonGroup value={groups} onChange={handleChangeGroups}>
+                <ToggleButton
+                  value="elementary"
+                  className={classes.styledToggleButton}
+                >
+                  {intl.formatMessage({
+                    id: "fields.elementary",
+                    defaultMessage: "Elementary",
+                  })}
+                </ToggleButton>
+                <ToggleButton
+                  className={classes.styledToggleButton}
+                  value="pre_intermediate"
+                >
+                  {intl.formatMessage({
+                    id: "fields.pre_intermediate",
+                    defaultMessage: "Pre-intermediate",
+                  })}
+                </ToggleButton>
+                <ToggleButton
+                  className={classes.styledToggleButton}
+                  value="intermediate"
+                >
+                  {intl.formatMessage({
+                    id: "fields.intermediate",
+                    defaultMessage: "Intermediate",
+                  })}
+                </ToggleButton>
+                <ToggleButton
+                  className={classes.styledToggleButton}
+                  value="adults"
+                >
+                  {intl.formatMessage({
+                    id: "fields.adults",
+                    defaultMessage: "Adults",
+                  })}
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+          </Grid>
         </Grid>
         {lessonItems.items?.length > 0 ? (
           <Grid item xs={12}>

@@ -147,7 +147,7 @@ export const deleteLesson = (idToDelete) => (dispatch) => {
     });
 };
 
-export const signUpForALesson = (id) => (dispatch) => {
+export const signUpForALesson = (id, setIsOpenSuccessDialog) => (dispatch) => {
   axios
     .post(
       API_URL + "api/lessons/sign_up_for_a_lesson",
@@ -167,6 +167,8 @@ export const signUpForALesson = (id) => (dispatch) => {
         progress: undefined,
       });
       dispatch(fetchUser());
+      dispatch(fetchLessons());
+      setIsOpenSuccessDialog(true);
     })
     .catch((err) => {
       toast.error(

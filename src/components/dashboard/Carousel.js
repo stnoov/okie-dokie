@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, Button, makeStyles, Grid, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { useIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   styledPaper: {
@@ -15,26 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewsCarousel(props) {
-  var items = [
-    {
-      name: "Бонусная программа",
-      description:
-        "Зарабатывай OkieDokie points и меняй их на занятия! OkieDokie points начисляются за репост актуальных новостей нашего клуба, победу в викторинах и приглашение друзей на наши встречи!",
-    },
-    // {
-    //   name: "Бонусная программа Okie Dokie! клуба",
-    //   description:
-    //     "Новая система лояльности клуба - OkieDokie points! Получайте OkieDokie points и меняйте их на индивидуальные или групповые занятия!",
-    // },
-  ];
-
-  return items.map((item, i) => <Item key={i} item={item} />);
-}
-
-function Item(props) {
+export default function NewsCarousel() {
   const classes = useStyles();
   const history = useHistory();
+  const intl = useIntl();
   const transferToPromotions = () => {
     history.push("/promotions");
   };
@@ -48,11 +33,21 @@ function Item(props) {
               сlassName={classes.styledTitle}
               color="primary"
             >
-              {props.item.name}
+              {intl.formatMessage({
+                id: "fields.loyalty_program",
+                defaultMessage: "Loyalty program",
+              })}
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography>{props.item.description}</Typography>
+            <Typography>
+              {intl.formatMessage({
+                id: "fields.loyalty_program_description",
+                defaultMessage: `Earn OkieDokie points and get free lessons! You can get OkieDokie
+              points for reposting the latest news of our club, winning quizzes
+              and inviting friends to our meetings!`,
+              })}
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <Button

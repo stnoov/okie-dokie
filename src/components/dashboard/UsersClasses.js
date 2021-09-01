@@ -70,8 +70,8 @@ function UsersClasses({ width }) {
         <Grid item xs={12}>
           <Typography variant="h4" color="secondary">
             {intl.formatMessage({
-              id: "routes.your_upcoming_lessons",
-              defaultMessage: "Ваши следующие занятия",
+              id: "fields.your_upcoming_lessons",
+              defaultMessage: "Your upcoming lessons",
             })}
           </Typography>
         </Grid>
@@ -139,7 +139,10 @@ function UsersClasses({ width }) {
                                     window.open(lesson.link, "_blank")
                                   }
                                 >
-                                  Присоедениться
+                                  {intl.formatMessage({
+                                    id: "actions.join",
+                                    defaultMessage: "Join",
+                                  })}
                                 </Button>
                               </Grid>
                             ) : (
@@ -168,10 +171,13 @@ function UsersClasses({ width }) {
                                       {capitalize(
                                         new Date(
                                           lesson.date
-                                        ).toLocaleDateString("ru", {
-                                          month: "long",
-                                          day: "numeric",
-                                        })
+                                        ).toLocaleDateString(
+                                          localStorage.getItem("locale"),
+                                          {
+                                            month: "long",
+                                            day: "numeric",
+                                          }
+                                        )
                                       )}
                                     </Typography>
                                   </Grid>

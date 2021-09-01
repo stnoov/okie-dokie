@@ -39,7 +39,7 @@ function Promotions({ width }) {
                 <Grid item xs={12}>
                   <Typography variant="h4" color="secondary">
                     {intl.formatMessage({
-                      id: "fields.promotions_bonuses",
+                      id: "promotions.promotions_bonuses",
                       defaultMessage: "Бонусная программа Okie Dokie! клуба",
                     })}
                   </Typography>
@@ -50,9 +50,12 @@ function Promotions({ width }) {
                     color="primary"
                     className={classes.paymentText}
                   >
-                    Новая система лояльности клуба - OkieDokie points! Получайте
+                    {intl.formatMessage({
+                      id: "promotions.promotions_bonuses_description",
+                      defaultMessage: `Новая система лояльности клуба - OkieDokie points! Получайте
                     OkieDokie points и меняйте их на индивидуальные или
-                    групповые занятия!
+                    групповые занятия!`,
+                    })}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
@@ -63,7 +66,11 @@ function Promotions({ width }) {
                         color="primary"
                         className={classes.paymentText}
                       >
-                        5 OkieDokie points = 1 занятие в группе
+                        {intl.formatMessage({
+                          id: "promotions.promotions_exchange_rate_1",
+                          defaultMessage:
+                            "5 OkieDokie points = 1 занятие в группе",
+                        })}
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
@@ -72,8 +79,11 @@ function Promotions({ width }) {
                         color="primary"
                         className={classes.paymentText}
                       >
-                        10 OkieDokie points = 1 индивидуальное занятие с
-                        преподавателем (30 минут)
+                        {intl.formatMessage({
+                          id: "promotions.promotions_exchange_rate_2",
+                          defaultMessage: `10 OkieDokie points = 1 индивидуальное занятие с
+                        преподавателем (30 минут)`,
+                        })}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -85,7 +95,7 @@ function Promotions({ width }) {
                 <Grid item xs={12}>
                   <Typography variant="h4" color="secondary">
                     {intl.formatMessage({
-                      id: "fields.how_to_get_points",
+                      id: "promotions.how_to_get_points",
                       defaultMessage: "Как получить OkieDokie points?",
                     })}
                   </Typography>
@@ -98,14 +108,25 @@ function Promotions({ width }) {
                   >
                     <ul className={classes.styledList}>
                       <li>
-                        Сделать репост актуальных новостей и анонсов
+                        {intl.formatMessage({
+                          id: "promotions.how_to_get_points_desc_1",
+                          defaultMessage: `Сделать репост актуальных новостей и анонсов
                         мероприятий, опубликованных в социальных сетях клуба,
-                        помеченных значком 👌 в левом верхнем углу – 1 point
+                        помеченных значком 👌 в левом верхнем углу – 1 point`,
+                        })}
                       </li>
-                      <li>Победить в викторине – 1 point</li>
                       <li>
-                        Привести на мероприятие друга – 5 points (после оплаты
-                        другом занятия, следующего за первым, бесплатным)
+                        {intl.formatMessage({
+                          id: "promotions.how_to_get_points_desc_2",
+                          defaultMessage: `Победить в викторине – 1 point`,
+                        })}
+                      </li>
+                      <li>
+                        {intl.formatMessage({
+                          id: "promotions.how_to_get_points_desc_3",
+                          defaultMessage: `Привести на мероприятие друга – 5 points (после оплаты
+                        другом занятия, следующего за первым, бесплатным)`,
+                        })}
                       </li>
                     </ul>
                   </Typography>
@@ -117,7 +138,7 @@ function Promotions({ width }) {
                 <Grid item xs={12}>
                   <Typography variant="h4" color="secondary">
                     {intl.formatMessage({
-                      id: "fields.how_to_obtain_classes",
+                      id: "promotions.how_to_obtain_classes",
                       defaultMessage:
                         "Как обменять накопленные OkieDokie points на занятия?",
                     })}
@@ -129,10 +150,13 @@ function Promotions({ width }) {
                     color="primary"
                     className={classes.paymentText}
                   >
-                    Просто дайте об этом знать организатору клуба любым удобным
+                    {intl.formatMessage({
+                      id: "promotions.how_to_obtain_classes_desc",
+                      defaultMessage: `Просто дайте об этом знать организатору клуба любым удобным
                     для вас способом – либо на мероприятии, либо в личном
                     сообщении. Организатор обычно сам спрашивает участников, не
-                    пора ли обменять заработанные бонусы на занятия.
+                    пора ли обменять заработанные бонусы на занятия.`,
+                    })}
                   </Typography>
                 </Grid>
               </Grid>
