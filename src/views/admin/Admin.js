@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Students from "../../components/admin/Students";
 import AddNews from "../../components/admin/news/News";
 import ManageLessons from "../../components/admin/lessons/ManageLessons";
+import ManageReviews from "../../components/admin/ManageReviews";
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
     padding: theme.spacing(5, 3),
@@ -26,6 +27,8 @@ export default function Admin() {
         return <AddNews />;
       case "add_lesson":
         return <ManageLessons />;
+      case "reviews":
+        return <ManageReviews />;
       default:
         return <Students />;
     }
@@ -49,6 +52,7 @@ export default function Admin() {
           >
             <Tab label="Ученики" value="students" />
             <Tab label="Новости" value="add_news" />
+            <Tab label="Отзывы" value="reviews" />
             <Tab label="Уроки" value="add_lesson" />
           </Tabs>
         </AppBar>
