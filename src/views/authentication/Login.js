@@ -54,9 +54,11 @@ export default function SignInSide({ setUser }) {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Typography variant="h6">
-            Okie<span className={classes.coloredLogo}>Dokie</span>
-          </Typography>
+          <img
+            src={window.location.origin + "/logo.png"}
+            alt="logo"
+            height={150}
+          />
           <LoginForm setUser={setUser} />
           <Box mt={5}>
             <Copyright />
