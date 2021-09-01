@@ -39,7 +39,7 @@ export default function LessonDialog({ open, handleClose, lesson }) {
               </Grid>
               <Grid item xs={12}>
                 <Grid container>
-                  <Grid item xs={3}>
+                  <Grid item xs={6} sm={3}>
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography variant="h5">
@@ -54,7 +54,7 @@ export default function LessonDialog({ open, handleClose, lesson }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={6} sm={3}>
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography variant="h5">
@@ -65,11 +65,19 @@ export default function LessonDialog({ open, handleClose, lesson }) {
                         </Typography>
                       </Grid>
                       <Grid item xs={12}>
-                        <Typography variant="h4">{lesson?.date}</Typography>
+                        <Typography variant="h4">
+                          {new Date(lesson?.date).toLocaleDateString(
+                            localStorage.getItem("locale"),
+                            {
+                              day: "numeric",
+                              month: "short",
+                            }
+                          )}
+                        </Typography>
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={6} sm={3}>
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography variant="h5">
@@ -84,7 +92,7 @@ export default function LessonDialog({ open, handleClose, lesson }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={6} sm={3}>
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography variant="h5">

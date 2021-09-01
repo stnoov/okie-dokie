@@ -132,10 +132,9 @@ function AboutUs({ width }) {
                     color="primary"
                     className={classes.paymentText}
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Привет, друзья! Давайте познакомимся поближе Я — Антонина,
+                    организатор Английского разговорного клуба для детей и
+                    подростков OkieDokie!
                   </Typography>
                 </Grid>
               </Grid>

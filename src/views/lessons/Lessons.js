@@ -8,6 +8,8 @@ import {
   withWidth,
   isWidthDown,
   capitalize,
+  Tooltip,
+  withStyles,
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import ToggleButton from "@material-ui/lab/ToggleButton";
@@ -18,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(3, 2),
   },
   chooseGroupGrid: {
     margin: theme.spacing(1, 0),
@@ -111,33 +113,103 @@ function Lessons({ width }) {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <ToggleButtonGroup value={groups} onChange={handleChangeGroups}>
+              <ToggleButtonGroup
+                value={groups}
+                onChange={handleChangeGroups}
+                orientation={
+                  isWidthDown("sm", width) ? "vertical" : "horizontal"
+                }
+              >
                 <ToggleButton
                   value="elementary"
                   className={classes.styledToggleButton}
                 >
-                  {intl.formatMessage({
-                    id: "fields.elementary",
-                    defaultMessage: "Elementary",
-                  })}
+                  <Tooltip
+                    title={
+                      <React.Fragment>
+                        <Typography color="inherit">
+                          {intl.formatMessage({
+                            id: "group.elementary",
+                            defaultMessage:
+                              "Группа «Elementary» (A1) возраст 11+",
+                          })}
+                        </Typography>
+                        {intl.formatMessage({
+                          id: "group.elementary_description",
+                          defaultMessage: `Понимаю и могу употребить в речи знакомые фразы и
+                        выражения, необходимые для выполнения конкретных задач`,
+                        })}
+                      </React.Fragment>
+                    }
+                  >
+                    <Typography>
+                      {intl.formatMessage({
+                        id: "fields.elementary",
+                        defaultMessage: "Elementary",
+                      })}
+                    </Typography>
+                  </Tooltip>
                 </ToggleButton>
+
                 <ToggleButton
                   className={classes.styledToggleButton}
                   value="pre_intermediate"
                 >
-                  {intl.formatMessage({
-                    id: "fields.pre_intermediate",
-                    defaultMessage: "Pre-intermediate",
-                  })}
+                  <Tooltip
+                    title={
+                      <React.Fragment>
+                        <Typography color="inherit">
+                          {intl.formatMessage({
+                            id: "group.pre_intermediate",
+                            defaultMessage:
+                              "Группа «Pre-intermediate» (А2) возраст 13+",
+                          })}
+                        </Typography>
+                        {intl.formatMessage({
+                          id: "group.pre_intermediate_description",
+                          defaultMessage: `Понимаю отдельные предложения и часто встречающиеся
+                        выражения, связанные с основными сферами жизни`,
+                        })}
+                      </React.Fragment>
+                    }
+                  >
+                    <Typography>
+                      {intl.formatMessage({
+                        id: "fields.pre_intermediate",
+                        defaultMessage: "Pre-intermediate",
+                      })}
+                    </Typography>
+                  </Tooltip>
                 </ToggleButton>
+
                 <ToggleButton
                   className={classes.styledToggleButton}
                   value="intermediate"
                 >
-                  {intl.formatMessage({
-                    id: "fields.intermediate",
-                    defaultMessage: "Intermediate",
-                  })}
+                  <Tooltip
+                    title={
+                      <React.Fragment>
+                        <Typography color="inherit">
+                          {intl.formatMessage({
+                            id: "group.intermediate",
+                            defaultMessage: "Группа «Intermediate»",
+                          })}
+                        </Typography>
+                        {intl.formatMessage({
+                          id: "group.intermediate_description",
+                          defaultMessage: `Умею общаться в большинстве ситуаций, которые могут
+                        возникнуть во время пребывания в стране изучаемого языка`,
+                        })}
+                      </React.Fragment>
+                    }
+                  >
+                    <Typography>
+                      {intl.formatMessage({
+                        id: "fields.intermediate",
+                        defaultMessage: "Intermediate",
+                      })}
+                    </Typography>
+                  </Tooltip>
                 </ToggleButton>
                 <ToggleButton
                   className={classes.styledToggleButton}

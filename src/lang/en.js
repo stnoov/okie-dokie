@@ -4,6 +4,7 @@ export const messagesInEnglish = {
   "actions.logout": "Logout",
   "actions.add_review": "Add review",
   "actions.sign_up": "Sign up",
+  "actions.close": "Close",
   "actions.join": "Join",
   "routes.lessons": "Lessons",
   "routes.meetings": "Meetings",
@@ -44,4 +45,16 @@ export const messagesInEnglish = {
     "How to exchange earned OkieDokie points for the lessons?",
   "promotions.how_to_obtain_classes_desc": `Just let the organizer of the club know about it in any way convenient for you - either at the event or in a personal message
 The organizer usually asks the participants themselves if it is time to exchange the earned bonuses for the classes.`,
+
+  "group.elementary": "«Elementary» (A1) 11+ years old",
+  "group.elementary_description": `Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. `,
+
+  "group.pre_intermediate": "«Pre-intermediate» (А2) 13+ years old",
+  "group.pre_intermediate_description": `Can understand sentences and frequently used expressions related to areas of most immediate relevance `,
+
+  "group.intermediate": "«Intermediate» ",
+  "group.intermediate_description": `Can deal with most situations likely to arise while travelling in an area where the language is spoken.`,
+
+  "lesson.successful_signup": `You have been successfult registered for this meeting`,
+  "lesson.successful_signup_description": `To join, simply click on the link provided on the main page 15 minutes before the start`,
 };

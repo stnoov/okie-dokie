@@ -2,6 +2,7 @@ export const messagesInRussian = {
   "language.english": "Английский",
   "language.russian": "Русский",
   "actions.logout": "Выход",
+  "actions.close": "Закрыть",
   "actions.sign_up": "Записаться",
   "actions.add_review": "Оставить отзыв",
   "actions.join": "Присоединиться",
@@ -51,4 +52,21 @@ export const messagesInRussian = {
     "Как обменять накопленные OkieDokie points на занятия?",
   "promotions.how_to_obtain_classes_desc": `Просто дайте об этом знать организатору клуба любым удобным для вас способом – либо на мероприятии, либо в личном сообщении 
 Организатор обычно сам спрашивает участников, не пора ли обменять заработанные бонусы на занятия.`,
+
+  "group.elementary": "Группа «Elementary» (A1) возраст 11+",
+  "group.elementary_description": `Понимаю и могу употребить в речи знакомые фразы и
+                        выражения, необходимые для выполнения конкретных задач`,
+
+  "group.pre_intermediate": "Группа «Pre-intermediate» (А2) возраст 13+",
+  "group.pre_intermediate_description": `Понимаю отдельные предложения и часто встречающиеся
+                        выражения, связанные с основными сферами жизни`,
+
+  "group.intermediate": "Группа «Intermediate»",
+  "group.intermediate_description": `Умею общаться в большинстве ситуаций, которые могут
+                        возникнуть во время пребывания в стране изучаемого языка`,
+
+  "lesson.successful_signup": `Вы были успешно записаны на занятие`,
+  "lesson.successful_signup_description": `Ссылка на подключение к мероприятию будет доступна на Главной
+                странице сайте, на картинке забронированного мероприятия, за 15
+                минут до его начала`,
 };
