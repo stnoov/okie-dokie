@@ -3,7 +3,7 @@ import axios from "axios";
 import authHeader from "../services/auth.header";
 import { toast } from "react-toastify";
 
-const API_URL = "http://localhost:8080/";
+const API_URL = "https://okiedokie-backend.herokuapp.com/";
 
 export const fetchNews = () => (dispatch) => {
   axios

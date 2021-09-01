@@ -68,7 +68,6 @@ function Lessons({ width }) {
   const [isLessonDialogOpen, setIsLessonDialogOpen] = React.useState(false);
   const handleChangeGroups = (event, newFormats) => {
     localStorage.setItem("lesson_groups", JSON.stringify(newFormats));
-    console.log("groups", localStorage.getItem("lesson_groups"));
     setGroups(newFormats);
   };
   const handleOpenLessonDialog = (lesson) => {

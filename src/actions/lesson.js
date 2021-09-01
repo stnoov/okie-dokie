@@ -4,7 +4,7 @@ import authHeader from "../services/auth.header";
 import { toast } from "react-toastify";
 import { fetchUser } from "./auth";
 
-const API_URL = "http://localhost:8080/";
+const API_URL = "https://okiedokie-backend.herokuapp.com/";
 
 export const fetchLessons = (groups) => (dispatch) => {
   axios.get(API_URL + "api/lessons/get_lessons").then(({ data }) => {

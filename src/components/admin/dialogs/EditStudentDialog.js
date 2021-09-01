@@ -34,7 +34,7 @@ export default function EditStudentDialog({
       onSubmit={(values, { resetForm }) => {
         axios
           .post(
-            "http://localhost:8080/api/users/edit_user",
+            "https://okiedokie-backend.herokuapp.com/api/users/edit_user",
             {
               email: userToEdit.email,
               okie_dokie_points: values.okie_dokie_points,
