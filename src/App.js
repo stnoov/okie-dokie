@@ -32,9 +32,10 @@ import ResetPassword from "./views/authentication/ResetPassword";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const [locale, setLocale] = React.useState(
-    localStorage.getItem("locale") === undefined ? "en" : "ru"
-  );
+  if (!localStorage.getItem("locale")) {
+    localStorage.setItem("locale", window.navigator.language.substring(0, 2));
+  }
+  const [locale, setLocale] = React.useState(localStorage.getItem("locale"));
   return (
     <IntlProvider
       messages={locale === "ru" ? messagesInRussian : messagesInEnglish}
