@@ -27,6 +27,8 @@ import Admin from "./views/admin/Admin";
 import { useSelector } from "react-redux";
 import AuthVerify from "./services/AuthVerify";
 import AboutUs from "./views/aboutUs/AboutUs";
+import ForgotPassword from "./views/authentication/ForgotPassword";
+import ResetPassword from "./views/authentication/ResetPassword";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -45,6 +47,16 @@ function App() {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route
+                  exact
+                  path="/forgot_password"
+                  component={ForgotPassword}
+                />
+                <Route
+                  exact
+                  path="/reset_password/:id/:token"
+                  component={ResetPassword}
+                />
                 <Redirect from="/*" to="/login" />
               </Switch>
             </>

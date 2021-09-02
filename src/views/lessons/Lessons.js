@@ -9,7 +9,6 @@ import {
   isWidthDown,
   capitalize,
   Tooltip,
-  withStyles,
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import ToggleButton from "@material-ui/lab/ToggleButton";

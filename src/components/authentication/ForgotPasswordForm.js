@@ -5,22 +5,18 @@ import {
   makeStyles,
   TextField,
   Button,
-  FormControlLabel,
-  Checkbox,
   Link,
 } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { toast } from "react-toastify";
-import { getLoginFormSchema } from "../../utils/validationSchemas/loginValidationSchema";
 import { useIntl } from "react-intl";
 import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
-import { useDispatch } from "react-redux";
-import { login } from "../../actions/auth";
+import axios from "axios";
+import { getForgotPasswordSchema } from "../../utils/validationSchemas/forgotPasswordSchema";
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -35,27 +31,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginForm({ setUser }) {
+export default function ForgotPasswordForm() {
   const classes = useStyles();
-  const history = useHistory();
-  const dispatch = useDispatch();
   const intl = useIntl();
-  const LoginFormSchema = getLoginFormSchema(intl);
+  const ForgotPasswordSchema = getForgotPasswordSchema(intl);
   return (
     <Formik
       initialValues={{
         email: "",
-        password: "",
       }}
-      validationSchema={LoginFormSchema}
+      validationSchema={ForgotPasswordSchema}
       onSubmit={(values) => {
-        dispatch(login(values.email, values.password))
-          .then((res) => {
-            history.push("/dashboard");
+        axios
+          .post(
+            "https://okiedokie-backend.herokuapp.com//api/user/reset_password",
+            {
+              email: values.email,
+            }
+          )
+          .then(() => {
+            toast.success("Link was sent to your email", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           })
           .catch((err) => {
-            console.log(err);
-            toast.error("Wrong email or password", {
+            toast.error("Something went wrong!", {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -94,36 +100,7 @@ export default function LoginForm({ setUser }) {
               </Grid>
             </div>
           ) : null}
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            onChange={handleChange}
-            value={values.password}
-            onBlur={handleBlur}
-            touched={touched}
-          />
-          {errors.password && touched.password ? (
-            <div className={classes.errorMessage}>
-              <Grid container justifyContent="center" spacing={1}>
-                <Grid item>
-                  <ErrorOutlineOutlinedIcon fontSize="small" />
-                </Grid>
-                <Grid item>
-                  <Typography variant="body2">{errors.password}</Typography>
-                </Grid>
-              </Grid>
-            </div>
-          ) : null}
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+
           <Button
             fullWidth
             variant="contained"
@@ -131,17 +108,12 @@ export default function LoginForm({ setUser }) {
             className={classes.submit}
             onClick={submitForm}
           >
-            Sign In
+            Send reset link
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="/forgot_password" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
-              <Link href="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/login" variant="body2">
+                {"Back to login"}
               </Link>
             </Grid>
           </Grid>

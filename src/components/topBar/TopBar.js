@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, IconButton, Grid } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { Menu } from "@material-ui/icons";
-import { useIntl } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
 import { showSidebar } from "../../actions/sidebar";
 
@@ -56,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 export default function TopBar({ open, locale, setLocale }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const intl = useIntl();
   const { sidebar } = useSelector((state) => state);
   const updateLocale = (newLocale) => {
     setLocale(newLocale);
@@ -97,10 +95,7 @@ export default function TopBar({ open, locale, setLocale }) {
                       aria-label="left aligned"
                       selected={locale === "ru" && true}
                     >
-                      {intl.formatMessage({
-                        id: "language.russian",
-                        defaultMessage: "Russian",
-                      })}
+                      Русский
                     </ToggleButton>
                     <ToggleButton
                       className={classes.styledToggleButton}
@@ -108,10 +103,7 @@ export default function TopBar({ open, locale, setLocale }) {
                       onClick={() => updateLocale("en")}
                       aria-label="left aligned"
                     >
-                      {intl.formatMessage({
-                        id: "language.english",
-                        defaultMessage: "English",
-                      })}
+                      English
                     </ToggleButton>
                   </ToggleButtonGroup>
                 </Grid>
