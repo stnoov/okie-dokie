@@ -3,6 +3,7 @@ import { makeStyles, Grid, Typography, withWidth } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import { fetchNews } from "../../actions/news";
 import { useDispatch, useSelector } from "react-redux";
+import Linkify from "react-linkify";
 
 const useStyles = makeStyles((theme) => ({
   styledMainGrid: {
@@ -62,7 +63,7 @@ function ProfileInfo({ width }) {
                   {el.title}
                 </Grid>
                 <Grid item xs={12} className={classes.newsContent}>
-                  {el.content}
+                  <Linkify>{el.content}</Linkify>
                 </Grid>
                 <Grid item className={classes.newsContent}>
                   {new Date(el.createdAt).toLocaleDateString(undefined, {
