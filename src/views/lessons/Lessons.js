@@ -214,10 +214,12 @@ function Lessons({ width }) {
                   className={classes.styledToggleButton}
                   value="adults"
                 >
-                  {intl.formatMessage({
-                    id: "fields.adults",
-                    defaultMessage: "Adults",
-                  })}
+                  <Typography>
+                    {intl.formatMessage({
+                      id: "fields.adults",
+                      defaultMessage: "Adults",
+                    })}
+                  </Typography>
                 </ToggleButton>
               </ToggleButtonGroup>
             </Grid>

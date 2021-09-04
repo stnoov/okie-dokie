@@ -55,6 +55,6 @@ The organizer usually asks the participants themselves if it is time to exchange
   "group.intermediate": "«Intermediate» ",
   "group.intermediate_description": `Can deal with most situations likely to arise while travelling in an area where the language is spoken.`,
 
-  "lesson.successful_signup": `You have been successfult registered for this meeting`,
-  "lesson.successful_signup_description": `To join, simply click on the link provided on the main page 15 minutes before the start`,
+  "lesson.successful_signup": `The meeting has been successfully booked!`,
+  "lesson.successful_signup_description": `The link was sent to your e-mail address. You can also join us using the link on the main page of the web-site available 15 minutes before the meeting starts.`,
 };

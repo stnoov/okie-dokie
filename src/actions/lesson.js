@@ -153,6 +153,7 @@ export const signUpForALesson = (id, setIsOpenSuccessDialog) => (dispatch) => {
       API_URL + "api/lessons/sign_up_for_a_lesson",
       {
         lesson_id: id,
+        locale: localStorage.getItem("locale"),
       },
       { headers: authHeader() }
     )

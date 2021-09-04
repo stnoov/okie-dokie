@@ -7,7 +7,6 @@ import Payments from "../views/payments/Payments";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 import Promotions from "../views/promotions/Promotions";
 import NewReleasesIcon from "@material-ui/icons/NewReleases";
-import InfoIcon from "@material-ui/icons/Info";
 const getRoutes = (intl) => [
   {
     path: "/dashboard",
@@ -54,15 +53,15 @@ const getRoutes = (intl) => [
     icon: GradeIcon,
     component: Lessons,
   },
-  {
-    path: "/about_us",
-    sidebarName: intl.formatMessage({
-      id: "routes.about_us",
-      defaultMessage: "About us",
-    }),
-    icon: InfoIcon,
-    component: Promotions,
-  },
+  // {
+  //   path: "/about_us",
+  //   sidebarName: intl.formatMessage({
+  //     id: "routes.about_us",
+  //     defaultMessage: "About us",
+  //   }),
+  //   icon: InfoIcon,
+  //   component: Promotions,
+  // },
 ];
 
 export default getRoutes;

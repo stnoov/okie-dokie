@@ -19,7 +19,7 @@ export default function SuccessfulSignup({ open, handleClose, lesson }) {
           <Typography variant="h4" style={{ letterSpacing: 0 }}>
             {intl.formatMessage({
               id: "lesson.successful_signup",
-              defaultMessage: `Вы были успешно записаны на занятие`,
+              defaultMessage: `Вы успешно записались на мероприятие!`,
             })}
           </Typography>
         </DialogTitle>
@@ -29,9 +29,7 @@ export default function SuccessfulSignup({ open, handleClose, lesson }) {
               <Typography variant="h4" color="textSecondary">
                 {intl.formatMessage({
                   id: "lesson.successful_signup_description",
-                  defaultMessage: `Ссылка на подключение к мероприятию будет доступна на Главной
-                странице сайте, на картинке забронированного мероприятия, за 15
-                минут до его начала`,
+                  defaultMessage: `Ссылка отправлена вам на почту, а также будет доступна на главной странице сайта, на картинке забронированного мероприятия, за 15 минут до его начала.`,
                 })}
               </Typography>
             </Grid>
