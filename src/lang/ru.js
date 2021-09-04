@@ -58,8 +58,7 @@ export const messagesInRussian = {
                         выражения, необходимые для выполнения конкретных задач`,
 
   "group.pre_intermediate": "Группа «Pre-intermediate» (А2) возраст 13+",
-  "group.pre_intermediate_description": `Понимаю отдельные предложения и часто встречающиеся
-                        выражения, связанные с основными сферами жизни`,
+  "group.pre_intermediate_description": `Могу описать основные аспекты повседневной жизни`,
 
   "group.intermediate": "Группа «Intermediate»",
   "group.intermediate_description": `Умею общаться в большинстве ситуаций, которые могут

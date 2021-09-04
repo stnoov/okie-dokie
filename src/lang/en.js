@@ -50,7 +50,7 @@ The organizer usually asks the participants themselves if it is time to exchange
   "group.elementary_description": `Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. `,
 
   "group.pre_intermediate": "«Pre-intermediate» (А2) 13+ years old",
-  "group.pre_intermediate_description": `Can understand sentences and frequently used expressions related to areas of most immediate relevance `,
+  "group.pre_intermediate_description": `Can communicate in simple and routine tasks`,
 
   "group.intermediate": "«Intermediate» ",
   "group.intermediate_description": `Can deal with most situations likely to arise while travelling in an area where the language is spoken.`,
