@@ -145,6 +145,7 @@ function SideBar({ width }) {
                 <MenuItem
                   selected={activeRoute(prop.path)}
                   className={classes.sideMenuItem}
+                  onClick={isWidthDown("md", width) && handleDrawerClose}
                 >
                   <IconButton style={{ color: "inherit" }}>
                     <prop.icon />

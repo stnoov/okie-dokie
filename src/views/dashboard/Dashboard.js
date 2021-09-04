@@ -18,10 +18,10 @@ export default function Dashboard() {
     <Grid container className={classes.rootContainer}>
       <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={6} lg={7}>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <NewsCarousel />
           </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={5}>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <ProfileInfo />
           </Grid>
         </Grid>
