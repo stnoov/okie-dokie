@@ -44,7 +44,7 @@ export default function ForgotPasswordForm() {
       onSubmit={(values) => {
         axios
           .post(
-            "https://okiedokie-backend.herokuapp.com//api/user/reset_password",
+            "https://okiedokie-backend.herokuapp.com/api/user/reset_password",
             {
               email: values.email,
             }

@@ -47,7 +47,7 @@ export default function ResetPasswordForm() {
         onSubmit={(values) => {
           axios
             .post(
-              "https://okiedokie-backend.herokuapp.com//api/user/update_password",
+              "https://okiedokie-backend.herokuapp.com/api/user/update_password",
               {
                 id: id,
                 token: token,
