@@ -25,7 +25,10 @@ export default function LessonInfo({ open, handleClose, lesson }) {
               {lesson?.user?.map((el) => {
                 return (
                   <ListItem>
-                    <ListItemText primary={el.name} secondary={el.email} />
+                    <ListItemText
+                      primary={`${el.name}, ${el.age}`}
+                      secondary={el.email}
+                    />
                   </ListItem>
                 );
               })}
