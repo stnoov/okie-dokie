@@ -60,6 +60,7 @@ export default function Students() {
             <TableRow>
               <TableCell>Email</TableCell>
               <TableCell align="right">Name</TableCell>
+              <TableCell align="right">Age</TableCell>
               <TableCell align="right">Balance</TableCell>
               <TableCell align="right">OkieDokie points</TableCell>
               <TableCell align="right">Completed classes</TableCell>
@@ -73,6 +74,7 @@ export default function Students() {
                   {student.email}
                 </TableCell>
                 <TableCell align="right">{student.name}</TableCell>
+                <TableCell align="right">{student.age}</TableCell>
                 <TableCell align="right">{student.balance}</TableCell>
                 <TableCell align="right">{student.okie_dokie_points}</TableCell>
                 <TableCell align="right">{student.classes_completed}</TableCell>
