@@ -9,6 +9,8 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import { toast } from "react-toastify";
+import authHeader from "../../../services/auth.header";
+
 export default function DeleteStudentDialog({
   open,
   handleClose,
@@ -22,12 +24,8 @@ export default function DeleteStudentDialog({
         {
           email: userToEdit.email,
         },
-        {
-          headers: {
-            "x-access-token": localStorage.getItem("user"),
-          },
-        }
-      )
+            { headers: authHeader() }
+          )
       .then(() => {
         toast.success("User has been deleted", {
           position: "top-right",
