@@ -24,7 +24,7 @@ export const fetchLessons = (groups) => (dispatch) => {
 };
 
 export const addLesson =
-  (title, description, date, time, num_students, link, price, teacher, group) =>
+  (title, description, date, time, num_students, link, price, teacher, group, docs) =>
   (dispatch) => {
     axios
       .post(
@@ -39,6 +39,7 @@ export const addLesson =
           price: price,
           link: link,
           group: group,
+          docs: docs
         },
         { headers: authHeader() }
       )
@@ -78,7 +79,8 @@ export const editLesson =
     link,
     price,
     teacher,
-    group
+    group,
+    docs
   ) =>
   (dispatch) => {
     axios
@@ -95,6 +97,7 @@ export const editLesson =
           price: price,
           teacher: teacher,
           group: group,
+          docs: docs,
         },
         { headers: authHeader() }
       )
