@@ -35,6 +35,7 @@ export default function AddLesson({ fetchLessons }) {
           teacher: "Antonina Sitnova",
           group: "elementary",
           link: "",
+          docs: ""
         }}
         onSubmit={async (values, { resetForm }) => {
           await dispatch(
@@ -47,7 +48,8 @@ export default function AddLesson({ fetchLessons }) {
               values.link,
               values.price,
               values.teacher,
-              values.group
+              values.group,
+              values.docs
             )
           );
           resetForm();
@@ -110,7 +112,7 @@ export default function AddLesson({ fetchLessons }) {
                 variant="outlined"
                 fullWidth
                 name="num_students"
-                label="num_students"
+                label="Number of students"
                 type="text"
                 onChange={handleChange}
                 value={values.num_students}
@@ -123,7 +125,7 @@ export default function AddLesson({ fetchLessons }) {
                 variant="outlined"
                 fullWidth
                 name="link"
-                label="Link"
+                label="Zoom Link"
                 type="text"
                 onChange={handleChange}
                 value={values.link}
@@ -153,6 +155,19 @@ export default function AddLesson({ fetchLessons }) {
                 type="text"
                 onChange={handleChange}
                 value={values.teacher}
+                onBlur={handleBlur}
+                touched={touched}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="docs"
+                label="Docs Link"
+                type="text"
+                onChange={handleChange}
+                value={values.docs}
                 onBlur={handleBlur}
                 touched={touched}
               />
