@@ -29,6 +29,7 @@ export default function EditLesson({ open, handleClose, lesson }) {
       price: lesson?.price,
       group: lesson?.group,
       teacher: lesson?.teacher,
+      docs: lesson?.docs,
     };
   };
   return (
@@ -47,7 +48,8 @@ export default function EditLesson({ open, handleClose, lesson }) {
             values.link,
             values.price,
             values.teacher,
-            values.group
+            values.group,
+            values.docs
           )
         );
         handleClose();
@@ -118,7 +120,7 @@ export default function EditLesson({ open, handleClose, lesson }) {
                     variant="outlined"
                     fullWidth
                     name="num_students"
-                    label="num_students"
+                    label="Number of students"
                     type="text"
                     onChange={handleChange}
                     value={values.num_students}
@@ -139,7 +141,7 @@ export default function EditLesson({ open, handleClose, lesson }) {
                     touched={touched}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     variant="outlined"
                     fullWidth
@@ -148,6 +150,19 @@ export default function EditLesson({ open, handleClose, lesson }) {
                     type="text"
                     onChange={handleChange}
                     value={values.price}
+                    onBlur={handleBlur}
+                    touched={touched}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    variant="outlined"
+                    fullWidth
+                    name="docs"
+                    label="Docs"
+                    type="text"
+                    onChange={handleChange}
+                    value={values.docs}
                     onBlur={handleBlur}
                     touched={touched}
                   />
