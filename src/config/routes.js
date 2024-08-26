@@ -2,7 +2,7 @@ import { Home } from "@material-ui/icons";
 import Dashboard from "../views/dashboard/Dashboard";
 import Lessons from "../views/lessons/Lessons";
 import ListIcon from "@material-ui/icons/List";
-import GradeIcon from "@material-ui/icons/Grade";
+// import GradeIcon from "@material-ui/icons/Grade";
 import Payments from "../views/payments/Payments";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 import About from "../views/about/About";
