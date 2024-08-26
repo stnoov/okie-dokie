@@ -31,6 +31,11 @@ export const messagesInRussian = {
   "fields.completed_lessons": "Пройдено уроков",
   "fields.account_balance": "Баланс аккаунта",
   "fields.latest_news": "Актуальные новости",
+  "fields.elementary": "Дети 9-11 лет",
+  "fields.pre_intermediate": "Дети 10-13 лет",
+  "fields.intermediate": "Подростки от 12 лет",
+  "fields.adults": "Взрослые",
+
   "actions.choose_your_group": "Выберите вашу группу",
 
   "promotions.promotions_bonuses": "Бонусная программа Okie Dokie! клуба",
@@ -53,16 +58,17 @@ export const messagesInRussian = {
   "promotions.how_to_obtain_classes_desc": `Просто дайте об этом знать организатору клуба любым удобным для вас способом – либо на мероприятии, либо в личном сообщении 
 Организатор обычно сам спрашивает участников, не пора ли обменять заработанные бонусы на занятия.`,
 
-  "group.elementary": "Группа «Elementary» (A1) возраст 11+",
-  "group.elementary_description": `Понимаю и могу употребить в речи знакомые фразы и
-                        выражения, необходимые для выполнения конкретных задач`,
+  "group.elementary": "Дети 9-11 лет",
+  "group.elementary_description": `Вы уже знаете простые слова и фразы, умеете читать и понимать короткие тексты.`,
 
-  "group.pre_intermediate": "Группа «Pre-intermediate» (А2) возраст 13+",
-  "group.pre_intermediate_description": `Могу описать основные аспекты повседневной жизни`,
+  "group.pre_intermediate": "Дети 10-13 лет",
+  "group.pre_intermediate_description": `Вы уже умеете использовать базовые слова и фразы, общаться на простые темы, читать небольшие тексты.`,
 
-  "group.intermediate": "Группа «Intermediate»",
-  "group.intermediate_description": `Умею общаться в большинстве ситуаций, которые могут
-                        возникнуть во время пребывания в стране изучаемого языка`,
+  "group.intermediate": "Подростки от 12 лет",
+  "group.intermediate_description": `Вы уже понимаете и умеете поддерживать разговор на простые темы, строить более сложные предложения, читать тексты средней сложности.`,
+
+  "group.adults": "Взрослые",
+  "group.adults_description": `Вы уже умеете общаться на повседневные темы и составлять полные предложения.`,
 
   "lesson.successful_signup": `Вы успешно записались на мероприятие!`,
   "lesson.successful_signup_description": `Ссылка отправлена вам на почту, а также будет доступна на главной странице сайта, на картинке забронированного мероприятия, за 15 минут до его начала.`,
