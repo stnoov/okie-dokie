@@ -45,15 +45,15 @@ const getRoutes = (intl) => [
     icon: AccountBalanceWalletIcon,
     component: Payments,
   },
-  {
-    path: "/reviews",
-    sidebarName: intl.formatMessage({
-      id: "routes.reviews",
-      defaultMessage: "Reviews",
-    }),
-    icon: GradeIcon,
-    component: Lessons,
-  },
+  // {
+  //   path: "/reviews",
+  //   sidebarName: intl.formatMessage({
+  //     id: "routes.reviews",
+  //     defaultMessage: "Reviews",
+  //   }),
+  //   icon: GradeIcon,
+  //   component: Lessons,
+  // },
   // {
   //   path: "/about_us",
   //   sidebarName: intl.formatMessage({
