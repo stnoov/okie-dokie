@@ -130,13 +130,12 @@ function Lessons({ width }) {
                           {intl.formatMessage({
                             id: "group.elementary",
                             defaultMessage:
-                              "Группа «Elementary» (A1) возраст 11+",
+                              "Дети 9-11 лет",
                           })}
                         </Typography>
                         {intl.formatMessage({
                           id: "group.elementary_description",
-                          defaultMessage: `Понимаю и могу употребить в речи знакомые фразы и
-                        выражения, необходимые для выполнения конкретных задач`,
+                          defaultMessage: `Вы уже знаете простые слова и фразы, умеете читать и понимать короткие тексты.`,
                         })}
                       </React.Fragment>
                     }
@@ -161,13 +160,12 @@ function Lessons({ width }) {
                           {intl.formatMessage({
                             id: "group.pre_intermediate",
                             defaultMessage:
-                              "Группа «Pre-intermediate» (А2) возраст 13+",
+                              "Дети 10-13 лет",
                           })}
                         </Typography>
                         {intl.formatMessage({
                           id: "group.pre_intermediate_description",
-                          defaultMessage: `Понимаю отдельные предложения и часто встречающиеся
-                        выражения, связанные с основными сферами жизни`,
+                          defaultMessage: `Вы уже умеете использовать базовые слова и фразы, общаться на простые темы, читать небольшие тексты.`,
                         })}
                       </React.Fragment>
                     }
@@ -191,13 +189,12 @@ function Lessons({ width }) {
                         <Typography color="inherit">
                           {intl.formatMessage({
                             id: "group.intermediate",
-                            defaultMessage: "Группа «Intermediate»",
+                            defaultMessage: "Подростки от 12 лет",
                           })}
                         </Typography>
                         {intl.formatMessage({
                           id: "group.intermediate_description",
-                          defaultMessage: `Умею общаться в большинстве ситуаций, которые могут
-                        возникнуть во время пребывания в стране изучаемого языка`,
+                          defaultMessage: `Вы уже понимаете и умеете поддерживать разговор на простые темы, строить более сложные предложения, читать тексты средней сложности.`,
                         })}
                       </React.Fragment>
                     }
@@ -214,12 +211,29 @@ function Lessons({ width }) {
                   className={classes.styledToggleButton}
                   value="adults"
                 >
+                    <Tooltip
+                    title={
+                      <React.Fragment>
+                        <Typography color="inherit">
+                          {intl.formatMessage({
+                            id: "group.adults",
+                            defaultMessage: "Группа «Intermediate»",
+                          })}
+                        </Typography>
+                        {intl.formatMessage({
+                          id: "group.adults_description",
+                          defaultMessage: `Вы уже умеете общаться на повседневные темы и составлять полные предложения.`,
+                        })}
+                      </React.Fragment>
+                    }
+                  >
                   <Typography>
                     {intl.formatMessage({
                       id: "fields.adults",
                       defaultMessage: "Adults",
                     })}
                   </Typography>
+                </Tooltip>
                 </ToggleButton>
               </ToggleButtonGroup>
             </Grid>
