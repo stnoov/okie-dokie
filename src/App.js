@@ -22,11 +22,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Reviews from "./views/reviews/Reviews";
 import Payments from "./views/payments/Payments";
-import Promotions from "./views/promotions/Promotions";
+import About from "./views/about/About";
 import Admin from "./views/admin/Admin";
 import { useSelector } from "react-redux";
 import AuthVerify from "./services/AuthVerify";
-import AboutUs from "./views/aboutUs/AboutUs";
 import ForgotPassword from "./views/authentication/ForgotPassword";
 import ResetPassword from "./views/authentication/ResetPassword";
 
@@ -105,8 +104,7 @@ const AuthenticatedApp = ({ locale, setLocale }) => {
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/payments" component={Payments} />
-          <Route exact path="/promotions" component={Promotions} />
-          <Route exact path="/about_us" component={AboutUs} />
+          <Route exact path="/about_us" component={About} />
           {currentUser?.isAdmin && (
             <Route exact path="/admin" component={Admin} />
           )}

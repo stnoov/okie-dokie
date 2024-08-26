@@ -133,10 +133,12 @@ function Lessons({ width }) {
                               "Дети 9-11 лет",
                           })}
                         </Typography>
-                        {intl.formatMessage({
-                          id: "group.elementary_description",
-                          defaultMessage: `Вы уже знаете простые слова и фразы, умеете читать и понимать короткие тексты.`,
-                        })}
+                        <Typography color="inherit" variant="subtitle2">
+                          {intl.formatMessage({
+                            id: "group.elementary_description",
+                            defaultMessage: `Вы уже знаете простые слова и фразы, умеете читать и понимать короткие тексты.`,
+                          })}
+                        </Typography>
                       </React.Fragment>
                     }
                   >
@@ -163,10 +165,12 @@ function Lessons({ width }) {
                               "Дети 10-13 лет",
                           })}
                         </Typography>
-                        {intl.formatMessage({
-                          id: "group.pre_intermediate_description",
-                          defaultMessage: `Вы уже умеете использовать базовые слова и фразы, общаться на простые темы, читать небольшие тексты.`,
-                        })}
+                        <Typography color="inherit" variant="subtitle2">
+                          {intl.formatMessage({
+                            id: "group.pre_intermediate_description",
+                            defaultMessage: `Вы уже умеете использовать базовые слова и фразы, общаться на простые темы, читать небольшие тексты.`,
+                          })}
+                        </Typography>
                       </React.Fragment>
                     }
                   >
@@ -192,10 +196,12 @@ function Lessons({ width }) {
                             defaultMessage: "Подростки от 12 лет",
                           })}
                         </Typography>
-                        {intl.formatMessage({
-                          id: "group.intermediate_description",
-                          defaultMessage: `Вы уже понимаете и умеете поддерживать разговор на простые темы, строить более сложные предложения, читать тексты средней сложности.`,
-                        })}
+                        <Typography color="inherit" variant="subtitle2">
+                          {intl.formatMessage({
+                            id: "group.intermediate_description",
+                            defaultMessage: `Вы уже понимаете и умеете поддерживать разговор на простые темы, строить более сложные предложения, читать тексты средней сложности.`,
+                          })}
+                        </Typography>
                       </React.Fragment>
                     }
                   >
@@ -211,7 +217,7 @@ function Lessons({ width }) {
                   className={classes.styledToggleButton}
                   value="adults"
                 >
-                    <Tooltip
+                  <Tooltip
                     title={
                       <React.Fragment>
                         <Typography color="inherit">
@@ -220,20 +226,22 @@ function Lessons({ width }) {
                             defaultMessage: "Группа «Intermediate»",
                           })}
                         </Typography>
-                        {intl.formatMessage({
-                          id: "group.adults_description",
-                          defaultMessage: `Вы уже умеете общаться на повседневные темы и составлять полные предложения.`,
-                        })}
+                        <Typography color="inherit" variant="subtitle2">
+                          {intl.formatMessage({
+                            id: "group.adults_description",
+                            defaultMessage: `Вы уже умеете общаться на повседневные темы и составлять полные предложения.`,
+                          })}
+                        </Typography>
                       </React.Fragment>
                     }
                   >
-                  <Typography>
-                    {intl.formatMessage({
-                      id: "fields.adults",
-                      defaultMessage: "Adults",
-                    })}
-                  </Typography>
-                </Tooltip>
+                    <Typography>
+                      {intl.formatMessage({
+                        id: "fields.adults",
+                        defaultMessage: "Adults",
+                      })}
+                    </Typography>
+                  </Tooltip>
                 </ToggleButton>
               </ToggleButtonGroup>
             </Grid>

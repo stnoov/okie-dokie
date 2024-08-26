@@ -21,7 +21,7 @@ export default function NewsCarousel() {
   const history = useHistory();
   const intl = useIntl();
   const transferToPromotions = () => {
-    history.push("/promotions");
+    history.push("/about_us");
   };
   return (
     <Grid item xs={12}>
@@ -34,18 +34,16 @@ export default function NewsCarousel() {
               color="primary"
             >
               {intl.formatMessage({
-                id: "fields.loyalty_program",
-                defaultMessage: "Loyalty program",
+                id: "fields.welcome",
+                defaultMessage: "Welcome to OkieDokie!",
               })}
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography>
               {intl.formatMessage({
-                id: "fields.loyalty_program_description",
-                defaultMessage: `Earn OkieDokie points and get free lessons! You can get OkieDokie
-              points for reposting the latest news of our club, winning quizzes
-              and inviting friends to our meetings!`,
+                id: "fields.welcome_description",
+                defaultMessage: `Do you want to speak English fluently? Are you looking for a cozy and friendly atmosphere to practice? Do you like playing games? Join our events to chat with like-minded people!`,
               })}
             </Typography>
           </Grid>
@@ -55,7 +53,10 @@ export default function NewsCarousel() {
               variant="contained"
               onClick={transferToPromotions}
             >
-              Check it out!
+              {intl.formatMessage({
+                id: "fields.learn_more",
+                defaultMessage: `Learn more`,
+              })}
             </Button>
           </Grid>
         </Grid>

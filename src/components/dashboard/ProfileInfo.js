@@ -45,46 +45,8 @@ function ProfileInfo({ width }) {
         style={{ height: "100%" }}
         spacing={1}
       >
-        <Grid item xs={12} sm={4}>
-          <Grid container direction="column" alignItems="center">
-            <Grid item xs={12}>
-              <Typography
-                variant="h4"
-                className={classes.categoryTitle}
-                align="center"
-              >
-                {intl.formatMessage({
-                  id: "fields.account_balance",
-                  defaultMessage: "Account balance",
-                })}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h3" className={classes.styledSubTitle}>
-                {currentUser.balance}₽
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container direction="column" alignItems="center">
-            <Grid item xs={12}>
-              <Typography
-                variant="h4"
-                className={classes.categoryTitle}
-                align="center"
-              >
-                OkieDokie Points
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h3" className={classes.styledSubTitle}>
-                {currentUser.okie_dokie_points}
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={4}>
+
+        <Grid item xs={12} sm={6}>
           <Grid container direction="column" alignItems="center">
             <Grid item xs={12}>
               <Typography
@@ -105,6 +67,30 @@ function ProfileInfo({ width }) {
             </Grid>
           </Grid>
         </Grid>
+
+        <Grid item xs={12} sm={6}>
+          <Grid container direction="column" alignItems="center">
+            <Grid item xs={12}>
+              <Typography
+                variant="h4"
+                className={classes.categoryTitle}
+                align="center"
+              >
+                {intl.formatMessage({
+                  id: "fields.account_balance",
+                  defaultMessage: "Account balance",
+                })}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h3" className={classes.styledSubTitle}>
+                {currentUser.balance}₽
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+
+
       </Grid>
     </Paper>
   );

@@ -67,7 +67,7 @@ export default function TopBar({ open, locale, setLocale }) {
     <div className={classes.root}>
       <AppBar position="fixed" elevation={0} className={classes.appBar}>
         <Toolbar>
-          <Grid container alignItems="center" justify="space-between">
+          <Grid container alignItems="center" justifyContent="space-between">
             <Grid item>
               <IconButton
                 aria-label="open drawer"
@@ -93,6 +93,7 @@ export default function TopBar({ open, locale, setLocale }) {
                       onClick={() => updateLocale("ru")}
                       className={classes.styledToggleButton}
                       aria-label="left aligned"
+                      value="ru"
                       selected={locale === "ru" && true}
                     >
                       Русский
@@ -101,6 +102,7 @@ export default function TopBar({ open, locale, setLocale }) {
                       className={classes.styledToggleButton}
                       selected={locale === "en" && true}
                       onClick={() => updateLocale("en")}
+                      value="en"
                       aria-label="left aligned"
                     >
                       English

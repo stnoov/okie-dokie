@@ -12,6 +12,7 @@ export const messagesInEnglish = {
   "routes.promotions": "Promotions",
   "routes.dashboard": "Dashboard",
   "routes.reviews": "Reviews",
+  "routes.about": "About us",
   "fields.language": "Language",
   "fields.teacher": "Teacher",
   "fields.price": "Price",
@@ -62,6 +63,25 @@ The organizer usually asks the participants themselves if it is time to exchange
   "group.adults": "Adults",
   "group.adults_description": `You can communicate on everyday topics, construct complex sentences.`,
 
+
+
   "lesson.successful_signup": `The meeting has been successfully booked!`,
   "lesson.successful_signup_description": `The link was sent to your e-mail address. You can also join us using the link on the main page of the web-site available 15 minutes before the meeting starts.`,
+
+  "fields.welcome": 'Welcome to OkieDokie!',
+  "fields.welcome_description": 'Do you want to speak English fluently? Are you looking for a cozy and friendly atmosphere to practice? Do you like playing games? Join our events to chat with like-minded people!',
+  "fields.learn_more": 'Learn more',
+
+
+  "about.title": "Welcome to OkieDokie!",
+  "about.page_title": "We’re delighted that you’ve joined our English speaking club! Here, you’ll find engaging meetings, interesting discussion topics, and lots of games to help you improve your spontaneous speaking skills and feel more confident.",
+  "about.this_is": "OkieDokie! is all about:",
+  "about.desc1": "Interactive meetings with experienced teachers",
+  "about.desc2": "International events with native speakers",
+  "about.desc3": "Language exchange opportunities with English speakers from all over the world (don't worry, we'll help you understand the different accents!)",
+  "about.desc4": "Combining traditional and innovative teaching methods to make learning easy and speaking English enjoyable.",
+  "about.desc5": "By taking part in OkieDokie!, you can not only improve your language skills but also  become an interesting person to talk to! Join us for a wide variety of discussion topics, fun games, and new international friends!",
+  "about.desc6": "Follow us VKontakte to not miss the latest updates & upcoming special guests",
+  "about.desc7": "If you have suggestions or ideas on how to make our meetings even more engaging and useful, we’re always open to your input! You can reach us by email okiedokie.club@gmail.com or by dropping a direct meessage VKontakte",
+
 };

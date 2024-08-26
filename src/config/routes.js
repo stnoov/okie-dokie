@@ -5,8 +5,9 @@ import ListIcon from "@material-ui/icons/List";
 import GradeIcon from "@material-ui/icons/Grade";
 import Payments from "../views/payments/Payments";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
-import Promotions from "../views/promotions/Promotions";
-import NewReleasesIcon from "@material-ui/icons/NewReleases";
+import About from "../views/about/About";
+import InfoIcon from "@material-ui/icons/Info";
+
 const getRoutes = (intl) => [
   {
     path: "/dashboard",
@@ -18,6 +19,15 @@ const getRoutes = (intl) => [
     component: Dashboard,
   },
   {
+    path: "/about_us",
+    sidebarName: intl.formatMessage({
+      id: "routes.about",
+      defaultMessage: "About",
+    }),
+    icon: InfoIcon,
+    component: About,
+  },
+  {
     path: "/lessons",
     sidebarName: intl.formatMessage({
       id: "routes.meetings",
@@ -25,15 +35,6 @@ const getRoutes = (intl) => [
     }),
     icon: ListIcon,
     component: Lessons,
-  },
-  {
-    path: "/promotions",
-    sidebarName: intl.formatMessage({
-      id: "routes.promotions",
-      defaultMessage: "Promotions",
-    }),
-    icon: NewReleasesIcon,
-    component: Promotions,
   },
   {
     path: "/payments",

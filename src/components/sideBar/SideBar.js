@@ -145,7 +145,6 @@ function SideBar({ width }) {
                 <MenuItem
                   selected={activeRoute(prop.path)}
                   className={classes.sideMenuItem}
-                  onClick={isWidthDown("md", width) && handleDrawerClose}
                 >
                   <IconButton style={{ color: "inherit" }}>
                     <prop.icon />
@@ -183,8 +182,47 @@ function SideBar({ width }) {
             </Typography>
           </MenuItem>
         </MenuList>
-      </Drawer>
-    </div>
+        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+          <a
+            href="https://vk.com/okiddokie_club"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={window.location.origin + "/vk.png"}
+              alt="logo"
+              height={35}
+            />
+          </a>
+          <a
+            href="https://t.me/okiedokieclub"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={window.location.origin + "/telegram.png"}
+              alt="logo"
+              height={35}
+            />
+          </a>
+          <a
+            href="https://t.me/OkieDokieSpeakingClub"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={window.location.origin + "/contactMe.png"}
+              alt="logo"
+              height={33}
+              style={{ borderRadius: '50%' }}
+            />
+          </a>
+        </div>
+        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '10px', opacity: 0.6, fontWeight: '600' }}>
+          okiedokie.club@gmail.com
+        </div>
+      </Drawer >
+    </div >
   );
 }
 
