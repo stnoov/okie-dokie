@@ -241,7 +241,7 @@ function About({ width }) {
       }),
     },
     {
-      icon: "👥",
+      icon: "🤝",
       title: intl.formatMessage({
         id: "about.feature4.title",
         defaultMessage: "Языковой обмен",
