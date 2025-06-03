@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, makeStyles, withWidth } from "@material-ui/core";
+import { makeStyles, withWidth } from "@material-ui/core";
 import { useIntl } from "react-intl";
 
 const useStyles = makeStyles(() => ({
