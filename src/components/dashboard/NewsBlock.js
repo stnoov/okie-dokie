@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: '"Roboto", "PT Sans", "Open Sans", "Segoe UI", "Arial", sans-serif',
     letterSpacing: '0.01em',
     textRendering: 'optimizeLegibility',
-    textTransform: 'none', // Override any inherited text-transform
   },
   newsContent: {
     color: theme.palette.text.secondary,
@@ -92,7 +91,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '0.9rem',
     letterSpacing: '0.01em',
     textRendering: 'optimizeLegibility',
-    textTransform: 'none', // Override any inherited text-transform
   },
   dateChip: {
     backgroundColor: theme.palette.primary.light,
@@ -129,7 +127,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.dark,
     },
   },
-  // Modal styles with Cyrillic font support
   modalHeader: {
     position: 'relative',
     padding: theme.spacing(3, 3, 2, 3),
@@ -142,9 +139,8 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.3,
     letterSpacing: '0.01em',
     textRendering: 'optimizeLegibility',
-    textTransform: 'none',
     color: theme.palette.text.primary,
-    paddingRight: theme.spacing(5), // Space for close button
+    paddingRight: theme.spacing(5),
   },
   modalContent: {
     padding: theme.spacing(3),
@@ -156,7 +152,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.01em',
     textRendering: 'optimizeLegibility',
     color: theme.palette.text.primary,
-    textTransform: 'none',
   },
   modalActions: {
     padding: theme.spacing(2, 3, 3, 3),
@@ -213,46 +208,7 @@ function ProfileInfo({ width }) {
   };
 
   const isContentTruncated = (content) => {
-    // Simple heuristic to check if content might be truncated
     return content && content.length > 200;
-  };
-
-  // Function to properly format text with mixed languages
-  const formatText = (text) => {
-    if (!text) return text;
-
-    // Convert to proper case (first letter uppercase, rest lowercase)
-    return text
-      .toLowerCase()
-      .split(' ')
-      .map(word => {
-        // Handle special cases for mixed language words
-        if (word.includes('!') || word.includes('?')) {
-          return word.charAt(0).toUpperCase() + word.slice(1);
-        }
-        // For words with mixed scripts, be more careful
-        if (/[а-яё]/i.test(word) && /[a-z]/i.test(word)) {
-          // Mixed Cyrillic and Latin - preserve original casing for Latin parts
-          let result = '';
-          let shouldCapitalize = true;
-          for (let i = 0; i < word.length; i++) {
-            const char = word[i];
-            if (/[а-яё]/i.test(char)) {
-              result += shouldCapitalize ? char.toUpperCase() : char.toLowerCase();
-              shouldCapitalize = false;
-            } else if (/[a-z]/i.test(char)) {
-              result += shouldCapitalize ? char.toUpperCase() : char;
-              shouldCapitalize = false;
-            } else {
-              result += char;
-            }
-          }
-          return result;
-        }
-        // Regular word - capitalize first letter
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      })
-      .join(' ');
   };
 
   const renderNewsItems = () => {
@@ -278,10 +234,10 @@ function ProfileInfo({ width }) {
           <CardContent className={classes.newsCardContent}>
             <div>
               <div className={classes.newsTitle}>
-                {formatText(item.title)}
+                {item.title}
               </div>
               <div className={classes.newsContent}>
-                <Linkify>{formatText(item.content)}</Linkify>
+                <Linkify>{item.content}</Linkify>
               </div>
             </div>
             <Chip
@@ -325,7 +281,6 @@ function ProfileInfo({ width }) {
         </Grid>
       </Grid>
 
-      {/* Full News Modal */}
       <Dialog
         open={modalOpen}
         onClose={handleModalClose}
@@ -338,7 +293,7 @@ function ProfileInfo({ width }) {
           <>
             <div className={classes.modalHeader}>
               <div className={classes.modalTitle}>
-                {formatText(selectedNews.title)}
+                {selectedNews.title}
               </div>
               <IconButton
                 className={classes.closeButton}
@@ -354,7 +309,7 @@ function ProfileInfo({ width }) {
                 size="small"
               />
               <div className={classes.modalContentText}>
-                <Linkify>{formatText(selectedNews.content)}</Linkify>
+                <Linkify>{selectedNews.content}</Linkify>
               </div>
             </div>
             <div className={classes.modalActions}>
