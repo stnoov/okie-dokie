@@ -449,14 +449,14 @@ function Lessons({ width }) {
   return (
     <>
       <div className={classes.rootContainer}>
-        <div className={classes.headerSection}>
+        {/* <div className={classes.headerSection}>
           <div className={classes.pageTitle}>
             {intl.formatMessage({
               id: "routes.meetings",
               defaultMessage: "Занятия",
             })}
           </div>
-        </div>
+        </div> */}
 
         <div className={classes.filterSection}>
           <div className={classes.filterTitle}>
