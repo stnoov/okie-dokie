@@ -45,15 +45,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.dark,
     borderTop: `2px solid ${theme.palette.primary.main}`,
     color: theme.palette.common.white,
+    display: 'flex',
+    flexDirection: 'column',
   },
   drawerHeader: {
     display: "flex",
     alignItems: "center",
     height: 74,
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
+    flexShrink: 0,
   },
   content: {
     flexGrow: 1,
@@ -87,6 +89,49 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "orange",
     },
   },
+  menuContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  socialLinksContainer: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
+    padding: theme.spacing(2, 1),
+    marginTop: 'auto',
+  },
+  emailContainer: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing(1),
+    opacity: 0.6,
+    fontWeight: 600,
+    fontSize: '0.85rem',
+    fontFamily: '"Roboto", "PT Sans", "Open Sans", "Segoe UI", "Arial", sans-serif',
+  },
+  innContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing(1),
+    paddingBottom: theme.spacing(2),
+    opacity: 0.6,
+    fontWeight: 300,
+    fontSize: '0.8rem',
+    fontFamily: '"Roboto", "PT Sans", "Open Sans", "Segoe UI", "Arial", sans-serif',
+    flexShrink: 0,
+  },
+  innText: {
+    lineHeight: 1.2,
+    textAlign: 'center',
+  },
 }));
 
 function SideBar({ width }) {
@@ -98,15 +143,19 @@ function SideBar({ width }) {
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.auth);
   const { sidebar } = useSelector((state) => state);
+
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? true : false;
   };
+
   const handleDrawerClose = () => {
     dispatch(hideSidebar());
   };
+
   const handleLogout = () => {
     dispatch(logout());
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -138,91 +187,101 @@ function SideBar({ width }) {
             </Grid>
           </Grid>
         </div>
-        <MenuList>
-          {routes.map((prop, key) => {
-            return (
-              <Link to={prop.path} className={classes.sideMenuLink} key={key}>
+
+        <div className={classes.menuContainer}>
+          <MenuList>
+            {routes.map((prop, key) => {
+              return (
+                <Link to={prop.path} className={classes.sideMenuLink} key={key}>
+                  <MenuItem
+                    selected={activeRoute(prop.path)}
+                    className={classes.sideMenuItem}
+                  >
+                    <IconButton style={{ color: "inherit" }}>
+                      <prop.icon />
+                    </IconButton>
+                    <ListItemText primary={prop.sidebarName} />
+                  </MenuItem>
+                </Link>
+              );
+            })}
+            {currentUser.isAdmin && (
+              <Link to="/admin" className={classes.sideMenuLink}>
                 <MenuItem
-                  selected={activeRoute(prop.path)}
+                  selected={activeRoute("/admin")}
                   className={classes.sideMenuItem}
                 >
                   <IconButton style={{ color: "inherit" }}>
-                    <prop.icon />
+                    <SupervisorAccountIcon />
                   </IconButton>
-                  <ListItemText primary={prop.sidebarName} />
+                  <ListItemText primary="Admin panel" />
                 </MenuItem>
               </Link>
-            );
-          })}
-          {currentUser.isAdmin && (
-            <Link to="/admin" className={classes.sideMenuLink}>
-              <MenuItem
-                selected={activeRoute("/admin")}
-                className={classes.sideMenuItem}
-              >
-                <IconButton style={{ color: "inherit" }}>
-                  <SupervisorAccountIcon />
-                </IconButton>
-                <ListItemText primary="Admin panel" />
-              </MenuItem>
-            </Link>
-          )}
-          <MenuItem
-            onClick={() => handleLogout()}
-            className={classes.sideMenuItem}
-          >
-            <IconButton style={{ color: "inherit" }}>
-              <ExitToAppIcon />
-            </IconButton>
-            <Typography>
-              {intl.formatMessage({
-                id: "actions.logout",
-                defaultMessage: "Logout",
-              })}
-            </Typography>
-          </MenuItem>
-        </MenuList>
-        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-          <a
-            href="https://vk.com/okiddokie_club"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src={window.location.origin + "/vk.png"}
-              alt="logo"
-              height={35}
-            />
-          </a>
-          <a
-            href="https://t.me/okiedokieclub"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src={window.location.origin + "/telegram.png"}
-              alt="logo"
-              height={35}
-            />
-          </a>
-          <a
-            href="https://t.me/OkieDokieSpeakingClub"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src={window.location.origin + "/contactMe.png"}
-              alt="logo"
-              height={33}
-              style={{ borderRadius: '50%' }}
-            />
-          </a>
+            )}
+            <MenuItem
+              onClick={() => handleLogout()}
+              className={classes.sideMenuItem}
+            >
+              <IconButton style={{ color: "inherit" }}>
+                <ExitToAppIcon />
+              </IconButton>
+              <Typography>
+                {intl.formatMessage({
+                  id: "actions.logout",
+                  defaultMessage: "Logout",
+                })}
+              </Typography>
+            </MenuItem>
+          </MenuList>
+
+          <div className={classes.socialLinksContainer}>
+            <a
+              href="https://vk.com/okiddokie_club"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={window.location.origin + "/vk.png"}
+                alt="VK"
+                height={35}
+              />
+            </a>
+            <a
+              href="https://t.me/okiedokieclub"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={window.location.origin + "/telegram.png"}
+                alt="Telegram"
+                height={35}
+              />
+            </a>
+            <a
+              href="https://t.me/OkieDokieSpeakingClub"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={window.location.origin + "/contactMe.png"}
+                alt="Contact"
+                height={33}
+                style={{ borderRadius: '50%' }}
+              />
+            </a>
+          </div>
+
+          <div className={classes.emailContainer}>
+            okiedokie.club@gmail.com
+          </div>
         </div>
-        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '10px', opacity: 0.6, fontWeight: '600' }}>
-          okiedokie.club@gmail.com
+
+        <div className={classes.innContainer}>
+          <div className={classes.innText}>ИНН 520501298232</div>
+          <div className={classes.innText}>Ситнова А.Е.</div>
         </div>
-      </Drawer >
-    </div >
+      </Drawer>
+    </div>
   );
 }
 
