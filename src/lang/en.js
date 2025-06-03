@@ -83,5 +83,9 @@ The organizer usually asks the participants themselves if it is time to exchange
   "about.desc5": "By taking part in OkieDokie!, you can not only improve your language skills but also  become an interesting person to talk to! Join us for a wide variety of discussion topics, fun games, and new international friends!",
   "about.desc6": "Follow us VKontakte to not miss the latest updates & upcoming special guests",
   "about.desc7": "If you have suggestions or ideas on how to make our meetings even more engaging and useful, we’re always open to your input! You can reach us by email okiedokie.club@gmail.com or by dropping a direct meessage VKontakte",
-
+  "about.feature1.title": "Interactive Classes",
+  "about.feature2.title": "International Meetings",
+  "about.feature3.title": "Innovative Methods",
+  "about.feature4.title": "Language Exchange",
+  "about.contact.title": "Have Questions?"
 };
