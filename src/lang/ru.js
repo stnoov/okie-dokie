@@ -94,5 +94,113 @@ export const messagesInRussian = {
   "about.feature2.title": "Международные встречи",
   "about.feature3.title": "Инновационные методики",
   "about.feature4.title": "Языковой обмен",
-  "about.contact.title": "Есть вопросы?"
+  "about.contact.title": "Есть вопросы?",
+  "fields.participant_single": "участник",
+  "fields.participant_few": "участника",
+  "fields.participant_many": "участников",
+  "fields.description": "Описание",
+  "fields.lesson_details": "Детали занятия",
+  "actions.lesson_full": "Занятие заполнено",
+  "payment.title": "Пополнить Баланс",
+  "payment.subtitle": "Безопасно пополните свой счет",
+  "payment.enterAmount": "Введите сумму",
+  "payment.amount": "Сумма",
+  "payment.payButton": "Оплатить {amount} ₽",
+  "payment.security": "Защищено SSL шифрованием YooKassa",
+
+  // Payment statuses and messages
+  "payment.invalidAmount": "Пожалуйста, введите корректную сумму",
+  "payment.failedToCreate": "Не удалось создать платеж",
+  "payment.processing": "Обработка платежа...",
+  "payment.success": "Платеж успешно выполнен!",
+  "payment.cancelled": "Платеж был отменен",
+  "payment.pending": "Платеж в обработке",
+  "payment.failed": "Платеж не выполнен",
+
+  // Payment methods
+  "payment.method.bankCard": "Банковская карта",
+  "payment.method.yoomoney": "ЮMoney",
+  "payment.method.sberPay": "SberPay",
+  "payment.method.qiwi": "QIWI",
+  "payment.method.webmoney": "WebMoney",
+
+  // Validation messages
+  "payment.validation.required": "Это поле обязательно",
+  "payment.validation.minAmount": "Минимальная сумма: {min} ₽",
+  "payment.validation.maxAmount": "Максимальная сумма: {max} ₽",
+  "payment.validation.invalidFormat": "Неверный формат суммы",
+
+  // Balance and account
+  "payment.balance.current": "Текущий баланс: {amount} ₽",
+  "payment.balance.afterPayment": "Баланс после пополнения: {amount} ₽",
+  "payment.balance.history": "История пополнений",
+
+  // Notifications
+  "payment.notification.success": "Баланс успешно пополнен на {amount} ₽",
+  "payment.notification.error": "Ошибка при пополнении баланса",
+  "payment.notification.timeout": "Время ожидания истекло. Попробуйте еще раз",
+  "payment.notification.network": "Ошибка сети. Проверьте подключение к интернету",
+
+  // Buttons and actions
+  "payment.action.retry": "Попробовать снова",
+  "payment.action.cancel": "Отменить",
+  "payment.action.goBack": "Вернуться назад",
+  "payment.action.viewHistory": "Посмотреть историю",
+  "payment.action.contactSupport": "Связаться с поддержкой",
+
+  // Receipt and confirmation
+  "payment.receipt.title": "Чек об оплате",
+  "payment.receipt.amount": "Сумма",
+  "payment.receipt.date": "Дата",
+  "payment.receipt.paymentId": "ID платежа",
+  "payment.receipt.method": "Способ оплаты",
+  "payment.receipt.download": "Скачать чек",
+  "payment.receipt.email": "Отправить на email",
+
+  // Help and support
+  "payment.help.title": "Нужна помощь?",
+  "payment.help.faq": "Часто задаваемые вопросы",
+  "payment.help.support": "Служба поддержки",
+  "payment.help.phone": "Телефон поддержки",
+  "payment.help.email": "Email поддержки",
+
+  // Security and trust
+  "payment.security.ssl": "SSL шифрование",
+  "payment.security.pci": "PCI DSS сертификация",
+  "payment.security.guarantee": "100% безопасность платежей",
+  "payment.security.info": "Ваши данные защищены современными методами шифрования",
+
+  "payment.success.title": "Платёж успешно выполнен!",
+  "payment.success.message": "Ваш платёж был успешно обработан. Баланс будет обновлён в течение нескольких минут.",
+  "payment.success.button": "Вернуться в меню",
+  "payment.success.amount": "Сумма",
+  "payment.success.date": "Дата",
+  "payment.success.reference": "ID платежа",
+  "payment.success.processing": "Обработка завершена",
+  "payment.success.balance.note": "Баланс обновляется автоматически",
+
+  // Loading States
+  "payment.loading.title": "Обработка платежа...",
+  "payment.loading.message": "Пожалуйста, подождите, мы обрабатываем ваш платёж.",
+  "payment.loading.verify": "Проверяем статус платежа",
+
+  // Error States
+  "payment.error.title": "Ошибка платежа",
+  "payment.error.message": "Произошла ошибка при обработке платежа. Попробуйте снова.",
+  "payment.error.button": "Повторить платёж",
+  "payment.error.support": "Обратиться в поддержку",
+  "payment.error.generic": "Что-то пошло не так. Пожалуйста, проверьте свой баланс или обратитесь в поддержку.",
+
+  // Status Messages
+  "payment.status.success": "Успешно",
+  "payment.status.pending": "В обработке",
+  "payment.status.failed": "Неудачно",
+  "payment.status.cancelled": "Отменено",
+
+  // Additional Info
+  "payment.info.receipt": "Чек отправлен на вашу электронную почту",
+  "payment.info.balance": "Ваш новый баланс",
+  "payment.info.transaction": "Номер транзакции",
+  "payment.info.method": "Способ оплаты",
+  "payment.info.thank": "Спасибо за платёж!",
 };
