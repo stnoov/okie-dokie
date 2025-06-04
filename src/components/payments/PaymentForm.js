@@ -201,7 +201,7 @@ export default function ModernPaymentForm() {
 
     try {
       // Get auth header using your existing service
-      const response = await fetch('http://localhost:8080/api/payments/create', {
+      const response = await fetch('https://okiedokie-backend.herokuapp.com/api/payments/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
