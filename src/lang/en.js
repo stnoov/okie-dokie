@@ -87,5 +87,113 @@ The organizer usually asks the participants themselves if it is time to exchange
   "about.feature2.title": "International Meetings",
   "about.feature3.title": "Innovative Methods",
   "about.feature4.title": "Language Exchange",
-  "about.contact.title": "Have Questions?"
-};
+  "about.contact.title": "Have Questions?",
+  "fields.participant_single": "participant",
+  "fields.participant_few": "participants",
+  "fields.participant_many": "participants",
+  "fields.description": "Description",
+  "fields.lesson_details": "Lesson details",
+  "actions.lesson_full": "Lesson full",
+  "payment.title": "Top Up Balance",
+  "payment.subtitle": "Add funds to your account securely",
+  "payment.enterAmount": "Enter Amount",
+  "payment.amount": "Amount",
+  "payment.payButton": "Pay {amount} ₽",
+  "payment.security": "Secured by YooKassa SSL Encryption",
+
+  // Payment statuses and messages
+  "payment.invalidAmount": "Please enter a valid amount",
+  "payment.failedToCreate": "Failed to create payment",
+  "payment.processing": "Processing payment...",
+  "payment.success": "Payment successful!",
+  "payment.cancelled": "Payment was cancelled",
+  "payment.pending": "Payment is being processed",
+  "payment.failed": "Payment failed",
+
+  // Payment methods
+  "payment.method.bankCard": "Bank Card",
+  "payment.method.yoomoney": "YooMoney",
+  "payment.method.sberPay": "SberPay",
+  "payment.method.qiwi": "QIWI",
+  "payment.method.webmoney": "WebMoney",
+
+  // Validation messages
+  "payment.validation.required": "This field is required",
+  "payment.validation.minAmount": "Minimum amount: {min} ₽",
+  "payment.validation.maxAmount": "Maximum amount: {max} ₽",
+  "payment.validation.invalidFormat": "Invalid amount format",
+
+  // Balance and account
+  "payment.balance.current": "Current balance: {amount} ₽",
+  "payment.balance.afterPayment": "Balance after payment: {amount} ₽",
+  "payment.balance.history": "Payment History",
+
+  // Notifications
+  "payment.notification.success": "Balance successfully topped up by {amount} ₽",
+  "payment.notification.error": "Error while topping up balance",
+  "payment.notification.timeout": "Request timeout. Please try again",
+  "payment.notification.network": "Network error. Please check your internet connection",
+
+  // Buttons and actions
+  "payment.action.retry": "Try Again",
+  "payment.action.cancel": "Cancel",
+  "payment.action.goBack": "Go Back",
+  "payment.action.viewHistory": "View History",
+  "payment.action.contactSupport": "Contact Support",
+
+  // Receipt and confirmation
+  "payment.receipt.title": "Payment Receipt",
+  "payment.receipt.amount": "Amount",
+  "payment.receipt.date": "Date",
+  "payment.receipt.paymentId": "Payment ID",
+  "payment.receipt.method": "Payment Method",
+  "payment.receipt.download": "Download Receipt",
+  "payment.receipt.email": "Send to Email",
+
+  // Help and support
+  "payment.help.title": "Need Help?",
+  "payment.help.faq": "Frequently Asked Questions",
+  "payment.help.support": "Customer Support",
+  "payment.help.phone": "Support Phone",
+  "payment.help.email": "Support Email",
+
+  // Security and trust
+  "payment.security.ssl": "SSL Encryption",
+  "payment.security.pci": "PCI DSS Certified",
+  "payment.security.guarantee": "100% Secure Payments",
+  "payment.security.info": "Your data is protected with modern encryption methods",
+
+  "payment.success.title": "Payment Successful!",
+  "payment.success.message": "Your payment has been processed successfully. Your balance will be updated within a few minutes.",
+  "payment.success.button": "Return to Dashboard",
+  "payment.success.amount": "Amount",
+  "payment.success.date": "Date",
+  "payment.success.reference": "Payment ID",
+  "payment.success.processing": "Processing Complete",
+  "payment.success.balance.note": "Balance updates automatically",
+
+  // Loading States
+  "payment.loading.title": "Processing Payment...",
+  "payment.loading.message": "Please wait while we process your payment.",
+  "payment.loading.verify": "Verifying payment status",
+
+  // Error States
+  "payment.error.title": "Payment Error",
+  "payment.error.message": "An error occurred while processing your payment. Please try again.",
+  "payment.error.button": "Retry Payment",
+  "payment.error.support": "Contact Support",
+  "payment.error.generic": "Something went wrong. Please check your balance or contact support.",
+
+  // Status Messages
+  "payment.status.success": "Successful",
+  "payment.status.pending": "Processing",
+  "payment.status.failed": "Failed",
+  "payment.status.cancelled": "Cancelled",
+
+  // Additional Info
+  "payment.info.receipt": "Receipt sent to your email",
+  "payment.info.balance": "Your new balance",
+  "payment.info.transaction": "Transaction number",
+  "payment.info.method": "Payment method",
+  "payment.info.thank": "Thank you for your payment!",
+}
