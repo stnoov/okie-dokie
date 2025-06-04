@@ -28,6 +28,7 @@ import { useSelector } from "react-redux";
 import AuthVerify from "./services/AuthVerify";
 import ForgotPassword from "./views/authentication/ForgotPassword";
 import ResetPassword from "./views/authentication/ResetPassword";
+import PaymentResult from "./views/payments/PaymentResult";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -104,6 +105,7 @@ const AuthenticatedApp = ({ locale, setLocale }) => {
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/payments" component={Payments} />
+          <Route exact path="/payment/success" component={PaymentResult} />
           <Route exact path="/about_us" component={About} />
           {currentUser?.isAdmin && (
             <Route exact path="/admin" component={Admin} />
