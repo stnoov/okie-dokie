@@ -280,13 +280,20 @@ function Lessons({ width }) {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString(
-      localStorage.getItem("locale") || 'ru-RU',
-      {
-        day: "numeric",
-        month: "long",
-      }
-    );
+    const date = new Date(dateString);
+    const locale = localStorage.getItem("locale") || 'ru-RU';
+
+    // Get the day of the week and date
+    const dayOfWeek = date.toLocaleDateString(locale, { weekday: 'long' });
+    const dateFormatted = date.toLocaleDateString(locale, {
+      day: "numeric",
+      month: "long",
+    });
+
+    // Capitalize first letter of the day
+    const capitalizedDay = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
+
+    return `${capitalizedDay}, ${dateFormatted}`;
   };
 
   const getPluralForm = (count, forms) => {
@@ -471,6 +478,26 @@ function Lessons({ width }) {
             onChange={handleChangeGroups}
             className={classes.toggleButtonGroup}
           >
+
+            <ToggleButton
+              className={classes.styledToggleButton}
+              value="starter"
+            >
+              <Tooltip
+                title={intl.formatMessage({
+                  id: "group.starter_description",
+                  defaultMessage: "Вы только начинаете изучать язык.Никаких предварительных знаний не требуется.",
+                })}
+              >
+                <span>
+                  💼 {intl.formatMessage({
+                    id: "fields.starter",
+                    defaultMessage: "Starter",
+                  })}
+                </span>
+              </Tooltip>
+            </ToggleButton>
+
             <ToggleButton
               value="elementary"
               className={classes.styledToggleButton}
@@ -528,24 +555,6 @@ function Lessons({ width }) {
               </Tooltip>
             </ToggleButton>
 
-            {/* <ToggleButton
-              className={classes.styledToggleButton}
-              value="adults"
-            >
-              <Tooltip
-                title={intl.formatMessage({
-                  id: "group.adults_description",
-                  defaultMessage: "Вы уже умеете общаться на повседневные темы и составлять полные предложения.",
-                })}
-              >
-                <span>
-                  💼 {intl.formatMessage({
-                    id: "fields.adults",
-                    defaultMessage: "Adults",
-                  })}
-                </span>
-              </Tooltip>
-            </ToggleButton> */}
           </ToggleButtonGroup>
         </div>
 
