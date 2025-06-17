@@ -31,10 +31,11 @@ export const messagesInRussian = {
   "fields.completed_lessons": "Пройдено уроков",
   "fields.account_balance": "Баланс аккаунта",
   "fields.latest_news": "Актуальные новости",
-  "fields.elementary": "Дети 9-11 лет",
-  "fields.pre_intermediate": "Дети 10-13 лет",
+  "fields.elementary": "Дети 9 - 11 лет",
+  "fields.pre_intermediate": "Дети 10 - 13 лет",
   "fields.intermediate": "Подростки от 12 лет",
   "fields.adults": "Взрослые",
+  "fields.starter": "Дети 6 - 9 лет",
 
   "actions.choose_your_group": "Выберите вашу группу",
 
@@ -69,6 +70,8 @@ export const messagesInRussian = {
 
   "group.adults": "Взрослые",
   "group.adults_description": `Вы уже умеете общаться на повседневные темы и составлять полные предложения.`,
+
+  "group.starter_description": "Вы только начинаете изучать язык.Никаких предварительных знаний не требуется.",
 
   "lesson.successful_signup": `Вы успешно записались на мероприятие!`,
   "lesson.successful_signup_description": `Ссылка отправлена вам на почту, а также будет доступна на главной странице сайта, на картинке забронированного мероприятия, за 15 минут до его начала.`,
