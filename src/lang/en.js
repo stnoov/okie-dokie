@@ -63,6 +63,7 @@ The organizer usually asks the participants themselves if it is time to exchange
   "group.adults": "Adults",
   "group.adults_description": `You can communicate on everyday topics, construct complex sentences.`,
 
+  "group.starter_description": "You are just starting to learn the language. No prior knowledge required.",
 
 
   "lesson.successful_signup": `The meeting has been successfully booked!`,
