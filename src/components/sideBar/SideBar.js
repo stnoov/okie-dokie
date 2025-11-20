@@ -239,7 +239,7 @@ function SideBar({ width }) {
             <MenuList>
               {routes.map((prop, key) => {
                 return (
-                  <Link to={prop.path} className={classes.sideMenuLink} key={key}>
+                  <Link to={prop.path} className={classes.sideMenuLink} key={key} onClick={() => isWidthDown("sm", width) && handleDrawerClose()}>
                     <MenuItem
                       selected={activeRoute(prop.path)}
                       className={classes.sideMenuItem}
