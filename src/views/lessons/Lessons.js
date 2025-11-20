@@ -63,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     '@media (max-width: 600px)': {
       flexDirection: 'column',
+      gap: '4px',
+      width: '100%',
     },
   },
   styledToggleButton: {
@@ -73,6 +75,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: '"Roboto", "PT Sans", "Open Sans", "Segoe UI", "Arial", sans-serif',
     textTransform: 'none',
     padding: '8px 16px',
+    '@media (max-width: 600px)': {
+      width: '100%',
+      justifyContent: 'center',
+      marginLeft: '0 !important',
+      borderRadius: '8px !important',
+    },
     '&.Mui-selected': {
       backgroundColor: '#3498db',
       color: '#fff',
